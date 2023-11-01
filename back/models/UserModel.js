@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 let userSchema = mongoose.Schema(
   {
@@ -51,6 +52,16 @@ let userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+// HACHAGE DU MOT DE PASSE
+// Ce hook va se déclencher avant que la fonction save (User.save()) soit déclenché
+userSchema.pre("save", function (next){
+  if(!this.isModified("password")){
+      return next();
+  }
+  this.password = bcrypt.hashSync(this.password, 10)
+  next();
+})
 
 let User = mongoose.model("User", userSchema);
 

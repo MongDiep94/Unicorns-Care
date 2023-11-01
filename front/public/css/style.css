@@ -122,6 +122,9 @@ ul.unstyled {
 .margin-bottom-2 {
   margin-bottom: 2rem;
 }
+.margin-bottom-5 {
+  margin-bottom: 5rem;
+}
 .padding-top-2 {
   padding-bottom: 2rem;
 }
@@ -133,6 +136,7 @@ ul.unstyled {
 }
 .message {
   text-align: center;
+  margin: 5rem 0;
   color: var(--color-dark-green);
 }
 .style-h2 {
@@ -141,6 +145,9 @@ ul.unstyled {
 }
 .style-h3 {
   font-size: var(--size-title-3);
+}
+.size-text {
+  font-size: var(--size-text);
 }
 .title {
   padding: 1rem;
@@ -371,7 +378,7 @@ CARD USER
 ***************************************************************** */
 .petsitters {
   text-align: center;
-  padding-bottom: 5rem;
+  padding: 5rem 0;
 }
 .arabesque1:before {
   content:"";
@@ -576,6 +583,8 @@ CARD TESTIMONIAL
 ***************************************************************** */
 .testimonials {
   text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
 }
 .chapo {
   margin-bottom: 0;
@@ -591,53 +600,28 @@ CARD TESTIMONIAL
   background:url(./../images/pictos/chapo_top_green.svg) no-repeat;
   background-size:100%;
 }
-
-.slideStyles {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background-size: cover;
-  background-position: center;
-};
-
-.rightArrowStyles {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  right: 32px;
-  font-size: 45px;
-  color: #fff;
-  z-index: 1;
-  cursor: pointer;
-};
-
-.leftArrowStyles {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  left: 32px;
-  font-size: 45px;
-  color: #fff;
-  z-index: 1;
-  cursor: pointer;
-};
-
-.sliderStyles {
-  position: relative;
-  height: 100%;
-};
-
-.dotsContainerStyles {
-  display: flex;
-  justify-content: center;
-};
-
-.dotStyle {
-  margin: 0 3px;
-  cursor: pointer;
-  font-size: 20px;
-};
-
+.testimony__content {
+  padding: 5rem 5rem 0 5rem;
+  color: var(--color-dark-grey);
+  text-align: center;
+}
+.testimony__photo {
+  width: 20%;
+  margin: auto;
+  border-radius: 100%;
+}
+.testimony__owner {
+  font-size: 1.5rem;
+}
+.testimonials__end:after {
+  content:"";
+  display: block;
+  width:15rem;
+  height:5rem;
+  margin: auto;
+  background:url(./../images/pictos/chapo_bottom_green.svg) no-repeat;
+  background-size:100%;
+}
 /* *****************************************************************
 LOG/REGISTER
 ***************************************************************** */
@@ -648,7 +632,7 @@ LOG/REGISTER
   align-items: center;
   height: 100vh;
   background-image: url("../../images/bg_cream.svg");
-  background-size: auto;
+  background-size: 50%;
 }
 
 .login-box {
@@ -761,7 +745,7 @@ PROFIL SITTER
 .profil__sitter {
   display: flex;
   flex-direction: row;
-  padding-right: 2rem;
+  justify-content: space-between;
   color: var(--color-dark-grey);
   background-color: var(--color-white);
 }
@@ -774,12 +758,15 @@ PROFIL SITTER
 }
 .sitter__img {
   width: 30%;
-  height: 100%;
+  line-height: 0;
 }
-
+.sitter__img img {
+  height: 100%;
+  object-fit: cover;
+}
 .sitter__infos {
-  padding: 0 2rem;
-  width: 33%;
+  padding: 0 0rem 2rem 2rem;
+  width: 40%;
 }
 .sitter__rating {
   display: flex;
@@ -791,24 +778,82 @@ PROFIL SITTER
   display: flex;
   flex-direction: row;
 }
-
+.sitter__specie p {
+margin-right: 1rem;
+}
 .sitter_availability {
   width: 33%;
+  margin-right: 4rem;;
   height: min-content;
-  margin-top: 4rem;
-  padding: 0 2rem 2rem 2rem;
   text-align: center;
+}
+table {
+  width: 100%;
+  margin: 3rem 0;
+  border: 2rem solid var(--color-cream) ;
+  border-collapse: collapse;
   background-color: var(--color-cream);
 }
-.row {
-  display: inline-flex;
+thead {
+  font-size: var(--size-title-3);
+  font-family: 'Young Serif';
 }
-
+thead th {
+  padding-bottom: 0;
+  background-color: var(--color-cream);
+}
+th, td {
+  padding: 1rem 0;
+  border-bottom: 1.5rem solid var(--color-cream);
+  background-color: var(--color-white);
+}
 .box {
   padding: 1rem;
-  margin-right: 1rem;
+}
+.sitter__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5rem 0;
+}
+.sitter__reviews {
+  width: 66%;
+}
+iframe {
+  width: 33%;
+  max-height: 500px;
+  border: 0;
 }
 
+/* *****************************************************************
+CARD REVIEW
+***************************************************************** */
+.review__card {
+  display: flex;
+  flex-direction: row;
+  color: var(--color-dark-grey);
+  padding: 2rem 0;
+  margin-right: 4rem;
+  border-bottom: 2px solid var(--color-dark-green);
+}
+.review__card h3,
+.review__card p {
+  margin: 1rem 0;
+}
+.review__date {
+  color: var(--color-grey);
+}
+.review__rating{
+  margin-top:0;
+  color: var(--color-gold);
+  font-size: var(--size-title-2);
+}
+.review__photo {
+  width: 10rem;
+  height: 10rem;
+  margin-right: 2rem;
+  border-radius: 100%;
+}
 /* *****************************************************************
 CONTACT
 ***************************************************************** */
@@ -820,14 +865,13 @@ CONTACT
   background-size: 50%;
   background-color: var(--color-dark-green);
 }
-.form {
-  height: 100vh;
-}
+
 .contact {
   display: flex;
   flex-direction: column;
   margin: 5rem auto;
   max-width: 50%;
+  height: fit-content;
 }
 .contact select {
   width: 100%;
@@ -840,7 +884,6 @@ CONTACT
   color: var(--color-dark-grey);
   background: #eee;
 }
-
 textarea {
   width: 100%;
   border-radius: 0.5rem;
@@ -858,6 +901,7 @@ LEGALE NOTICE
   color: var(--color-dark-grey);
   padding: 8rem;
 }
+
 /* *****************************************************************
 BUTTON
 ***************************************************************** */
@@ -874,6 +918,9 @@ BUTTON
 }
 
 .btn__orange {
+  display: block;
+  margin: auto;
+  width: 100%;;
   padding: 0.8rem 1rem;
   background-color: var(--color-orange);
   box-shadow: -4px 4px 0 var(--color-gold);

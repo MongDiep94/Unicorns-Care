@@ -22,16 +22,16 @@ export const GetPets = async (req, res) => {
  *
  * @param {*} req
  * @param {*} res
- * Récupération des 3 meilleures créatures en BDD (les 3 dernières créées)
+ * Récupération des 3 dernières créatures créées en BDD
  */
-export const GetBestPets = async (req, res) => {
+export const GetLastPets = async (req, res) => {
 
 try {
-    const bestPets = await Pet.find().sort({createdAt: -1}).limit(3)
+    const lastPets = await Pet.find().sort({createdAt: -1}).limit(3)
 
-    res.json(bestPets)
+    res.json(lastPets)
 } catch (error) {
-    res.json({message:"Impossible d'obtenir les meilleurs créatures"})
+    res.json({message:"Impossible d'obtenir les 3 dernières créatures enregistrées"})
 }
 
 }

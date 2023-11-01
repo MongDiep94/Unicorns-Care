@@ -1,10 +1,51 @@
 import { NavLink } from "react-router-dom";
+import Slider from "react-slick";
 import Banner from "./Banner.js";
 import CardUser from "./CardUser.js";
 import CardPet from "./CardPet.js";
 import CardTestimonial from "./CardTestimonial.js";
 
 const Home = () => {
+
+    const settings = {
+      dots: true,
+      fade: true,
+      centerMode: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      pauseOnHover: true,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
+
   return (
     <>
       <Banner />
@@ -33,9 +74,14 @@ const Home = () => {
         </section>
         <section className="testimonials">
           <h1 className="chapo green">Les témoignages</h1>
-          <section className="container">
-            <CardTestimonial />
+          <section className="container margin-bottom-5">
+            <Slider {...settings}>
+              <CardTestimonial />
+              <CardTestimonial />
+              <CardTestimonial />
+            </Slider>
           </section>
+          <span className="testimonials__end"></span>
         </section>
       </main>
     </>

@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import { connectDB } from './config/database.js'
 import userRouter from './routes/UserRouter.js'
 import petRouter from './routes/PetRouter.js'
+import sitterRouter from './routes/SitterRouter.js'
 
 
 const app = express()
@@ -22,6 +23,7 @@ app.use(cors());
 connectDB
 
 app.use(petRouter)
+app.use(sitterRouter)
 app.use(userRouter)
 
 

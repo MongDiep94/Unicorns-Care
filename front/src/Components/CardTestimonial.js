@@ -1,12 +1,22 @@
 import React from "react";
 
-const CardTestimonial = ({testimonials}) => {
+const CardTestimonial = ({ testimonials }) => {
   return (
-    <>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in labore laudantium deserunt fugiat numquam.
-        </p>
-    </>
+    <article className="testimony__content">
+      <img
+        className="testimony__photo"
+        src="../../images/users/tohya.png"
+        alt="Photo pet-sitter Tohya Sakuria"
+        aria-label="Photo pet-sitter Tohya Sakuria"
+      />
+      <h2>Tohya Sakuria</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Quis auctor elit sed
+        vulputate mi sit amet mauris.
+      </p>
+      <p className="testimony__owner">Mara, propriétaire de Nini, Octobre 2023</p>
+    </article>
   );
 };
 
