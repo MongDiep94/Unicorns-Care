@@ -1,7 +1,8 @@
 import React from "react";
+import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import CardUser from "./CardUser.js";
+import CardUser from "../../Components/Cards/CardUser.js";
 
 const SearchPetSitters = () => {
   return (

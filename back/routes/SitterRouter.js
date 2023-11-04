@@ -1,16 +1,32 @@
-import express from 'express'
-import { GetLastSitters, GetOneSitter, GetSitters } from '../controllers/sitterController.js';
-
+import express from "express";
+import {
+  GetLastSitters,
+  GetOneSitter,
+  GetAllSitters,
+  NewSitter,
+  UpdateSitter,
+  DeleteSitter,
+} from "../controllers/sitterController.js";
 
 const sitterRouter = express.Router();
 
-// RECUPERER TOUTES LES CREATURES
-sitterRouter.get("/sitters", GetSitters)
+// RECUPERER TOUS LES SITTERS
+sitterRouter.get("/sitters", GetAllSitters);
 
-// RECUPERER LES 3 DERNIERES CREATURES ENREGISTREES
-sitterRouter.get("/last-sitters", GetLastSitters)
+// RECUPERER LES 3 DERNIERS SITTERS ENREGISTRES
+sitterRouter.get("/last-sitters", GetLastSitters);
 
-// RECUPERER UNE SEULE CREATURE
-sitterRouter.get("/sitter/:id", GetOneSitter)
+// RECUPERER UN SEUL SITTER
+sitterRouter.get("/sitter/:id", GetOneSitter);
 
-export default sitterRouter
+// CREER UN SITTER
+sitterRouter.post("/create-sitter", NewSitter);
+
+// METTRE A JOUR UN SITTER
+sitterRouter.patch("/update-sitter/:sitterId", UpdateSitter);
+
+// SUPPRIMER UN SITTER
+sitterRouter.delete("/delete-sitter/:sitterId", DeleteSitter);
+
+
+export default sitterRouter;

@@ -4,14 +4,16 @@ import "./App.css";
 import WithoutHearder from "./Components/WithoutHeader.js";
 import WithHeader from "./Components/WithHeader.js";
 
-import Home from "./Components/Home.js";
-import Login from "./Components/Login.js";
-import Contact from "./Components/Contact.js";
-import SearchPetSitters from "./Components/SearchPetSitters.js";
-import SearchCreatures from "./Components/SearchCreatures.js";
-import NotFound from "./Components/NotFound.js";
-import LegalNotice from "./Components/LegalNotice.js";
-import ProfilSitter from "./Components/ProfilSitter.js";
+import Login from "./Pages/Log/Login.js";
+import NotFound from "./Pages/NotFound/NotFound.js";
+import Home from "./Pages/Home/Home.js";
+import ProfilSitter from "./Pages/Profils/ProfilSitter.js";
+import SearchCreatures from "./Pages/Search/SearchCreatures.js";
+import SearchPetSitters from "./Pages/Search/SearchPetSitters.js"
+import Contact from "./Pages/Contact/Contact.js";
+import LegalNotice from "./Pages/LegalNotice/LegalNotice.js"
+
+
 
 function App() {
   return (

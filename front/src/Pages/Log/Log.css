@@ -1,0 +1,47 @@
+/* *****************************************************************
+LOG
+***************************************************************** */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../../public/images/bg_cream.svg");
+  background-size: 50%;
+}
+
+.login-box {
+  width: 30%;
+  background: var(--color-cream);
+  padding: 2rem 5rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-radius: 5px;
+}
+.login-box h2 {
+  margin-bottom: 3rem;
+  color: var(--color-dark-green);
+}
+
+.textbox {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.textbox input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.forgot-password {
+  display: block;
+  text-align: left;
+  margin-top: 3rem;
+  color: var(--color-dark-green);
+  cursor: pointer;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}

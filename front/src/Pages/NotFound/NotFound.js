@@ -1,4 +1,5 @@
 import React from "react";
+import "./NotFound.css";
 import { NavLink } from "react-router-dom";
 
 const NotFound = () => {
@@ -16,7 +17,7 @@ const NotFound = () => {
           <p>Malheureusement, vous n'en trouverez pas ici...</p>
           <NavLink className="btn__seeMore--pink" to="/">Mais peut-être là !</NavLink>
         </div>
-        <p>Logo</p>
+        <img src="../images/Logo_UnicornsCare_pink.svg" alt="Logo Unicorns & Care" aria-label="Logo Unicorns & Care" className="logo"/>
       </article>
     </section>
   );

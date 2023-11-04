@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
-import Banner from "./Banner.js";
-import CardUser from "./CardUser.js";
-import CardPet from "./CardPet.js";
-import CardTestimonial from "./CardTestimonial.js";
+import Banner from "../../Components/Banner/Banner.js";
+import CardUser from "../../Components/Cards/CardUser.js";
+import CardPet from "../../Components/Cards/CardPet.js";
+import CardTestimonial from "../../Components/Cards/CardTestimonial.js";
 
 const Home = () => {
 

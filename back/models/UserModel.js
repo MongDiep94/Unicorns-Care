@@ -27,9 +27,9 @@ let userSchema = mongoose.Schema(
     },
     address: [
       {
-        number: Number,
+        number: String,
         street: String,
-        complement: String,
+        city: String,
         zipcode: String,
       },
     ],

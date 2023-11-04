@@ -1,0 +1,121 @@
+/* *****************************************************************
+PROFIL SITTER
+***************************************************************** */
+.bg--green {
+  height: 6.5rem;
+  background-image: url(../../../public/images/bg_green.svg);
+  background-size: 50%;
+}
+
+.profil__sitter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--color-dark-grey);
+  background-color: var(--color-white);
+}
+.profil__sitter p {
+  margin: 0.5rem 0;
+}
+.profil__sitter h1,
+.profil__sitter h2 {
+  margin-bottom: 1rem
+}
+.sitter__img {
+  width: 30%;
+  line-height: 0;
+}
+.sitter__img img {
+  height: 100%;
+  object-fit: cover;
+}
+.sitter__infos {
+  padding: 0 0rem 2rem 2rem;
+  width: 40%;
+}
+.sitter__rating {
+  display: flex;
+}
+.sitter__rating p {
+  margin-right: 3rem;
+}
+.sitter__specie {
+  display: flex;
+  flex-direction: row;
+}
+.sitter__specie p {
+margin-right: 1rem;
+}
+.sitter_availability {
+  width: 33%;
+  margin-right: 4rem;;
+  height: min-content;
+  text-align: center;
+}
+table {
+  width: 100%;
+  margin: 3rem 0;
+  border: 2rem solid var(--color-cream) ;
+  border-collapse: collapse;
+  background-color: var(--color-cream);
+}
+thead {
+  font-size: var(--size-title-3);
+  font-family: 'Young Serif';
+}
+thead th {
+  padding-bottom: 0;
+  background-color: var(--color-cream);
+}
+th, td {
+  padding: 1rem 0;
+  border-bottom: 1.5rem solid var(--color-cream);
+  background-color: var(--color-white);
+}
+.box {
+  padding: 1rem;
+}
+.sitter__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5rem 0;
+}
+.sitter__reviews {
+  width: 66%;
+}
+iframe {
+  width: 33%;
+  max-height: 500px;
+  border: 0;
+}
+
+/* *****************************************************************
+CARD REVIEW
+***************************************************************** */
+.review__card {
+  display: flex;
+  flex-direction: row;
+  color: var(--color-dark-grey);
+  padding: 2rem 0;
+  margin-right: 4rem;
+  border-bottom: 2px solid var(--color-dark-green);
+}
+.review__card h3,
+.review__card p {
+  margin: 1rem 0;
+}
+.review__date {
+  color: var(--color-grey);
+}
+.review__rating{
+  margin-top:0;
+  color: var(--color-gold);
+  font-size: var(--size-title-2);
+}
+.review__photo {
+  width: 10rem;
+  height: 10rem;
+  margin-right: 2rem;
+  border-radius: 100%;
+}

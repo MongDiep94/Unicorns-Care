@@ -1,0 +1,39 @@
+.bg__not-found {
+  background-image: url("../../../public/images/fond-arc-en-ciel.png");
+  background-repeat: repeat-y;
+  background-size: cover;
+  text-align: center;
+  color: var(--color-pink);
+  padding-top: 5rem;
+  height: 100vh;
+}
+.licorne-dab {
+  max-width: 30%;
+}
+.text-not-found {
+  max-width: 60%;
+  margin: 0 auto
+}
+.btn__seeMore--pink {
+  font-family: 'Young Serif';
+  color: var(--color-pink);
+  justify-content: center;
+}
+.btn__seeMore--pink:after{
+  content:"";
+  display:inline-block;
+  width:3.5rem;
+  height:1.6rem;
+  margin-left: 1rem;
+  background:url(../../../public/images/pictos/arrow2_d_pink.svg) no-repeat;
+  background-size:100%;
+}
+.btn__seeMore--pink:hover:after {
+  margin-left: 2rem;
+  transition: 0.5s ease-in-out;
+}
+
+.logo {
+  margin-top: 5rem;
+  width: 20%;
+}

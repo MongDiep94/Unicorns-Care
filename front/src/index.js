@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import Footer from './Components/Footer.js';
+import Footer from './Components/Footer/Footer.js';
 import ScrollToTop from './Components/ScrollToTop.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

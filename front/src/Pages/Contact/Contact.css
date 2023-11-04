@@ -1,0 +1,28 @@
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem auto;
+  max-width: 50%;
+  height: fit-content;
+}
+.contact select {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #ccc;  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--size-text);
+  color: var(--color-dark-grey);
+  background: #eee;
+}
+textarea {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  font-size: var(--size-text);
+  background: #eee;
+}

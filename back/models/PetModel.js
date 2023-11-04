@@ -13,12 +13,10 @@ let petSchema = mongoose.Schema(
     specie: String,
     element: String,
     image: String,
-    owner: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,

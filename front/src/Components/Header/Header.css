@@ -1,0 +1,22 @@
+.menu__header {
+  padding: 1rem 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+}
+.btn__nav {
+  margin-left: 3rem;
+}
+.btn__nav:hover {
+  opacity: 0.6;
+  transition: 0.3 ease-in-out;
+}

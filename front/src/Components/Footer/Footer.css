@@ -1,0 +1,20 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  padding: 1rem 5rem;
+  background-color: var(--color-gold);
+}
+.footer p{
+  font-size: 1.5rem;
+}
+.footer__nav {
+  color: var(--color-cream);
+  font-size: 1.5rem;
+  margin-left: 3rem;
+}
+.footer__nav:hover {
+  opacity: 0.6;
+}

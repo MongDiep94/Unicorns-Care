@@ -4,7 +4,6 @@ let sitterSchema = mongoose.Schema(
   {
     image:  String,
     bio: String,
-    price: Number,
     species: [String],
     user: [
       {

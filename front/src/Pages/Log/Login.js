@@ -1,4 +1,5 @@
 import React from "react";
+import "./Log.css";
 import { NavLink } from "react-router-dom";
 
 const Login = () => {
