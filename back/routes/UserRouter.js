@@ -13,24 +13,24 @@ userRouter.post("/register", Register)
 userRouter.get("/logout", Logout)
 
 //SHOW ALL USERS
-userRouter.get("/all-users", AllUsers)
+userRouter.get("/users", AllUsers)
 
 //ADD USER
-userRouter.post("/add-user", AddUser)
+userRouter.post("/user/add", AddUser)
 
 //SHOW USER
-userRouter.get("/:userId", GetOneUser)
+userRouter.get("/user/:userId", GetOneUser)
 
 //UPDATE USER
-userRouter.patch("/update/:userId", UpdateUser)
+userRouter.patch("/user/:userId/update", UpdateUser)
 
 //USER PETS
-userRouter.get("/user-pet/:userId", GetUserPets)
-userRouter.post("/new-pet/:userId", NewUserPet)
+userRouter.get("/user/:userId/pet", GetUserPets)
+userRouter.post("/user/:userId/new-pet", NewUserPet)
 
 //USER SITTERS
-userRouter.get("/user-sitter/:userId", GetUserSitter)
-userRouter.post("/new-sitter/:userId", NewUserSitter)
+userRouter.get("/user/:userId/sitter", GetUserSitter)
+userRouter.post("/user/:userId/new-sitter", NewUserSitter)
 
 
 export default userRouter

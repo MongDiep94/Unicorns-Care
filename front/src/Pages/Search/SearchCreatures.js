@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Search.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import CardPet from "../../Components/Cards/CardPet.js";
+import axios from "axios";
 
 const SearchCreatures = () => {
+  const [allPets, setAllPets] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API}/pets`).then((res) => {
+      setAllPets(res.data);
+      console.log('set all Pets', setAllPets);
+    });
+
+  }, []);
+
   return (
     <>
       <section className="search__banner">
@@ -41,14 +52,9 @@ const SearchCreatures = () => {
         </section>
       </section>
       <section className="container cards">
-        <CardPet />
-        <CardPet />
-        <CardPet />
-        <CardPet />
-        <CardPet />
-        <CardPet />
-        <CardPet />
-        <CardPet />
+        {allPets.map((pet, i) => (
+          <CardPet key={i} onePet={pet} />
+        ))}
       </section>
     </>
   );

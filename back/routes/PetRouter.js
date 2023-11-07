@@ -17,15 +17,15 @@ petRouter.get("/pets", GetAllPets);
 petRouter.get("/last-pets", GetLastPets);
 
 // RECUPERER UNE SEULE CREATURE
-petRouter.get("/:petId", GetOnePet);
+petRouter.get("/pet/:petId", GetOnePet);
 
 // CREER UNE CREATURE
-petRouter.post("/create-pet", NewPet);
+petRouter.post("/pet/create", NewPet);
 
 // METTRE A JOUR UNE CREATURE
-petRouter.patch("/update-pet/:petId", UpdatePet);
+petRouter.patch("/pet/update/:petId", UpdatePet);
 
 // SUPPRIMER UNE CREATURE
-petRouter.delete("/delete-pet/:petId", DeletePet);
+petRouter.delete("/pet/delete/:petId", DeletePet);
 
 export default petRouter;

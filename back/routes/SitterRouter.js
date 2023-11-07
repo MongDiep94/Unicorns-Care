@@ -20,13 +20,13 @@ sitterRouter.get("/last-sitters", GetLastSitters);
 sitterRouter.get("/sitter/:id", GetOneSitter);
 
 // CREER UN SITTER
-sitterRouter.post("/create-sitter", NewSitter);
+sitterRouter.post("/sitter/create", NewSitter);
 
 // METTRE A JOUR UN SITTER
-sitterRouter.patch("/update-sitter/:sitterId", UpdateSitter);
+sitterRouter.patch("/sitter/update/:sitterId", UpdateSitter);
 
 // SUPPRIMER UN SITTER
-sitterRouter.delete("/delete-sitter/:sitterId", DeleteSitter);
+sitterRouter.delete("/sitter/delete/:sitterId", DeleteSitter);
 
 
 export default sitterRouter;

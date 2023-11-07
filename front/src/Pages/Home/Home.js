@@ -4,47 +4,58 @@ import Banner from "../../Components/Banner/Banner.js";
 import CardUser from "../../Components/Cards/CardUser.js";
 import CardPet from "../../Components/Cards/CardPet.js";
 import CardTestimonial from "../../Components/Cards/CardTestimonial.js";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
+  const settings = {
+    dots: true,
+    fade: true,
+    centerMode: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
-    const settings = {
-      dots: true,
-      fade: true,
-      centerMode: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 5000,
-      pauseOnHover: true,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
-    };
+  const [lastPets, setLastPets] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API}/last-pets`).then((res) => {
+      setLastPets(res.data);
+      console.log('set last Pets', setLastPets);
+    });
+
+  }, []);
 
   return (
     <>
@@ -57,18 +68,18 @@ const Home = () => {
             <CardUser />
             <CardUser />
           </section>
-          <NavLink to="/recherche-sitters" className="btn__seeMore--orange">
+          <NavLink to="/recherche-sitters" className="btn__seeMore--orange" aria-label ="Lien pour aller sur la page de recherche de tous les sitters">
             Voir plus de profils
           </NavLink>
         </section>
         <section className="creatures">
           <h1 className="arabesque2 cream">Découvrez nos créatures à garder</h1>
           <section className="container cards">
-            <CardPet />
-            <CardPet />
-            <CardPet />
+          {lastPets.map((lastPet, i) => (
+            <CardPet key={i} onePet ={lastPet}/>
+            ))}
           </section>
-          <NavLink to="/recherche-creatures" className="btn__seeMore--cream">
+          <NavLink to="/recherche-creatures" className="btn__seeMore--cream" aria-label ="Lien pour aller sur la page de recherche de toutes lescréatures">
             Voir plus de créatures
           </NavLink>
         </section>

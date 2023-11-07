@@ -91,6 +91,7 @@ export const Logout = (req, res) => {
 export const AllUsers = async (req, res) => {
   try {
     let users = await User.find({});
+    console.log('all users', users)
     res.json(users);
   } catch (err) {
     res.json({ message: "Impossible de trouver la liste des utilisateurs" });
@@ -133,6 +134,7 @@ export const GetOneUser = async (req, res) => {
   try {
     const { userId } = req.params;
     let user = await User.findById(userId);
+    console.log('show user', user)
     res.json(user);
   } catch (err) {
     res.json({ message: "Impossible de trouver l'utilisateur" });
@@ -162,6 +164,7 @@ export const UpdateUser = async (req, res) => {
     });
 
     let updatedUser = await User.findByIdAndUpdate(userId, UpdateUser);
+    console.log('updated user', updatedUser)
     res.json(updatedUser);
   } catch (err) {
     res.json({ message: "Impossible de mettre à jour l'utilisateur" });
