@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+back/public/images/pets/.DS_Store
+back/public/images/.DS_Store
+back/.DS_Store
+.DS_Store
+.DS_Store
+.DS_Store
