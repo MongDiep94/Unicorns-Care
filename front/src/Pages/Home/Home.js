@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = () => {
+  // settings slider Slick
   const settings = {
     dots: true,
     fade: true,
@@ -48,13 +49,19 @@ const Home = () => {
   };
 
   const [lastPets, setLastPets] = useState([]);
+  const [lastSitters, setLastSitters] = useState([]);
 
   useEffect(() => {
+
     axios.get(`${process.env.REACT_APP_API}/last-pets`).then((res) => {
       setLastPets(res.data);
-      console.log('set last Pets', setLastPets);
+      console.log("set last Pets", setLastPets);
     });
 
+    axios.get(`${process.env.REACT_APP_API}/last-sitters`).then((res) => {
+      setLastSitters(res.data);
+      console.log("set last Sitters", setLastSitters);
+    });
   }, []);
 
   return (
@@ -64,22 +71,30 @@ const Home = () => {
         <section className="petsitters">
           <h1 className="arabesque1 orange">Découvrez vos Pet Sitters</h1>
           <section className="container cards">
-            <CardUser />
-            <CardUser />
-            <CardUser />
+            {lastSitters.map((lastSitter, i) => (
+              <CardUser key={i} oneSitter={lastSitter} />
+            ))}
           </section>
-          <NavLink to="/recherche-sitters" className="btn__seeMore--orange" aria-label ="Lien pour aller sur la page de recherche de tous les sitters">
+          <NavLink
+            to="/recherche-sitters"
+            className="btn__seeMore--orange"
+            aria-label="Lien pour aller sur la page de recherche de tous les sitters"
+          >
             Voir plus de profils
           </NavLink>
         </section>
         <section className="creatures">
           <h1 className="arabesque2 cream">Découvrez nos créatures à garder</h1>
           <section className="container cards">
-          {lastPets.map((lastPet, i) => (
-            <CardPet key={i} onePet ={lastPet}/>
+            {lastPets.map((lastPet, i) => (
+              <CardPet key={i} onePet={lastPet} />
             ))}
           </section>
-          <NavLink to="/recherche-creatures" className="btn__seeMore--cream" aria-label ="Lien pour aller sur la page de recherche de toutes lescréatures">
+          <NavLink
+            to="/recherche-creatures"
+            className="btn__seeMore--cream"
+            aria-label="Lien pour aller sur la page de recherche de toutes lescréatures"
+          >
             Voir plus de créatures
           </NavLink>
         </section>

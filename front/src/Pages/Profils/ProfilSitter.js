@@ -1,9 +1,27 @@
 import "./Profils.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const ProfilSitter = () => {
+  const [sitter, setSitter] = useState([]);
+
+  // identification du sitter par son ID
+  const { id } = useParams();
+
+  // Décomposition + condition d'objet vide si pas de données
+  const { bio, image, species, user } = sitter;
+
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API}/sitter/${id}`).then((res) => {
+      setSitter(res.data);
+      console.log("set  one Sitter", setSitter);
+    });
+  }, [id]); // écoute sur le changement de l'ID
+
   return (
     <>
       <div className="bg--green"></div>
@@ -11,19 +29,21 @@ const ProfilSitter = () => {
         <section className="profil__sitter">
           <article className="sitter__img">
             <img
-              src="../../images/users/tohya.png"
-              alt="Photo pet-sitter Tohya Sakuria"
-              aria-label="Photo pet-sitter Tohya Sakuria"
+              className="card__background"
+              src={`${process.env.REACT_APP_API}/images/users/${image}`}
+              alt={`Photo de user`}
             />
           </article>
           <article className="sitter__infos">
-            <h1 className="green">Tohya Sakuria</h1>
+            <h1 className="green">
+            user
+            </h1>
             <p>
               <FontAwesomeIcon
                 icon={faLocationDot}
                 className="margin-right-1 orange"
               />
-              Paris 20e
+              user
             </p>
             <section className="sitter__rating">
               <p>6 avis</p>
@@ -31,16 +51,16 @@ const ProfilSitter = () => {
                 <FontAwesomeIcon icon={faStar} className="gold" /> 5/5
               </p>
             </section>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-              auctor elit sed vulputate mi sit amet mauris.
-            </p>
+            <p>{bio}</p>
             <h2 className="style-h3 orange">Préférences d'espèce</h2>
             <section className="sitter__specie">
-              <p className="box bg--color-grey">Specie</p>
-              <p className="box bg--color-grey">Specie</p>
-              <p className="box bg--color-grey">Specie</p>
+              {species &&
+                species.length > 0 &&
+                species.map((s, i) => (
+                  <p className="box bg--color-grey" key={i}>
+                    {s}
+                  </p>
+                ))}
             </section>
           </article>
           <article className="sitter_availability">
@@ -53,12 +73,12 @@ const ProfilSitter = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>lundi &gt; vendredi</td>
-                    <td>07:00 &gt; 20:00</td>
+                    <td className="days">lundi &gt; vendredi</td>
+                    <td className="hours">07:00 &gt; 20:00</td>
                   </tr>
                   <tr>
-                    <td>samedi &gt; dimanche</td>
-                    <td>09:00 &gt; 22:00</td>
+                    <td className="days">samedi &gt; dimanche</td>
+                    <td className="hours">09:00 &gt; 22:00</td>
                   </tr>
                 </tbody>
               </table>
@@ -74,9 +94,8 @@ const ProfilSitter = () => {
             <article className="review__card">
               <img
                 className="review__photo"
-                src=".../../images/users/mara.png"
-                alt="Photo propriétaire Mara"
-                aria-label="Photo propriètaire Mara"
+                src={`${process.env.REACT_APP_API}/images/users/${image}`}
+                alt={`Photo reviewer user`}
               />
               <section>
                 <p className="review__rating">
@@ -98,9 +117,8 @@ const ProfilSitter = () => {
             <article className="review__card">
               <img
                 className="review__photo"
-                src=".../../images/users/mara.png"
-                alt="Photo propriétaire Mara"
-                aria-label="Photo propriètaire Mara"
+                src={`${process.env.REACT_APP_API}/images/users/${image}`}
+                alt={`Photo reviewer user`}
               />
               <section>
                 <p className="review__rating">

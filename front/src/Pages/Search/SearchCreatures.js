@@ -20,7 +20,7 @@ const SearchCreatures = () => {
     <>
       <section className="search__banner">
         <section id="search" className="search__bar">
-          <select className="element select" name="element" id="element">
+          <select className="select" name="elements" id="elements">
             <option value="all">Eléments</option>
             <option value="fire">Feu</option>
             <option value="water">Eau</option>
@@ -29,7 +29,7 @@ const SearchCreatures = () => {
             <option value="ice">Glace</option>
           </select>
           <p className="arrows">&gt; &gt;</p>
-          <select className="specie select" name="specie" id="specie">
+          <select className="select" name="species" id="species">
             <option value="all">Espèces</option>
             <option value="fire">Equidés</option>
             <option value="water">Félins</option>

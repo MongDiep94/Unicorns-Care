@@ -3,15 +3,6 @@ import "./Cards.css";
 import { NavLink } from "react-router-dom";
 
 const CardPet = ({ onePet }) => {
-  /*
-  const [pet, setPet] = useState("");
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API}/pet/${id}`).then((res) => {
-      setPet(res.data);
-      console.log("data pet", res.data);
-    });
-  }, []);
-  */
 
   const { name, specie, element, age, image, _id } = onePet;
 

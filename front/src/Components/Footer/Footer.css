@@ -7,14 +7,25 @@
   padding: 1rem 5rem;
   background-color: var(--color-gold);
 }
-.footer p{
+
+.credits {
+  display: flex;
+  align-items: center;
+}
+.credits a {
+  margin-left: 2rem;
+}
+
+.footer a {
   font-size: 1.5rem;
 }
+
 .footer__nav {
   color: var(--color-cream);
   font-size: 1.5rem;
   margin-left: 3rem;
 }
+
 .footer__nav:hover {
   opacity: 0.6;
 }

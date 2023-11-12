@@ -4,7 +4,7 @@ import User from "../models/UserModel.js";
 /* Récupération de tous les pet-sitters */
 export const GetAllSitters = async (req, res) => {
   try {
-    const sitters = await Sitter.find({}).sort({ createdAt: -1 }).limit(30);
+    const sitters = await Sitter.find({}).populate("user").sort({ createdAt: -1 }).limit(30);
     res.json(sitters);
   } catch (error) {
     res.json({
@@ -16,7 +16,7 @@ export const GetAllSitters = async (req, res) => {
 /* Récupération des 3 derniers sitters créés en BDD */
 export const GetLastSitters = async (req, res) => {
   try {
-    const lastSitters = await Sitter.find().sort({ createdAt: -1 }).limit(3);
+    const lastSitters = await Sitter.find().populate("user").sort({ createdAt: -1 }).limit(3);
     res.json(lastSitters);
   } catch (error) {
     res.json({
@@ -28,9 +28,9 @@ export const GetLastSitters = async (req, res) => {
 /* Récupérer un seul sitter par son ID */
 export const GetOneSitter = async (req, res) => {
   try {
-    const { sitterId } = req.params;
+    const { id } = req.params;
 
-    let sitter = await Sitter.findById(sitterId);
+    let sitter = await Sitter.findById(id).populate("user");
 
     res.json(sitter);
   } catch (error) {
@@ -51,10 +51,10 @@ export const NewSitter = async (req, res) => {
     const newSitter = new Sitter({
       image: req.body.image,
       bio: req.body.bio,
-      species: [req.body.species],
+      species: [req.body.species]
     });
     // On n'a pas besoin du id user pour enregistrer un nouveau sitter, donc on l'enlève pour l'enregistrement du nouveau sitter
-    delete newSitter.owner;
+    //delete newSitter.owner;
 
     const sitter = new Sitter(newSitter);
     // réassigner l'user au nouveau sitter pour que l'userId apparaîsse dans le nouveau sitter

@@ -7,7 +7,10 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>©Lee Cross / ©LMD</p>
+      <section className="credits">
+        <a href="https://woodsplitterleecross.com/" target= "_blank">©Lee Cross</a>
+        <a href="https://www.linkedin.com/in/mong-diep-le-devfullstackjs/" target="_blank">©Mong Diep LÊ</a>
+      </section>
       <section>
         <NavLink to="/" className="footer__nav"><FontAwesomeIcon icon={faHouse} /></NavLink>
         <NavLink to="/contact" className="footer__nav">Contact</NavLink>

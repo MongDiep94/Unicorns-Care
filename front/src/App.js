@@ -24,7 +24,7 @@ function App() {
       </Route>
       <Route element={<WithHeader />}>
         <Route path="/" element={<Home />} />
-        <Route path="/profil-sitter" element={<ProfilSitter />} />
+        <Route path="/profil-sitter/:id" element={<ProfilSitter />} />
         <Route path="/recherche-sitters" element={<SearchPetSitters />} />
         <Route path="/recherche-creatures" element={<SearchCreatures />} />
         <Route path="/contact" element={<Contact />} />

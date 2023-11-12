@@ -30,7 +30,7 @@ PROFIL SITTER
   object-fit: cover;
 }
 .sitter__infos {
-  padding: 0 0rem 2rem 2rem;
+  padding: 0 2rem 2rem 2rem;
   width: 40%;
 }
 .sitter__rating {
@@ -41,6 +41,7 @@ PROFIL SITTER
 }
 .sitter__specie {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 .sitter__specie p {
@@ -71,6 +72,14 @@ th, td {
   padding: 1rem 0;
   border-bottom: 1.5rem solid var(--color-cream);
   background-color: var(--color-white);
+}
+.days {
+  padding-left: 0.5rem;
+  text-align: left;
+}
+.hours {
+  padding-right: 0.5rem;
+  text-align: right;
 }
 .box {
   padding: 1rem;

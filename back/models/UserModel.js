@@ -41,7 +41,7 @@ let userSchema = mongoose.Schema(
         ref: "Sitter",
       },
     ],
-    pet: [
+    pets: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Pet",
