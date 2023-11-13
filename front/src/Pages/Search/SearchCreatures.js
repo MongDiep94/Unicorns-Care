@@ -11,7 +11,7 @@ const SearchCreatures = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/pets`).then((res) => {
       setAllPets(res.data);
-      console.log('set all Pets', setAllPets);
+      console.log('set all Pets', res.data);
     });
 
   }, []);
@@ -28,7 +28,7 @@ const SearchCreatures = () => {
             <option value="wind">Air</option>
             <option value="ice">Glace</option>
           </select>
-          <p className="arrows">&gt; &gt;</p>
+          <span className="separator">|</span>
           <select className="select" name="species" id="species">
             <option value="all">Espèces</option>
             <option value="fire">Equidés</option>
@@ -37,7 +37,7 @@ const SearchCreatures = () => {
             <option value="wind">Ornithos</option>
             <option value="ice">Sauropsides</option>
           </select>
-          <p className="arrows">&gt; &gt;</p>
+          <span className="separator">|</span>
           <form action="" method="get">
             <input
               type="text"

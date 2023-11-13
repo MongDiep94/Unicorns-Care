@@ -18,7 +18,7 @@ const ProfilSitter = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/sitter/${id}`).then((res) => {
       setSitter(res.data);
-      console.log("set  one Sitter", setSitter);
+      console.log("set one Sitter", res.data);
     });
   }, [id]); // écoute sur le changement de l'ID
 
@@ -31,12 +31,12 @@ const ProfilSitter = () => {
             <img
               className="card__background"
               src={`${process.env.REACT_APP_API}/images/users/${image}`}
-              alt={`Photo de user`}
+              alt={`Photo de User`}
             />
           </article>
           <article className="sitter__infos">
             <h1 className="green">
-            user
+
             </h1>
             <p>
               <FontAwesomeIcon

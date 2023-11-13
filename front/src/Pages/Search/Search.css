@@ -11,7 +11,7 @@
 }
 /* SEARCH BAR */
 
-.arrows {
+.separator {
   width: 8%;
   color: var(--color-dark-green);
   font-weight: bold;

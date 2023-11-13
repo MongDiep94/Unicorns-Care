@@ -55,12 +55,12 @@ const Home = () => {
 
     axios.get(`${process.env.REACT_APP_API}/last-pets`).then((res) => {
       setLastPets(res.data);
-      console.log("set last Pets", setLastPets);
+      console.log("set last Pets", res.data);
     });
 
     axios.get(`${process.env.REACT_APP_API}/last-sitters`).then((res) => {
       setLastSitters(res.data);
-      console.log("set last Sitters", setLastSitters);
+      console.log("set last Sitters", res.data);
     });
   }, []);
 

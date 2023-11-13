@@ -35,12 +35,10 @@ let userSchema = mongoose.Schema(
     ],
     phone: String,
     isAdmin: Boolean,
-    sitter: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Sitter",
-      },
-    ],
+    sitter: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Sitter",
+    },
     pets: [
       {
         type: mongoose.Schema.Types.ObjectId,

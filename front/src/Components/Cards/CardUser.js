@@ -8,11 +8,11 @@ const CardUser = ({oneSitter}) => {
   const { user, image, _id } = oneSitter;
 
   // décomposition de l'adresse avec condition
-  const city = user[0].address && user[0].address.length > 0 ? user[0].address[0].city : '';
-  const firstName = user[0].firstName && user[0].firstName.length > 0 ? user[0].firstName : '';
+  const city = user && user.address && user.address.length > 0 ? user.address[0].city : "";
+  const firstName = user.firstName && user.firstName.length > 0 ? user.firstName : '';
 
   console.log('oneSitter:', oneSitter);
-  console.log('image:', image);
+  console.log('address', user.address[0].city);
 
   //const imageUrl = image
   //? `${process.env.REACT_APP_API}/images/users/${image}`
@@ -28,12 +28,12 @@ const CardUser = ({oneSitter}) => {
       />
       <img
         className="card__background"
-        src={`${process.env.REACT_APP_API}/images/users/${image}`} alt={firstName}
-        aria-label={`Photo de ${firstName}, pet sitter à ${city}`}
+        src={`${process.env.REACT_APP_API}/images/users/${image}`}
+        alt={`Photo de ${firstName}, pet sitter à ${city}`}
       />
       <div className="card__content ">
         <div className="card__content--container ">
-          <h2 className="card__title">{firstName}</h2>
+          <h2 className="card__title">{user.firstName}</h2>
           <section className="card__description">
             <p>
               <FontAwesomeIcon

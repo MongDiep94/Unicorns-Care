@@ -12,7 +12,7 @@ const SearchPetSitters = () => {
 
     axios.get(`${process.env.REACT_APP_API}/sitters`).then((res) => {
       setSitters(res.data);
-      console.log('set last Sitters', setSitters);
+      console.log('set last Sitters', res.data);
     });
 
   }, []);
@@ -26,7 +26,7 @@ const SearchPetSitters = () => {
             <option value="short-term"></option>
 
           </select>
-          <p className="arrows">&gt; &gt; &gt;</p>
+          <span className="separator">|</span>
           <form action="" method="get">
             <input
               type="text"
