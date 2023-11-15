@@ -6,25 +6,52 @@ import CardUser from "../../Components/Cards/CardUser.js";
 import axios from "axios";
 
 const SearchPetSitters = () => {
-  const [sitters, setSitters] = useState([]);
+  const [allSitters, setAllSitters] = useState([]);
+  const [initialAllSitters, setInitialAllSitters] = useState([]);
+  const [species, setSpecies] = useState([]);
 
   useEffect(() => {
-
     axios.get(`${process.env.REACT_APP_API}/sitters`).then((res) => {
-      setSitters(res.data);
-      console.log('set last Sitters', res.data);
-    });
+      setAllSitters(res.data);
+      setInitialAllSitters(res.data.s);
 
+      // Récupérer toutes les différentes espèces uniques
+      const uniqueSpecies = [
+        ...new Set(res.data.map((sitter) => sitter.species)),
+      ];
+      setSpecies(uniqueSpecies);
+      console.log("set last Sitters", res.data);
+      console.log("set Species", res.data.species);
+      console.log("ADDRESS", res.data.address[0].city);
+    });
   }, []);
+
+  const handleSpeciesChange = (e) => {
+    const selectedSpecie = e.target.value;
+    // Filtrer les Pets basé sur le choix du selectedSpecies
+    setAllSitters(
+      selectedSpecie === "all"
+        ? initialAllSitters
+        : initialAllSitters.filter((pet) => pet.specie === selectedSpecie)
+    );
+  };
 
   return (
     <>
       <section className="search__banner">
         <section id="search" className="search__bar">
-          <select className="select" name="species" id="species">
+          <select
+            className="select"
+            name="species"
+            id="species"
+            onChange={handleSpeciesChange}
+          >
             <option value="all">Espèces</option>
-            <option value="short-term"></option>
-
+            {species.map((specie, i) => (
+              <option key={i} value={specie}>
+                {specie}
+              </option>
+            ))}
           </select>
           <span className="separator">|</span>
           <form action="" method="get">
@@ -41,9 +68,9 @@ const SearchPetSitters = () => {
         </section>
       </section>
       <section className="container cards">
-      {sitters.map((sitter, i) => (
-            <CardUser key={i} oneSitter ={sitter}/>
-            ))}
+        {allSitters.map((sitter) => (
+          <CardUser key={sitter._id} oneSitter={sitter} />
+        ))}
       </section>
     </>
   );
