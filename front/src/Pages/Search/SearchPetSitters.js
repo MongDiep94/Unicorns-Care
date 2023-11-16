@@ -17,13 +17,12 @@ const SearchPetSitters = ({oneSitter}) => {
       setInitialAllSitters(res.data);
 
       // Récupérer toutes les différentes espèces uniques
-      const uniqueSpecies = [
-        ...new Set(res.data.map((sitter) => sitter.species)),
+      const allSpecies = [
+        ...new Set(res.data.flatMap((sitter) => sitter.species)),
       ];
-      setSpecies(uniqueSpecies);
+      setSpecies(allSpecies);
       console.log("set last Sitters", res.data);
-      console.log("set Species", res.data.species);
-      console.log("ADDRESS", res.data.address[0].city);
+      console.log("all Species", allSpecies);
     });
   }, []);
 
@@ -33,7 +32,9 @@ const SearchPetSitters = ({oneSitter}) => {
     setAllSitters(
       selectedSpecie === "all"
         ? initialAllSitters
-        : initialAllSitters.filter((pet) => pet.specie === selectedSpecie)
+        : initialAllSitters.filter((sitter) =>
+            sitter.species.includes(selectedSpecie)
+        )
     );
   };
 
