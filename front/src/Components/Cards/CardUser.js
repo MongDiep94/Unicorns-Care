@@ -11,8 +11,8 @@ const CardUser = ({oneSitter}) => {
   const city = user && user.address && user.address.length > 0 ? user.address[0].city : "";
   const firstName = user.firstName && user.firstName.length > 0 ? user.firstName : '';
 
-  console.log('oneSitter:', oneSitter);
-  console.log('address', user.address[0].city);
+  //console.log('oneSitter:', oneSitter);
+  //console.log('address', user.address[0].city);
 
   //const imageUrl = image
   //? `${process.env.REACT_APP_API}/images/users/${image}`

@@ -5,15 +5,16 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import CardUser from "../../Components/Cards/CardUser.js";
 import axios from "axios";
 
-const SearchPetSitters = () => {
+const SearchPetSitters = ({oneSitter}) => {
   const [allSitters, setAllSitters] = useState([]);
   const [initialAllSitters, setInitialAllSitters] = useState([]);
   const [species, setSpecies] = useState([]);
 
+
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/sitters`).then((res) => {
       setAllSitters(res.data);
-      setInitialAllSitters(res.data.s);
+      setInitialAllSitters(res.data);
 
       // Récupérer toutes les différentes espèces uniques
       const uniqueSpecies = [

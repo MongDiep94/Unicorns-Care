@@ -11,6 +11,10 @@
 }
 /* SEARCH BAR */
 
+form {
+  margin-bottom: 0;
+}
+
 .separator {
   width: 8%;
   color: var(--color-dark-green);

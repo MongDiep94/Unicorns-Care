@@ -35,7 +35,7 @@ CARD USER
   position: relative;
   display: grid;
   border-radius: 5px;
-  place-items: center;
+  place-items: end center;
   height: 50vh;
   max-width: 30rem;
   height: 30rem;
@@ -105,7 +105,7 @@ CARD USER
 
 @media (any-hover: hover) and (any-pointer: fine) {
   .card__content {
-    transform: translateY(70%);
+    transform: translateY(50%);
     transition: transform 500ms ease-out;
     transition-delay: 300ms;
   }
