@@ -29,7 +29,7 @@ export const GetOnePet = async (req, res) => {
   try {
     const { petId } = req.params;
 
-    let pet = await Pet.findById(petId);
+    let pet = await Pet.findById(petId).populate("owner");
     res.json(pet);
   } catch (error) {
     res.json({ message: "Désolé, aucune créature trouvée avec cet ID" });

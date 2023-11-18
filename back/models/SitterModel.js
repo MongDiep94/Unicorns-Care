@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 let sitterSchema = mongoose.Schema(
   {
-    image:  String,
     bio: String,
     species: [String],
     user: {

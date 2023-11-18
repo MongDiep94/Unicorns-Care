@@ -5,22 +5,21 @@ import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const ProfilSitter = () => {
-  const [sitter, setSitter] = useState({});
+const ProfilPet = () => {
+  const [pet, setPet] = useState({});
 
   // identification du sitter par son ID
   const { id } = useParams();
 
   // Décomposition + condition d'objet vide si pas de données
-  const { bio, species, user } = sitter || {};
-  const { firstName, lastName, address, photo } = user || {};
-  console.log("photo", photo);
-  //console.log('iframe', address[0].location);
+  const { name, age, gender, specie, element, bio, image, owner } = pet || {};
+  const { firstName, lastName, address, photo } = owner || {};
+  //console.log('city', address[0].city)
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API}/sitter/${id}`).then((res) => {
-      setSitter(res.data);
-      console.log("set one Sitter", sitter);
+    axios.get(`${process.env.REACT_APP_API}/pet/${id}`).then((res) => {
+      setPet(res.data);
+      console.log("set one pet", pet);
     });
   }, [id]); // écoute sur le changement de l'ID
 
@@ -32,37 +31,65 @@ const ProfilSitter = () => {
           <article className="sitter__img">
             <img
               className="card__background"
-              src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-              alt={`Photo de ${firstName}`}
+              src={`${process.env.REACT_APP_API}/images/pets/${image}`}
+              alt={`Photo de ${name}`}
             />
           </article>
           <article className="sitter__infos">
-            <h1 className="green">
-              {firstName} {lastName && lastName.toUpperCase()}
-            </h1>
-            <p>
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                className="margin-right-1 orange"
-              />{" "}
-              {address && address.length > 0 && address[0].city}
-            </p>
-            <section className="sitter__rating">
-              <p>6 avis</p>
+            <h1 className="green">{name}</h1>
+            <section>
               <p>
-                <FontAwesomeIcon icon={faStar} className="gold" /> 5/5
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className="margin-right-1 orange"
+                />{" "}
+                {address && address.length > 0 && address[0].city}
               </p>
+              <section className="sitter__rating">
+                <p className="box bg--color-grey">{age} ans</p>
+                <p className="box bg--color-grey">{gender}</p>
+                <p className="box bg--color-grey">{specie}</p>
+              </section>
+              <section>
+                {element === "Glace" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_ice.svg`}
+                    alt={`Icône élément ice`}
+                  />
+                )}
+                {element === "Feu" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_fire.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+                {element === "Eau" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_water.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+                {element === "Terre" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_earth.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+                {element === "Air" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_wind.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+              </section>
             </section>
-            <p>{bio}</p>
-            <h2 className="style-h3 orange">Préférences d'espèce</h2>
-            <section className="sitter__specie">
-              {species &&
-                species.length > 0 &&
-                species.map((s, i) => (
-                  <p className="box bg--color-grey" key={i}>
-                    {s}
-                  </p>
-                ))}
+            <section>
+              <p>{bio}</p>
             </section>
           </article>
           <article className="sitter_availability">
@@ -70,23 +97,27 @@ const ProfilSitter = () => {
               <table>
                 <thead>
                   <tr>
-                    <th colspan="2">Disponibilités</th>
+                    <th colspan="2">Gardes</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="days">lundi &gt; vendredi</td>
-                    <td className="hours">07:00 &gt; 20:00</td>
+                  <tr className="days">
+                  Du 11 décembre 2023
                   </tr>
-                  <tr>
-                    <td className="days">samedi &gt; dimanche</td>
-                    <td className="hours">09:00 &gt; 22:00</td>
+                  <tr className="days">
+                  Au 22 décembre 2023
                   </tr>
+                  <tr>Soit 12 jours</tr>
                 </tbody>
               </table>
             </section>
-            <NavLink to="#" className="btn__orange">
-              Contacter
+            <NavLink to="#" className="btn__orange relative">
+            <img
+              className="avatar__contact"
+              src={`${process.env.REACT_APP_API}/images/users/${photo}`}
+              alt={`Photo de ${name}`}
+            />
+              Contacter {firstName}
             </NavLink>
           </article>
         </section>
@@ -97,7 +128,7 @@ const ProfilSitter = () => {
               <img
                 className="review__photo"
                 src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-                alt={`Photo reviewer user`}
+                alt={`Photo reviewer ${firstName}`}
               />
               <section>
                 <p className="review__rating">
@@ -107,8 +138,8 @@ const ProfilSitter = () => {
                   <FontAwesomeIcon icon={faStar} />
                   <FontAwesomeIcon icon={faStar} />
                 </p>
-                <h3 className="size-text">Mara, propiétaire de Nini</h3>
-                <p className="review__date">Octobre 2023</p>
+                <h3 className="size-text">Camille</h3>
+                <p className="review__date">Juillet 2023</p>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -120,7 +151,7 @@ const ProfilSitter = () => {
               <img
                 className="review__photo"
                 src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-                alt={`Photo reviewer user`}
+                alt={`Photo reviewer ${firstName}`}
               />
               <section>
                 <p className="review__rating">
@@ -130,8 +161,8 @@ const ProfilSitter = () => {
                   <FontAwesomeIcon icon={faStar} />
                   <FontAwesomeIcon icon={faStar} />
                 </p>
-                <h3 className="size-text">Mara, propiétaire de Nini</h3>
-                <p className="review__date">Octobre 2023</p>
+                <h3 className="size-text">Camille</h3>
+                <p className="review__date">Juillet 2023</p>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -153,4 +184,4 @@ const ProfilSitter = () => {
   );
 };
 
-export default ProfilSitter;
+export default ProfilPet;

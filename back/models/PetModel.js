@@ -13,6 +13,7 @@ let petSchema = mongoose.Schema(
     specie: String,
     element: String,
     image: String,
+    bio: String,
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

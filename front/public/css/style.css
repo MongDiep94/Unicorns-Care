@@ -98,6 +98,12 @@ ul.unstyled {
 .hidden {
 	display: none;
 }
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
 .bold {
   font-weight: 700;
 }
@@ -286,37 +292,6 @@ button {
   background-color: transparent;
   color: var(--color-link);
 }
-
-#btn-darkMode {
-  cursor: pointer;
-}
-
-.darkMode {
-  background-color: #222;
-  --grey: var(--color-white);
-  --bg-header: #0c6588;
-  --bg-nav: #0c6588;
-  --bg-main: #333;
-  --bg-footer: #333;
-  --color-text: #eee;
-  --color-text-header: #e2f7ff;
-  --color-text-footer: #ddd;
-  --color-btn: #e2f7ff;
-  --color-btn-hover: var(--color-white);
-  --color-link-footer: #eee;
-  --color-link: var(--color-white);
-  --color-nav-main: #0c6588;
-  --border-sm: 1px solid #666;
-  --border-md: 1px solid #555;
-  --border-lg: 2px solid #444;
-}
-.darkMode h1,
-.darkMode h2,
-.darkMode h3,
-.darkMode a {
-  color: var(--color-white);
-}
-
 
 /* *****************************************************************
 CONTACT / LEGAL NOTICE

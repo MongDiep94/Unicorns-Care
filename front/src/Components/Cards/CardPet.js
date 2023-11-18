@@ -65,7 +65,7 @@ const CardPet = ({ onePet }) => {
             </section>
           </div>
           <NavLink
-            to={`/pet/${_id}`}
+            to={`/profil-pet/${_id}`}
             className="card__button"
             aria-label={`Lien vers profil de ${name}`}
           >

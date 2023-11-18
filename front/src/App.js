@@ -12,6 +12,7 @@ import SearchCreatures from "./Pages/Search/SearchCreatures.js";
 import SearchPetSitters from "./Pages/Search/SearchPetSitters.js"
 import Contact from "./Pages/Contact/Contact.js";
 import LegalNotice from "./Pages/LegalNotice/LegalNotice.js"
+import ProfilPet from "./Pages/Profils/ProfilPet.js";
 
 
 
@@ -24,9 +25,11 @@ function App() {
       </Route>
       <Route element={<WithHeader />}>
         <Route path="/" element={<Home />} />
-        <Route path="/profil-sitter/:id" element={<ProfilSitter />} />
         <Route path="/recherche-sitters" element={<SearchPetSitters />} />
+        <Route path="/profil-sitter/:id" element={<ProfilSitter />} />
+
         <Route path="/recherche-creatures" element={<SearchCreatures />} />
+        <Route path="/profil-pet/:id" element={<ProfilPet />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
       </Route>

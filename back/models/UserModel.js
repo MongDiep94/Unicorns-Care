@@ -31,8 +31,10 @@ let userSchema = mongoose.Schema(
         street: String,
         city: String,
         zipcode: String,
+        location: String
       },
     ],
+    photo:  String,
     phone: String,
     isAdmin: Boolean,
     sitter: {

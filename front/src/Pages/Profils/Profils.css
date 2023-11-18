@@ -2,7 +2,7 @@
 PROFIL SITTER
 ***************************************************************** */
 .bg--green {
-  height: 6.5rem;
+  height: 7rem;
   background-image: url(../../../public/images/bg_green.svg);
   background-size: 50%;
 }
@@ -97,6 +97,19 @@ iframe {
   width: 33%;
   max-height: 500px;
   border: 0;
+}
+
+/* *****************************************************************
+PROFIL SITTER
+***************************************************************** */
+
+.avatar__contact {
+  position: absolute;
+  top: -3rem;
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: 2rem;
+  border-radius: 100%;
 }
 
 /* *****************************************************************

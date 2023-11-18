@@ -5,19 +5,15 @@ import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const CardUser = ({oneSitter}) => {
   // décomposition de oneSitter;
-  const { user, image, _id } = oneSitter;
+  const { user, _id } = oneSitter;
+  const { address, firstName, photo } = user;
+
 
   // décomposition de l'adresse avec condition
   const city = user && user.address && user.address.length > 0 ? user.address[0].city : "";
-  const firstName = user.firstName && user.firstName.length > 0 ? user.firstName : '';
 
   //console.log('oneSitter:', oneSitter);
   //console.log('address', user.address[0].city);
-
-  //const imageUrl = image
-  //? `${process.env.REACT_APP_API}/images/users/${image}`
-  //: 'path_to_default_image';
-
 
   return (
     <article className="card">
@@ -28,12 +24,12 @@ const CardUser = ({oneSitter}) => {
       />
       <img
         className="card__background"
-        src={`${process.env.REACT_APP_API}/images/users/${image}`}
+        src={`${process.env.REACT_APP_API}/images/users/${photo}`}
         alt={`Photo de ${firstName}, pet sitter à ${city}`}
       />
       <div className="card__content ">
         <div className="card__content--container ">
-          <h2 className="card__title">{user.firstName}</h2>
+          <h2 className="card__title">{firstName && firstName.length > 0 && firstName}</h2>
           <section className="card__description">
             <p>
               <FontAwesomeIcon
