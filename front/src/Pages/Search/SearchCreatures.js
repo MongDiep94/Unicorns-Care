@@ -10,6 +10,8 @@ const SearchCreatures = () => {
   const [initialAllPets, setInitialAllPets] = useState([]);
   const [species, setSpecies] = useState([""]);
   const [elements, setElements] = useState([""]);
+  const [searchInput, setSearchInput] = useState([]);
+
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/pets`).then((res) => {
@@ -37,6 +39,8 @@ const SearchCreatures = () => {
         ? initialAllPets
         : initialAllPets.filter((pet) => pet.specie === selectedSpecie)
     );
+    // Vider l'input quand on choisit une espèce
+    setSearchInput([]);
   };
 
   const handleElementsChange = (e) => {
@@ -47,6 +51,24 @@ const SearchCreatures = () => {
         ? initialAllPets
         : initialAllPets.filter((pet) => pet.element === selectedElement)
     );
+    // Vider l'input quand on choisit un élément
+    setSearchInput([]);
+  };
+
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    const searchName = e.target.value;
+    console.log("search input", searchName);
+    // Filtrer les Sitters, basé sur le choix du searchName
+    const filteredPets =
+      searchName === "all"
+        ? initialAllPets
+        : initialAllPets.filter(
+            (pet) =>
+            pet.name &&
+            pet.name.toLowerCase().includes(searchName.toLowerCase()
+          ));
+    setSearchInput(filteredPets);
   };
 
   return (
@@ -84,9 +106,10 @@ const SearchCreatures = () => {
           <form action="" method="get">
             <input
               type="text"
-              name="search_text"
-              id="search_text"
+              name="search_name"
+              id="search_name"
               placeholder="Chercher une créature par son nom"
+              onChange={handleSearchChange}
             />
           </form>
           <button>
@@ -95,9 +118,14 @@ const SearchCreatures = () => {
         </section>
       </section>
       <section className="container cards">
-        {allPets.map((pet) => (
-          <CardPet key={pet._id} onePet={pet} />
-        ))}
+      {searchInput.length > 0
+          ? searchInput.map((pet) => (
+            <CardPet key={pet._id} onePet={pet} />
+            ))
+          : allPets.map((pet) => (
+            <CardPet key={pet._id} onePet={pet} />
+            ))
+            };
       </section>
     </>
   );

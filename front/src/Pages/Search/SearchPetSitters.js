@@ -22,7 +22,7 @@ const SearchPetSitters = ({ oneSitter }) => {
       ];
       setSpecies(allSpecies);
     });
-    console.log("AllSitters", allSitters);
+    //console.log("AllSitters", allSitters);
   }, []);
 
   const handleSpeciesChange = (e) => {
@@ -43,7 +43,6 @@ const SearchPetSitters = ({ oneSitter }) => {
   const handleSearchChange = (e) => {
     e.preventDefault();
     const searchName = e.target.value;
-    console.log("search input", searchName);
     // Filtrer les Sitters, basé sur le choix du searchName
     const filteredSitters =
       searchName === "all"
@@ -81,6 +80,7 @@ const SearchPetSitters = ({ oneSitter }) => {
             <input
               type="search"
               name="search_name"
+              id="search_name"
               placeholder="Chercher un pet sitter par le nom"
               onChange={handleSearchChange}
             />
