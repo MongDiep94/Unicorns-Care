@@ -6,6 +6,7 @@ import {
   NewPet,
   UpdatePet,
   DeletePet,
+  GetRandomPet,
 } from "../controllers/petController.js";
 
 const petRouter = express.Router();
@@ -18,6 +19,9 @@ petRouter.get("/last-pets", GetLastPets);
 
 // RECUPERER UNE SEULE CREATURE
 petRouter.get("/pet/:petId", GetOnePet);
+
+// RECUPERER RANDOM CREATURE
+petRouter.get("/random-pets", GetRandomPet);
 
 // CREER UNE CREATURE
 petRouter.post("/pet/create", NewPet);

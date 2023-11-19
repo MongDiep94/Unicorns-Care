@@ -38,6 +38,23 @@ export const GetOneSitter = async (req, res) => {
   }
 };
 
+/* Récupérer un random sitter */
+export const GetRandomSitter = async (req, res) => {
+  try {
+    // Use Mongoose to find a random sitter and populate the 'user' field
+    let randomSitter = await Sitter.aggregate([{ $sample: { size: 2 } }])
+    .lookup({ from: 'users', localField: 'user', foreignField: '_id', as: 'user' })
+    .exec();
+
+  // Check if a sitter was found
+  if (randomSitter.length > 0) {
+    res.json(randomSitter);
+  }
+  } catch (error) {
+    res.json({ message: "Désolé, aucun random sitter trouvé" });
+  }
+};
+
 // -----------------------------------------------------
 // CREATION D'UN NEW SITTER AU USER
 // -----------------------------------------------------

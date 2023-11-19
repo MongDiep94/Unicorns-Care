@@ -1,4 +1,3 @@
-
 /* *****************************************************************
 VARIABLES
 ***************************************************************** */
@@ -11,11 +10,6 @@ VARIABLES
   --size-title-1: 3.2rem;
   --size-title-2: 2.7rem;
   --size-title-3: 2.2rem;
-	--shadow-sm: 0 0 1px rgba(0,0,0,0.2);
-	--shadow-md: 0 0 3px rgba(0,0,0,0.3);
-	--shadow-lg: 0 0 5px rgba(0,0,0,0.4);
-	--shadow-xl: 0 10px 20px rgba(0,0,0,0.5);
-
 
   --color-gold: #ECA721;
   --color-cream: #F4EAD0;
@@ -25,6 +19,7 @@ VARIABLES
   --color-pink: #C8646D;
   --color-white: #efefef;
   --color-grey: #9e9e9e;
+  --color-light-grey: #d3d3d3;
   --color-dark-grey: #333;
 }
 
@@ -103,6 +98,11 @@ ul.unstyled {
 }
 .relative {
   position: relative;
+}
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .bold {
   font-weight: 700;
@@ -186,7 +186,7 @@ ul.unstyled {
   background-color: var(--color-white);
 }
 .bg--color-grey {
-  background-color: var(--color-grey);
+  background-color: var(--color-light-grey);
 }
 
 /* *****************************************************************
@@ -313,11 +313,13 @@ BUTTON
   padding: 0.8rem 1rem;
   background-color: var(--color-camel);
   box-shadow: -4px 4px 0 var(--color-cream);
+  transition: all 0.2s ease-in-out;
 }
 .btn__camel:hover {
   background-color: var(--color-gold);
   box-shadow: none;
   transition: 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn__orange {
@@ -327,22 +329,24 @@ BUTTON
   padding: 0.8rem 1rem;
   background-color: var(--color-orange);
   box-shadow: -4px 4px 0 var(--color-gold);
+  transition: all 0.2s ease-in-out;
 }
 .btn__orange:hover {
   background-color: var(--color-gold);
   box-shadow: none;
-  transition: 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn__gold {
   padding: 0.8rem 1rem;
   background-color: var(--color-gold);
   box-shadow: -4px 4px 0 var(--color-cream);
+  transition: all 0.2s ease-in-out;
 }
 .btn__gold:hover {
   background-color: var(--color-orange);
   box-shadow: none;
-  transition: 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn__seeMore--orange {
@@ -358,10 +362,12 @@ BUTTON
   margin-left: 1rem;
   background:url(./../images/pictos/arrow2_d_orange.svg) no-repeat;
   background-size:100%;
+  transition: all 0.5s ease-in-out;
+
 }
 .btn__seeMore--orange:hover:after {
   margin-left: 2rem;
-  transition: 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn__seeMore--cream {
@@ -377,10 +383,11 @@ BUTTON
   margin-left: 1rem;
   background:url(./../images/pictos/arrow2_d_cream.svg) no-repeat;
   background-size:100%;
+  transition: all 0.5s ease-in-out;
 }
 .btn__seeMore--cream:hover:after {
   margin-left: 2rem;
-  transition: 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .btn__camel:focus,

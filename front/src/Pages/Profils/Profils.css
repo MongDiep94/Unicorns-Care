@@ -7,29 +7,29 @@ PROFIL SITTER
   background-size: 50%;
 }
 
-.profil__sitter {
+.profil {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: var(--color-dark-grey);
   background-color: var(--color-white);
 }
-.profil__sitter p {
+.profil p {
   margin: 0.5rem 0;
 }
-.profil__sitter h1,
-.profil__sitter h2 {
+.profil h1,
+.profil h2 {
   margin-bottom: 1rem
 }
-.sitter__img {
+.profil__img {
   width: 30%;
   line-height: 0;
 }
-.sitter__img img {
+.profil__img img {
   height: 100%;
   object-fit: cover;
 }
-.sitter__infos {
+.box__infos {
   padding: 0 2rem 2rem 2rem;
   width: 40%;
 }
@@ -39,17 +39,19 @@ PROFIL SITTER
 .sitter__rating p {
   margin-right: 3rem;
 }
-.sitter__specie {
+.box__specie {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  align-items: center;
 }
-.sitter__specie p {
-margin-right: 1rem;
+.box__specie p {
+  margin-right: 1rem;
 }
-.sitter_availability {
+.box__availability {
   width: 33%;
-  margin-right: 4rem;;
+  margin-right: 4rem;
+  margin-bottom: 2rem;
   height: min-content;
   text-align: center;
 }
@@ -81,16 +83,18 @@ th, td {
   padding-right: 0.5rem;
   text-align: right;
 }
+
 .box {
   padding: 1rem;
+  margin: 0 auto;
 }
-.sitter__details {
+.box__details {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 5rem 0;
 }
-.sitter__reviews {
+.box__reviews {
   width: 66%;
 }
 iframe {
@@ -100,17 +104,32 @@ iframe {
 }
 
 /* *****************************************************************
-PROFIL SITTER
+PROFIL PET
 ***************************************************************** */
-
-.avatar__contact {
-  position: absolute;
-  top: -3rem;
-  width: 6rem;
-  height: 6rem;
-  margin-bottom: 2rem;
-  border-radius: 100%;
+.guard {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  margin: 3rem 0 1rem 0;
+  background-color: var(--color-cream);
 }
+.guard h2 {
+  margin: 1rem;
+}
+.guard__p {
+  background-color: var(--color-white);
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+.total-days {
+  padding: 1rem;
+  font-family: "Young Serif";
+  color: var(--color-orange) ;
+  background-color: var(--color-cream);
+  border: 0.1rem solid var(--color-orange);
+  background-color: var(--color-white);
+}
+
 
 /* *****************************************************************
 CARD REVIEW

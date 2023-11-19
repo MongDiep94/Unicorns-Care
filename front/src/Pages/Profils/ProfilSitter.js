@@ -4,9 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CardOwnerReviewer from "../../Components/Cards/CardOwnerReviewer";
 
 const ProfilSitter = () => {
   const [sitter, setSitter] = useState({});
+  const [ownerReviewer, setOwnerReviewer] = useState([]);
+
 
   // identification du sitter par son ID
   const { id } = useParams();
@@ -22,21 +25,27 @@ const ProfilSitter = () => {
       setSitter(res.data);
       console.log("set one Sitter", sitter);
     });
+    axios.get(`${process.env.REACT_APP_API}/random-pets`).then((res) => {
+      // Ensure that the response is an array
+      const ownerData = Array.isArray(res.data) ? res.data : [res.data];
+      setOwnerReviewer(ownerData);
+      console.log("set random Pet", ownerReviewer);
+    });
   }, [id]); // écoute sur le changement de l'ID
 
   return (
     <>
       <div className="bg--green"></div>
       <section className="container">
-        <section className="profil__sitter">
-          <article className="sitter__img">
+        <section className="profil">
+          <article className="profil__img">
             <img
               className="card__background"
               src={`${process.env.REACT_APP_API}/images/users/${photo}`}
               alt={`Photo de ${firstName}`}
             />
           </article>
-          <article className="sitter__infos">
+          <article className="box__infos">
             <h1 className="green">
               {firstName} {lastName && lastName.toUpperCase()}
             </h1>
@@ -55,7 +64,7 @@ const ProfilSitter = () => {
             </section>
             <p>{bio}</p>
             <h2 className="style-h3 orange">Préférences d'espèce</h2>
-            <section className="sitter__specie">
+            <section className="box__specie">
               {species &&
                 species.length > 0 &&
                 species.map((s, i) => (
@@ -65,7 +74,7 @@ const ProfilSitter = () => {
                 ))}
             </section>
           </article>
-          <article className="sitter_availability">
+          <section className="box__availability">
             <section>
               <table>
                 <thead>
@@ -88,57 +97,14 @@ const ProfilSitter = () => {
             <NavLink to="#" className="btn__orange">
               Contacter
             </NavLink>
-          </article>
+          </section>
         </section>
 
-        <section className="sitter__details">
-          <section className="sitter__reviews">
-            <article className="review__card">
-              <img
-                className="review__photo"
-                src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-                alt={`Photo reviewer user`}
-              />
-              <section>
-                <p className="review__rating">
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                </p>
-                <h3 className="size-text">Mara, propiétaire de Nini</h3>
-                <p className="review__date">Octobre 2023</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis auctor elit sed vulputate mi sit amet mauris.
-                </p>
-              </section>
-            </article>
-            <article className="review__card">
-              <img
-                className="review__photo"
-                src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-                alt={`Photo reviewer user`}
-              />
-              <section>
-                <p className="review__rating">
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                </p>
-                <h3 className="size-text">Mara, propiétaire de Nini</h3>
-                <p className="review__date">Octobre 2023</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis auctor elit sed vulputate mi sit amet mauris.
-                </p>
-              </section>
-            </article>
+        <section className="box__details">
+          <section className="box__reviews">
+            {ownerReviewer.map((or, i) => (
+              <CardOwnerReviewer key={i} ownerReviewer={or} />
+            ))}
           </section>
           <iframe
             src={address && address.length > 0 && address[0].location}

@@ -6,6 +6,7 @@ import {
   NewSitter,
   UpdateSitter,
   DeleteSitter,
+  GetRandomSitter,
 } from "../controllers/sitterController.js";
 
 const sitterRouter = express.Router();
@@ -18,6 +19,9 @@ sitterRouter.get("/last-sitters", GetLastSitters);
 
 // RECUPERER UN SEUL SITTER
 sitterRouter.get("/sitter/:id", GetOneSitter);
+
+// RECUPERER RANDOM SITTER
+sitterRouter.get("/random-sitters", GetRandomSitter);
 
 // CREER UN SITTER
 sitterRouter.post("/sitter/create", NewSitter);

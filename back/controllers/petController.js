@@ -36,6 +36,23 @@ export const GetOnePet = async (req, res) => {
   }
 };
 
+/* Récupérer un random sitter */
+export const GetRandomPet = async (req, res) => {
+  try {
+    // Use Mongoose to find a random pet and populate the 'owner' field
+    let randomPet = await Pet.aggregate([{ $sample: { size: 2 } }])
+    .lookup({ from: 'users', localField: 'owner', foreignField: '_id', as: 'owner' })
+    .exec();
+
+  // Check if a sitter was found
+  if (randomPet.length > 0) {
+    res.json(randomPet);
+  }
+  } catch (error) {
+    res.json({ message: "Désolé, aucun random pet trouvé" });
+  }
+};
+
 // -----------------------------------------------------
 // CREATION D'UN NEW PET AU OWNER
 // -----------------------------------------------------

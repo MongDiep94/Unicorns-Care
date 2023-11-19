@@ -5,11 +5,11 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import CardUser from "../../Components/Cards/CardUser.js";
 import axios from "axios";
 
-const SearchPetSitters = ({oneSitter}) => {
+const SearchPetSitters = ({ oneSitter }) => {
   const [allSitters, setAllSitters] = useState([]);
   const [initialAllSitters, setInitialAllSitters] = useState([]);
   const [species, setSpecies] = useState([]);
-
+  const [searchInput, setSearchInput] = useState([]);
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/sitters`).then((res) => {
@@ -21,21 +21,42 @@ const SearchPetSitters = ({oneSitter}) => {
         ...new Set(res.data.flatMap((sitter) => sitter.species)),
       ];
       setSpecies(allSpecies);
-      console.log("set last Sitters", res.data);
-      console.log("all Species", allSpecies);
     });
+    console.log("AllSitters", allSitters);
   }, []);
 
   const handleSpeciesChange = (e) => {
     const selectedSpecie = e.target.value;
-    // Filtrer les Pets basé sur le choix du selectedSpecies
+    // Filtrer les Pets, basé sur le choix du selectedSpecies
     setAllSitters(
       selectedSpecie === "all"
         ? initialAllSitters
-        : initialAllSitters.filter((sitter) =>
-            sitter.species.includes(selectedSpecie)
-        )
+        : initialAllSitters.filter(
+            (sitter) =>
+              sitter.species && sitter.species.includes(selectedSpecie)
+          )
     );
+    // Vider l'input quand on choisit une espèce
+    setSearchInput([]);
+  };
+
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    const searchName = e.target.value;
+    console.log("search input", searchName);
+    // Filtrer les Sitters, basé sur le choix du searchName
+    const filteredSitters =
+      searchName === "all"
+        ? initialAllSitters
+        : initialAllSitters.filter(
+            (sitter) =>
+            sitter.user &&
+            sitter.user.firstName &&
+            sitter.user.lastName &&
+            (sitter.user.firstName.toLowerCase().includes(searchName.toLowerCase()) ||
+              sitter.user.lastName.toLowerCase().includes(searchName.toLowerCase()))
+          );
+    setSearchInput(filteredSitters);
   };
 
   return (
@@ -58,10 +79,10 @@ const SearchPetSitters = ({oneSitter}) => {
           <span className="separator">|</span>
           <form action="" method="get">
             <input
-              type="text"
-              name="search_text"
-              id="search_text"
+              type="search"
+              name="search_name"
               placeholder="Chercher un pet sitter par le nom"
+              onChange={handleSearchChange}
             />
           </form>
           <button>
@@ -70,9 +91,13 @@ const SearchPetSitters = ({oneSitter}) => {
         </section>
       </section>
       <section className="container cards">
-        {allSitters.map((sitter) => (
-          <CardUser key={sitter._id} oneSitter={sitter} />
-        ))}
+      {searchInput.length > 0
+          ? searchInput.map((sitter) => (
+              <CardUser key={sitter._id} oneSitter={sitter} />
+            ))
+          : allSitters.map((sitter) => (
+              <CardUser key={sitter._id} oneSitter={sitter} />
+            ))}
       </section>
     </>
   );

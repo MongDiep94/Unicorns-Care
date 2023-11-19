@@ -2,6 +2,7 @@ import React from "react";
 import "./Cards.css";
 
 const CardTestimonial = ({ testimonials }) => {
+
   return (
     <article className="testimony__content">
       <img
