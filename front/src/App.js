@@ -13,18 +13,22 @@ import SearchPetSitters from "./Pages/Search/SearchPetSitters.js"
 import Contact from "./Pages/Contact/Contact.js";
 import LegalNotice from "./Pages/LegalNotice/LegalNotice.js"
 import ProfilPet from "./Pages/Profils/ProfilPet.js";
+import { useState } from "react";
 
 
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [email, setEmail] = useState("")
+
   return (
     <Routes>
       <Route element={<WithoutHearder />}>
-        <Route path="/login" element={<Login />} />
+        <Route path="/se-connecter" element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />} />
         <Route path="*" exact={true} element={<NotFound />} />
       </Route>
       <Route element={<WithHeader />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
         <Route path="/recherche-sitters" element={<SearchPetSitters />} />
         <Route path="/profil-sitter/:id" element={<ProfilSitter />} />
 

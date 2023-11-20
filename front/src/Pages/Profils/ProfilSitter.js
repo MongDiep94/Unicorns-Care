@@ -95,7 +95,7 @@ const ProfilSitter = () => {
               </table>
             </section>
             <NavLink to="#" className="btn__orange">
-              Contacter
+              Contacter {firstName}
             </NavLink>
           </section>
         </section>
