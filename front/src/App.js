@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { useState } from "resact";
+
 
 import "./App.css";
 import WithoutHearder from "./Components/WithoutHeader.js";
@@ -13,13 +15,14 @@ import SearchPetSitters from "./Pages/Search/SearchPetSitters.js"
 import Contact from "./Pages/Contact/Contact.js";
 import LegalNotice from "./Pages/LegalNotice/LegalNotice.js"
 import ProfilPet from "./Pages/Profils/ProfilPet.js";
-import { useState } from "react";
+import DashboardUser from "./Pages/Dashboard/DashboardUser.js";
 
 
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [email, setEmail] = useState("")
+
 
   return (
     <Routes>
@@ -31,9 +34,9 @@ function App() {
         <Route path="/" element={<Home email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
         <Route path="/recherche-sitters" element={<SearchPetSitters />} />
         <Route path="/profil-sitter/:id" element={<ProfilSitter />} />
-
         <Route path="/recherche-creatures" element={<SearchCreatures />} />
         <Route path="/profil-pet/:id" element={<ProfilPet />} />
+        <Route path="/mon-dashboard" element ={<DashboardUser />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
       </Route>

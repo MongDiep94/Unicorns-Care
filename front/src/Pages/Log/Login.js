@@ -67,7 +67,7 @@ const Login = (props) => {
             type="submit"
             className="btn__orange"
             onClick={handleSubmit}
-            value={"Log in"}
+            value={"Se connecter"}
           />
 
           <NavLink to={"/inscription"} className="forgot-password">

@@ -3,26 +3,27 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import { connectDB } from './config/database.js'
+import { Server } from "socket.io";
+import { createServer } from "http";
 
 //Auth loging
 // for hashing and comparing passwords
 import bcrypt from 'bcrypt'
-//for generating and verifying JSON web tokens
-import jwt from 'jsonwebtoken'
-// for storing user details (email and hashed password)
-import low from 'lowdb'
-import FileSync from 'lowdb/adapters/FileSync'
 
 //Router
 import userRouter from './routes/UserRouter.js'
 import petRouter from './routes/PetRouter.js'
 import sitterRouter from './routes/SitterRouter.js'
+import chatroomRouter from './routes/ChatroomRouter.js'
 
 const app = express()
 
 dotenv.config()
 // création dossier Public
 app.use(express.static("public"))
+
+// Instanciation d'un serveur avec le module http
+const server = createServer(app);
 
 // middleware formulaire
 app.use(express.json())
@@ -35,18 +36,52 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
-//log
-const adapter = new FileSync("./database.json");
-const db = low(adapter);
-
-// Define a JWT secret key. This should be isolated by using env variables for security
-const jwtSecretKey = process.env.SECRET
 
 connectDB
 
 app.use(petRouter)
 app.use(sitterRouter)
 app.use(userRouter)
+app.use(chatroomRouter)
+
+// Paramètres web socket
+//// Connect io with the front-react server and allow for CORS from http://localhost:3000 with GET and POST methods
+const socketIO = new Server(server, {
+  cors: {
+    origin: process.env.BASE_URL_FRONT,
+  },
+});
+
+let users = [];
+// Listen for when the client connects via socket.io-client
+socketIO.on("connection", (socket) => {
+  console.log(`${socket.id} user just connected`);
+
+  //Listens and logs the message to the console
+  socket.on("message", (data) => {
+    socketIO.emit("messageResponse", data);
+    console.log('message', data)
+  });
+
+  //Listens when a new user joins the server
+  socket.on("newUser", (data) => {
+    //Adds the new user to the list of users
+    users.push(data);
+    console.log(users);
+    //Sends the list of users to the client
+    socketIO.emit("newUserResponse", users);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`An user disconnected`);
+    //Updates the list of users when a user disconnects from the server
+    users = users.filter((user) => user.socketID !== socket.id);
+    // console.log(users);
+    //Sends the list of users to the client
+    socketIO.emit("newUserResponse", users);
+    socket.disconnect();
+  });
+});
 
 
 ///////////////////////////////////////////////////////////////////////////

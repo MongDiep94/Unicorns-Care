@@ -11,6 +11,7 @@
     "axios": "^1.5.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "http": "^0.0.1-security",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-owl-carousel": "^2.3.3",
@@ -18,7 +19,8 @@
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
     "request": "^2.88.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "socket.io": "^4.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
