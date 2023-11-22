@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import "./Chatroom.css";
 import { useState, useEffect } from 'react';
 
 const Messages = ({ socket }) => {
@@ -29,16 +29,16 @@ const Messages = ({ socket }) => {
   }
 
   return (
-    <div className={styles.messagesColumn}>
+    <div className="messagesColumn">
       {messagesRecieved.map((msg, i) => (
-        <div className={styles.message} key={i}>
+        <div className="message" key={i}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span className={styles.msgMeta}>{msg.username}</span>
-            <span className={styles.msgMeta}>
+            <span className="msgMeta">{msg.username}</span>
+            <span className="msgMeta">
               {formatDateFromTimestamp(msg.__createdtime__)}
             </span>
           </div>
-          <p className={styles.msgText}>{msg.message}</p>
+          <p className="msgText">{msg.message}</p>
           <br />
         </div>
       ))}

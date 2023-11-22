@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import "./Chatroom.css";
 import React, { useState } from 'react';
 
 const SendMessage = ({ socket, username, room }) => {
@@ -14,15 +14,15 @@ const SendMessage = ({ socket, username, room }) => {
   };
 
   return (
-    <div className={styles.sendMessageContainer}>
+    <div className="sendMessageContainer">
       <input
-        className={styles.messageInput}
+        className="messageInput"
         placeholder='Message...'
         onChange={(e) => setMessage(e.target.value)}
         value={message}
       />
-      <button className='btn btn-primary' onClick={sendMessage}>
-        Send Message
+      <button className='btn__send' onClick={sendMessage}>
+        Envoyer
       </button>
     </div>
   );

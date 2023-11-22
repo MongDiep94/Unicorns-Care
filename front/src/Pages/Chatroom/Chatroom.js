@@ -1,3 +1,5 @@
+import "./Chatroom.css";
+
 import React, { useEffect, useState } from 'react';
 import ChatBar from './ChatBar.js';
 import ChatBody from './ChatBody.js';

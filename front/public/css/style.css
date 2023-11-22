@@ -189,6 +189,7 @@ ul.unstyled {
   background-color: var(--color-light-grey);
 }
 
+
 /* *****************************************************************
 GENERALITIES
 ***************************************************************** */
@@ -405,3 +406,33 @@ BUTTON
   top: 1.5rem;
   right: 1.5rem;
 }
+
+/* INFO BULLE */
+.infobulle{
+  display: inline;
+  position: relative;
+  }
+  .infobulle:hover:after{
+    font-size: 1.5rem;
+    background: #333;
+    background: rgba(0,0,0,.8);
+    border-radius: 0.5rem;
+    bottom: 26px;
+    color: #fff;
+    content: attr(title);
+    left: 20%;
+    padding: 0.5rem;
+    position: absolute;
+    z-index: 1;
+    width: fit-content;
+  }
+  .infobulle:hover:before{
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 0.5rem;
+    bottom: 20px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 1;
+  }

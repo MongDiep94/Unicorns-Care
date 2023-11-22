@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import "./Chatroom.css";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,12 +24,12 @@ const RoomAndUsers = ({ socket, username, room }) => {
   };
 
   return (
-    <div className={styles.roomAndUsersColumn}>
-      <h2 className={styles.roomTitle}>{room}</h2>
+    <div className="roomAndUsersColumn">
+      <h2 className="roomTitle">{room}</h2>
 
       <div>
-        {roomUsers.length > 0 && <h5 className={styles.usersTitle}>Users:</h5>}
-        <ul className={styles.usersList}>
+        {roomUsers.length > 0 && <h5 className="usersTitle">Membres</h5>}
+        <ul className="usersList">
           {roomUsers.map((user) => (
             <li
               style={{
@@ -44,7 +44,7 @@ const RoomAndUsers = ({ socket, username, room }) => {
       </div>
 
       <button className='btn btn-outline' onClick={leaveRoom}>
-        Leave
+        Quitter
       </button>
     </div>
   );

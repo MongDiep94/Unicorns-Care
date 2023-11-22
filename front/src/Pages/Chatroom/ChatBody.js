@@ -1,3 +1,6 @@
+import "./Chatroom.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
 
 const ChatBody = ({messages}) => {
@@ -12,12 +15,17 @@ const ChatBody = ({messages}) => {
 
   return (
     <>
-      <header className="chat__mainHeader">
-        <p>Hangout with Colleagues</p>
-        <button className="leaveChat__btn" onClick={handleLeaveChat}>
-          LEAVE CHAT
+      <section className="chat__mainHeader">
+        <p>Conversation avec Pet Sitter</p>
+        <button
+        type="button"
+        className="leaveChat__btn "
+        title="Quitter la dicussion"
+        onClick={handleLeaveChat}
+        >
+        <FontAwesomeIcon icon={faCircleXmark} />
         </button>
-      </header>
+      </section>
 
       {/*This shows messages sent from you*/}
       <div className="message__container">
@@ -41,7 +49,7 @@ const ChatBody = ({messages}) => {
 
         {/*This is triggered when a user is typing*/}
         <div className="message__status">
-          <p>Someone is typing...</p>
+          <p>Quelqu'un écrit...</p>
         </div>
       </div>
     </>

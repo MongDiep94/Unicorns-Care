@@ -1,3 +1,4 @@
+import "./Chatroom.css";
 import { useState } from "react";
 
 const ChatFooter = ({socket}) => {
@@ -22,12 +23,12 @@ const ChatFooter = ({socket}) => {
       <form className="form" onSubmit={handleSendMessage}>
         <input
           type="text"
-          placeholder="Write message"
-          className="message"
+          placeholder="Ecrivez un message"
+          className="message__chat"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button className="sendBtn">SEND</button>
+        <button className="btn__send">Envoyer</button>
       </form>
     </div>
   );

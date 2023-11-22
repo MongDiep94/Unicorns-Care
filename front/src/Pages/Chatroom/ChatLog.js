@@ -1,3 +1,4 @@
+import "./Chatroom.css";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,13 +11,14 @@ const ChatLog = ({socket}) => {
     localStorage.setItem('userName', userName);
     //sends the username and socketID to Node.js server
     socket.emit('newUser', {userName, socketID: socket.id});
-    navigate('/chat');
+    navigate('/mon-dashboard');
   };
   return (
-    <form className="home__container" onSubmit={handleSubmit}>
+    <form style={{ background: 'grey', justifyContent: 'space-between' }} onSubmit={handleSubmit}>
       <h2 className="home__header">Sign in to Open Chat</h2>
       <label htmlFor="username">Username (min. 6 characters)</label>
       <input
+      style={{ background: 'white', justifyContent: 'space-between' }}
         type="text"
         minLength={6}
         name="username"
@@ -25,7 +27,7 @@ const ChatLog = ({socket}) => {
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
-      <button className="home__cta">SIGN IN</button>
+      <button style={{ background: 'orange'}}>SIGN IN</button>
     </form>
   );
 };
