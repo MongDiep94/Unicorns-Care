@@ -14,6 +14,11 @@ DASHBOARD USER
 /* *****************************************************************
 DASHBOARD ADMIN
 ***************************************************************** */
+.admin__container {
+  width: 60%;
+  margin: 0 auto 2rem auto;
+}
+
 .admin__title {
   color: var(--color-orange);
   padding-bottom : 1rem;
@@ -21,12 +26,16 @@ DASHBOARD ADMIN
 }
 
 .admin {
+  width: 100%;
+  table-layout: auto;
   color: var(--color-dark-grey);
   text-align: center;
 }
 
-.admin thead {
-  color: var(--color-green);
+.admin thead tr th {
+  padding-bottom: 1rem;
+  font-family: 'Young Serif';
+  color: var(--color-dark-green);
 }
 
 .table__admin__photo {
@@ -35,10 +44,30 @@ DASHBOARD ADMIN
   width: 5rem;
 }
 
-
 button {
   cursor: pointer;
   font-size: 2rem;
   border: 0;
+  padding: 0 2rem;
   background-color: transparent;
+}
+
+.update {
+  color: var(--color-dark-grey);
+  transition: all 0.5s ease-in-out;
+}
+.update:hover {
+  transform: scale(1.2);
+  color: var(--color-dark-green);
+  transition: all 0.5s ease-in-out;
+}
+
+.delete {
+  color: var(--color-dark-grey);
+  transition: all 0.5s ease-in-out;
+}
+.delete:hover {
+  transform: scale(1.2);
+  color: var(--color-orange);
+  transition: all 0.5s ease-in-out;
 }

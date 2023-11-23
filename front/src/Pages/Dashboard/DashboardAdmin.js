@@ -15,11 +15,19 @@ const DashboardAdmin = () => {
     });
   }, []); // rechargement 1 fois
 
+  const handleUpdate = (e) => {
+
+  };
+
+  const handleDelete = (e) => {
+
+  };
+
   return (
     <>
       <div className="bg--green"></div>
 
-      <main className="container">
+      <main className="admin__container">
         <h1 className="admin__title">Bonjour Admin</h1>
         <table className="admin">
           <thead>
@@ -47,12 +55,18 @@ const DashboardAdmin = () => {
                   <td>{user.lastName}</td>
                   <td>{user.pet && user.pet.name}</td>
                   <td>
-                    <button aria-label="bouton pour modifier">
+                    <button
+                    aria-label="bouton pour modifier"
+                    className="update"
+                    onClick={handleUpdate}>
                       <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
                   </td>
                   <td>
-                    <button aria-label="bouton pour supprimer">
+                    <button
+                    aria-label="bouton pour supprimer"
+                    className="delete"
+                    onClick={handleDelete}>
                       <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                   </td>

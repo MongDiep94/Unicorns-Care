@@ -22,7 +22,7 @@ dotenv.config()
 // création dossier Public
 app.use(express.static("public"))
 
-// Instanciation d'un serveur avec le module http
+// Création d'un serveur avec le module http qui englobe app
 const server = createServer(app);
 
 // middleware formulaire
@@ -85,6 +85,7 @@ io.on("connection", (socket) => {
 
 
 ///////////////////////////////////////////////////////////////////////////
+// server = server io + app
 server.listen(process.env.PORT,()=>{
   console.log(`le serveur est exécuté sur ${process.env.BASE_URL}`)
 })
