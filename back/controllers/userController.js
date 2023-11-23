@@ -90,7 +90,7 @@ export const Logout = (req, res) => {
 // Afficher tous les users
 export const AllUsers = async (req, res) => {
   try {
-    let users = await User.find({});
+    let users = await User.find({}).populate("sitter");
     console.log('all users', users)
     res.json(users);
   } catch (err) {

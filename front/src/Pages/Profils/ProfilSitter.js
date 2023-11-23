@@ -17,8 +17,6 @@ const ProfilSitter = () => {
   // Décomposition + condition d'objet vide si pas de données
   const { bio, species, user } = sitter || {};
   const { firstName, lastName, address, photo } = user || {};
-  console.log("photo", photo);
-  //console.log('iframe', address[0].location);
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/sitter/${id}`).then((res) => {
@@ -75,7 +73,7 @@ const ProfilSitter = () => {
             </section>
           </article>
           <section className="box__availability">
-            <section>
+            <section className="profil__table">
               <table>
                 <thead>
                   <tr>

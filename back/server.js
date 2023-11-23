@@ -46,7 +46,7 @@ app.use(chatroomRouter)
 
 // Paramètres web socket
 //// Connect io with the front-react server and allow for CORS from http://localhost:3000 with GET and POST methods
-const socketIO = new Server(server, {
+const io = new Server(server, {
   cors: {
     origin: process.env.BASE_URL_FRONT,
   },
@@ -54,12 +54,12 @@ const socketIO = new Server(server, {
 
 let users = [];
 // Listen for when the client connects via socket.io-client
-socketIO.on("connection", (socket) => {
+io.on("connection", (socket) => {
   console.log(`${socket.id} user just connected`);
 
   //Listens and logs the message to the console
   socket.on("message", (data) => {
-    socketIO.emit("messageResponse", data);
+    io.emit("messageResponse", data);
     console.log('message', data)
   });
 
@@ -69,7 +69,7 @@ socketIO.on("connection", (socket) => {
     users.push(data);
     console.log(users);
     //Sends the list of users to the client
-    socketIO.emit("newUserResponse", users);
+    io.emit("newUserResponse", users);
   });
 
   socket.on("disconnect", () => {
@@ -78,7 +78,7 @@ socketIO.on("connection", (socket) => {
     users = users.filter((user) => user.socketID !== socket.id);
     // console.log(users);
     //Sends the list of users to the client
-    socketIO.emit("newUserResponse", users);
+    io.emit("newUserResponse", users);
     socket.disconnect();
   });
 });

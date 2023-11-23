@@ -14,3 +14,31 @@ DASHBOARD USER
 /* *****************************************************************
 DASHBOARD ADMIN
 ***************************************************************** */
+.admin__title {
+  color: var(--color-orange);
+  padding-bottom : 1rem;
+  border-bottom: 0.1rem solid var(--color-orange);
+}
+
+.admin {
+  color: var(--color-dark-grey);
+  text-align: center;
+}
+
+.admin thead {
+  color: var(--color-green);
+}
+
+.table__admin__photo {
+  margin-left: 1rem;
+  border-radius: 50%;
+  width: 5rem;
+}
+
+
+button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 0;
+  background-color: transparent;
+}
