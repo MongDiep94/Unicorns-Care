@@ -16,6 +16,7 @@ import Contact from "./Pages/Contact/Contact.js";
 import LegalNotice from "./Pages/LegalNotice/LegalNotice.js"
 import ProfilPet from "./Pages/Profils/ProfilPet.js";
 import DashboardUser from "./Pages/Dashboard/DashboardUser.js";
+import DashboardAdmin from "./Pages/Dashboard/DashboardAdmin.js";
 
 
 
@@ -36,9 +37,11 @@ function App() {
         <Route path="/profil-sitter/:id" element={<ProfilSitter />} />
         <Route path="/recherche-creatures" element={<SearchCreatures />} />
         <Route path="/profil-pet/:id" element={<ProfilPet />} />
-        <Route path="/mon-dashboard" element ={<DashboardUser />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
+
+        <Route path="/dashboard/user" element ={<DashboardUser />} />
+        <Route path="/dashboard/admin" element ={<DashboardAdmin />} />
       </Route>
     </Routes>
   );

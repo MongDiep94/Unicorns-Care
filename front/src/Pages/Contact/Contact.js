@@ -2,6 +2,8 @@ import { useState } from 'react';
 import "./Contact.css";
 
 const Contact = () => {
+  const [message, setMessage] = useState("")
+  const [content, setContent] = useState("")
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -9,20 +11,20 @@ const Contact = () => {
     content: ''
   });
 
+  const onInputChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value
+    });
+  };
+
   const sendEmail = event => {
     event.preventDefault();
 
-    console.log('We will fill this up shortly.');
+    console.log(state);
     // code to trigger Sending email
-  };
+    setMessage("Votre demande a été envoyée")
 
-  const onInputChange = event => {
-    const { name, value } = event.target;
-
-    setState({
-      ...state,
-      [name]: value
-    });
   };
 
   return (
@@ -32,18 +34,43 @@ const Contact = () => {
       </section>
         <article className="container">
           <form method="post" onSubmit={sendEmail} className="contact">
+          <label><input
+            type="text"
+            name="name"
+            value ={state.name}
+            placeholder="Ecrivez votre nom ici..."
+            onChange={onInputChange}>
+            </input></label>
 
-            <select name="subject" id="contact">
+            <label><input
+            type="email"
+            name="email"
+            value ={state.email}
+            placeholder="Ecrivez votre email ici..."
+            onChange={onInputChange}>
+            </input></label>
+
+            <select name="subject" id="subject" onChange={onInputChange} value={state.subject}>
               <option value="">-- Choississez un sujet --</option>
               <option value="incident">Incident technique</option>
               <option value="reclamation">Reclamation</option>
               <option value="other">Autre</option>
             </select>
-            <label><textarea type="textarea" name="content" rows="10" maxlength="500" placeholder="Ecrivez votre texte ici..."></textarea></label>
+            <label><textarea
+            type="textarea"
+            name="content"
+            value ={state.content}
+            rows="10"
+            maxLength="500"
+            placeholder="Ecrivez votre texte ici..."
+            onChange={onInputChange}>
+            </textarea></label>
 
             <button type="submit" name="Envoyer" className="btn__orange">Envoyer</button>
           </form>
-          <p className="message margin-top-3">Votre demande a été envoyée</p>
+          {message &&
+          <p className="message margin-top-3">{message}</p>
+          }
         </article>
     </>
 

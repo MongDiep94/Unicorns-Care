@@ -6,7 +6,8 @@
   max-width: 50%;
   height: fit-content;
 }
-.contact select {
+.contact select,
+.contact input {
   width: 100%;
   margin: 1rem 0;
   padding: 0.5rem;
@@ -17,7 +18,7 @@
   color: var(--color-dark-grey);
   background: #eee;
 }
-textarea {
+.contact textarea {
   width: 100%;
   border-radius: 0.5rem;
   padding: 1rem;

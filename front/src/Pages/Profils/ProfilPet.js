@@ -1,7 +1,7 @@
 import "./Profils.css";
 import { NavLink, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CardSitterReviewer from "../../Components/Cards/CardSitterReviewer.js";
@@ -15,7 +15,7 @@ const ProfilPet = () => {
 
   // Décomposition + condition d'objet vide si pas de données
   const { name, age, gender, specie, element, bio, image, owner } = pet || {};
-  const { firstName, address, photo } = owner || {};
+  const { firstName, address } = owner || {};
   //console.log('city', address[0].city)
 
   useEffect(() => {
