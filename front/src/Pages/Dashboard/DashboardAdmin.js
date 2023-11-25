@@ -61,7 +61,6 @@ const DashboardAdmin = () => {
                   <td>{user.pet && user.pet.name}</td>
                   <td>
                     <button
-                    aria-label="bouton pour modifier"
                     className="update"
                     onClick={handleUpdate}>
                       <FontAwesomeIcon icon={faPenToSquare} />
@@ -70,7 +69,6 @@ const DashboardAdmin = () => {
                   </td>
                   <td>
                     <button
-                    aria-label="bouton pour supprimer"
                     className="delete"
                     onClick={handleDelete}>
                       <FontAwesomeIcon icon={faTrashCan} />

@@ -1,5 +1,7 @@
 import "./Chatroom.css";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const ChatFooter = ({socket}) => {
   const [message, setMessage] = useState('')
@@ -20,7 +22,7 @@ const ChatFooter = ({socket}) => {
   };
   return (
     <div className="chat__footer">
-      <form className="form" onSubmit={handleSendMessage}>
+      <form className="chat__form" onSubmit={handleSendMessage}>
         <input
           type="text"
           placeholder="Ecrivez un message"
@@ -28,7 +30,7 @@ const ChatFooter = ({socket}) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button className="btn__send">Envoyer</button>
+        <button title="Envoyer message" className="btn__send"><FontAwesomeIcon icon={faPaperPlane} /></button>
       </form>
     </div>
   );

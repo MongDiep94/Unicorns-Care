@@ -6,7 +6,10 @@ GENERALITIES
   background-image: url(../../../public/images/bg_green.svg);
   background-size: 50%;
 }
-
+.separator {
+  padding: 1rem 0;
+  border-top: 0.2rem solid var(--color-dark-grey);
+}
 /* *****************************************************************
 DASHBOARD USER
 ***************************************************************** */
@@ -14,24 +17,35 @@ DASHBOARD USER
   display: flex;
   flex-direction: row;
   gap: 3rem;
+  height: 100vh;
 }
 
 .dashboard__nav {
+  width: 20%;
+  padding: 3rem 2rem;
+  color: var(--color-dark-grey);
+  text-align: center;
   background-color: var(--color-light-grey);
 }
-
 .dashboard__nav img {
-  width: 50%;
-  height: 50%;
+  width: 10rem;
+  height: 10rem;
+  background-position: center;
   border-radius: 50%;
   box-shadow: var(--box-shadow);
-
 }
-
 .dashboard__title {
   color: var(--color-orange);
   padding-bottom : 1rem;
   border-bottom: 0.1rem solid var(--color-orange);
+}
+.dashboard__menu{
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+.dashboard__content {
+  width: 100%;
 }
 
 /* *****************************************************************

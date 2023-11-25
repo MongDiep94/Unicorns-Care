@@ -85,7 +85,7 @@ const SearchPetSitters = ({ oneSitter }) => {
               onChange={handleSearchChange}
             />
           </form>
-          <button>
+          <button title="bouton Rechercher">
             <FontAwesomeIcon icon={faMagnifyingGlass} className="green" />
           </button>
         </section>

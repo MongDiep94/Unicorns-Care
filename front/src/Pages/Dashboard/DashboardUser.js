@@ -1,12 +1,12 @@
 import "./Dashboard.css";
 
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import io from "socket.io-client";
+import axios from "axios";
 
 import Chatroom from "./Chatroom/Chatroom.js";
-import ChatLog from "./Chatroom/ChatLog.js";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import ChatBar from "./Chatroom/ChatBar.js";
 
 const DashboardUser = () => {
   const [user, setUser] = useState([]);
@@ -31,19 +31,21 @@ const DashboardUser = () => {
       <div className="bg--green"></div>
 
       <main className="container dashboard__container">
-        <nav className="dashboard__nav">
+        <section className="dashboard__nav">
           <img
             className="card__background"
             src={`${process.env.REACT_APP_API}/images/users/${photo}`}
             alt={`Photo de ${firstName}`}
           />
-
-
-        </nav>
+          <nav className="dashboard__menu">
+            <button title="Bouton de l'onglet Profil">Profil</button>
+            <button title="Bouton de l'onglet Gardes" className="separator">Gardes</button>
+            <button title="Bouton de l'onglet Messages" className="separator">Messages</button>
+          </nav>
+        </section>
 
         <section className="dashboard__content">
           <h1 className="dashboard__title">Title</h1>
-          <ChatLog socket={socket} />
           <Chatroom socket={socket} />
         </section>
       </main>

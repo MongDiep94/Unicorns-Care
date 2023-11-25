@@ -1,9 +1,9 @@
 //import "./Chatroom.css";
 
 import React, { useEffect, useState } from 'react';
-import ChatBar from './ChatBar.js';
 import ChatBody from './ChatBody.js';
 import ChatFooter from './ChatFooter.js';
+import ChatBar from './ChatBar.js';
 
 const Chatroom = ({ socket }) => {
   const [messages, setMessages] = useState([]);
@@ -18,13 +18,13 @@ const Chatroom = ({ socket }) => {
 
 
   return (
-    <div className="chat">
-      <ChatBar socket={socket} />
-      <div className="chat__main">
+    <section className="chat">
+      <ChatBar socket={socket}/>
+      <section className="chat__main">
         <ChatBody messages={messages} />
         <ChatFooter socket={socket} />
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 

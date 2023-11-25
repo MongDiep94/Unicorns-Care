@@ -2,13 +2,14 @@ import "./Chatroom.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const ChatBody = ({messages}) => {
 
   console.log(messages);
   const navigate = useNavigate();
   const handleLeaveChat = () => {
-    localStorage.removeItem('userName');
+    Cookies.remove("userFirstName");
     navigate('/');
     window.location.reload();
   };
@@ -16,21 +17,20 @@ const ChatBody = ({messages}) => {
   return (
     <>
       <section className="chat__mainHeader">
-        <p>Conversation avec Pet Sitter</p>
         <button
         type="button"
         className="leaveChat__btn "
         title="Quitter la dicussion"
         onClick={handleLeaveChat}
         >
-        <FontAwesomeIcon icon={faCircleXmark} />
+          <FontAwesomeIcon icon={faCircleXmark} />
         </button>
       </section>
 
       {/*This shows messages sent from you*/}
       <div className="message__container">
       {messages.map((message)=>
-        message.name === localStorage.getItem('userName') ? (
+        message.name === Cookies.get("userFirstName") ? (
           <div className="message__chats" key={message.id}>
             <p className="sender__name">You</p>
             <div className="message__sender">
