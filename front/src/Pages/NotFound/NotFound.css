@@ -7,6 +7,9 @@
   padding-top: 5rem;
   height: 100vh;
 }
+.not-found__content {
+  margin-bottom: 5rem;
+}
 .licorne-dab {
   max-width: 30%;
 }

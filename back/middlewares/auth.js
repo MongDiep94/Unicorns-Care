@@ -15,6 +15,7 @@ export const verifyToken = (req, res, next) => {
     req.auth = {
       userId: userId,
       userFirstName: user.firstName,
+      userFirstName: user.email,
       accessToken: sessionToken,
     };
     // Si tou est OK, exécution de la fonction

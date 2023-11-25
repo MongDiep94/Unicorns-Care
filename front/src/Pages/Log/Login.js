@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import "./Log.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [loginSuccess, setLoginSuccess] = useState(false);
+
+  const [prevLocation, setPrevLocation] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     if (e.target.name === "email") {
@@ -17,7 +23,7 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let request_data = {
       email: email,
@@ -48,14 +54,29 @@ const Login = () => {
       setPasswordError("Entrer un mot de passe de 8 caractères ou plus.");
       return;
     }
-
     axios
       .post(`${process.env.REACT_APP_API}/login`, request_data)
       .then((res) => {
-        if (res.data.token) {
-          localStorage.setItem("user", JSON.stringify(res.data));
+        console.log("res", res);
+
+        if (res.data.sessionToken) {
+          Cookies.set("sessionToken", res.data.sessionToken, {
+            expires: 1,
+            secure: true,
+          });
+        }
+        setLoginSuccess(true);
+        // redirect vers la page avant le login
+        if (prevLocation) {
+          navigate(prevLocation);
+        } else {
+          // If there is no previous location, you can redirect to a default location
+          navigate("/");
         }
         return res.data;
+      })
+      .catch((error) => {
+        console.log("error", error);
       });
   };
 
@@ -64,7 +85,7 @@ const Login = () => {
       <div className="login-box">
         <h2>Se connecter</h2>
 
-        <form method="post" onClick={handleSubmit}>
+        <form method="post" onSubmit={handleSubmit}>
           <div className="textbox">
             <input
               type="email"

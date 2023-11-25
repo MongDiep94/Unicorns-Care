@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const NotFound = () => {
   return (
     <section className="bg__not-found">
-      <article>
+      <article className="not-found__content">
         <img
           className="licorne-dab"
           src="../../images/licorne.svg"

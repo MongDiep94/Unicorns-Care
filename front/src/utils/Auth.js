@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
-import {  Navigate, Route } from 'react-router-dom';
+
 export const getCookie =  () => {
   // Récupérer les données de session du cookie
-  let sessionData =  Cookies.get('user');
+  let sessionData =  Cookies.get('sessionToken');
 
   if(typeof(sessionData) !== "undefined"){
     sessionData = JSON.parse(sessionData)

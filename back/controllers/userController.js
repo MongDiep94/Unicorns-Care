@@ -22,7 +22,7 @@ export const Login = async (req, res) => {
       //   });
       }
       // Generate an access token
-      const sessionToken = jwt.sign(
+      const accessToken = jwt.sign(
         { id: user.id },
         process.env.SESSION_TOKEN,
         {
@@ -33,14 +33,9 @@ export const Login = async (req, res) => {
       res.status(200).json({
         userId: user._id,
         userFirstName: user.firstName,
-        accessToken: sessionToken,
+        sessionToken: accessToken,
       });
 
-      // cookie JWT a stocké dans cookie http only
-      // res.cookie("sessionToken", "cookieValue", {
-      //   maxAge: 900000,
-      //   httpOnly: true,
-      // });
     }
   } catch (err) {
     res.status(401).json({ message: "Utilisateur introuvable avec cet email" });
@@ -90,6 +85,7 @@ export const Register = async (req, res) => {
     await newUser.save();
 
     res.json({ message: "Utilisateur créé avec succès" });
+    res.redirect("/login")
   } catch (err) {
     res.json({ message: "Impossible de créer un compte" });
   }
