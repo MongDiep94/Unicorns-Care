@@ -4,9 +4,12 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ModalUpdate from "../../Components/Modals/ModalUpdate.js";
 
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
+  // Modals state
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
 
@@ -15,8 +18,10 @@ const DashboardAdmin = () => {
     });
   }, []); // rechargement 1 fois
 
-  const handleUpdate = (e) => {
 
+
+  const handleUpdate = (e, ) => {
+    setOpenModal(true);
   };
 
   const handleDelete = (e) => {
@@ -28,7 +33,7 @@ const DashboardAdmin = () => {
       <div className="bg--green"></div>
 
       <main className="admin__container">
-        <h1 className="admin__title">Bonjour Admin</h1>
+        <h1 className="dashboard__title">Bonjour Admin</h1>
         <table className="admin">
           <thead>
             <tr>
@@ -42,8 +47,8 @@ const DashboardAdmin = () => {
           <tbody>
             {users &&
               users.length > 0 &&
-              users.map((user, i) => (
-                <tr key={i}>
+              users.map((user, _id) => (
+                <tr key={_id}>
                   <td>
                     <img
                       className="table__admin__photo"
@@ -61,6 +66,7 @@ const DashboardAdmin = () => {
                     onClick={handleUpdate}>
                       <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
+                    {openModal && <ModalUpdate closeModal={setOpenModal}/>}
                   </td>
                   <td>
                     <button

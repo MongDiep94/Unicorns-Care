@@ -5,10 +5,7 @@ import bodyParser from 'body-parser'
 import { connectDB } from './config/database.js'
 import { Server } from "socket.io";
 import { createServer } from "http";
-
-//Auth loging
-// for hashing and comparing passwords
-import bcrypt from 'bcrypt'
+import cookieParser from 'cookie-parser'
 
 //Router
 import userRouter from './routes/UserRouter.js'
@@ -36,6 +33,8 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
+// permet de récupérer le cookie en string dans le HTTP en objet JS
+app.use(cookieParser());
 
 connectDB
 

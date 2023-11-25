@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import User from "../models/UserModel.js";
 
 // -----------------------------------------------------
@@ -6,27 +7,44 @@ import User from "../models/UserModel.js";
 // -----------------------------------------------------
 /* Système classique de connexion avec envoie de la session et ou cookie */
 export const Login = async (req, res) => {
-  let user = await User.findOne({ email: req.body.email });
+  try {
+    let user = await User.findOne({ email: req.body.email });
+    // GUARD CLAUSE
+    if (user) {
+      if (!req.body.password === user.password) {
+        return res.status(401).json({
+          message: "Mot de passe incorrecte, veuillez revoir votre saisie",
+        });
+      // let checkPassword = bcrypt.compareSync(req.body.password, user.password);
+      // if (!checkPassword) {
+      //   return res.status(401).json({
+      //     message: "Mot de passe incorrecte, veuillez revoir votre saisie",
+      //   });
+      }
+      // Generate an access token
+      const sessionToken = jwt.sign(
+        { id: user.id },
+        process.env.SESSION_TOKEN,
+        {
+          expiresIn: "24h",
+        }
+      );
 
-  // GUARD CLAUSE
-  if (!user) {
-    return res.json({ message: "Email introuvable" });
-  }
+      res.status(200).json({
+        userId: user._id,
+        userFirstName: user.firstName,
+        accessToken: sessionToken,
+      });
 
-  let checkPassword = bcrypt.compareSync(req.body.password, user.password);
-  if (!checkPassword) {
-    return res.json({
-      message: "Mot de passe incorrecte, veuillez revoir votre saisie",
-    });
+      // cookie JWT a stocké dans cookie http only
+      // res.cookie("sessionToken", "cookieValue", {
+      //   maxAge: 900000,
+      //   httpOnly: true,
+      // });
+    }
+  } catch (err) {
+    res.status(401).json({ message: "Utilisateur introuvable avec cet email" });
   }
-
-  if (user.isAdmin === true) {
-    req.session.isAdmin = user._id;
-  } else {
-    req.session.isLogged = user._id;
-  }
-  res.cookie("user", JSON.stringify(req.session));
-  res.json({ login: user.login, isAdmin: user.isAdmin, email: user.email });
 };
 
 // -----------------------------------------------------
@@ -34,17 +52,21 @@ export const Login = async (req, res) => {
 // -----------------------------------------------------
 /* Système d'inscription avec vérification des doublons et de l'existant */
 export const Register = async (req, res) => {
+  //RegEx pwd. entre accepte tous les lettres minuscules et majuscules, les chiffres et caractères spéciaux, entre 8 et 30 caractères.
+  const checkPwd =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
+
   try {
     // Je vérifie que l'email n'existe pas
     let checkMailExist = await User.findOne({ email: req.body.email });
-    // Je vérifie que le login n'est pas utilisé
-    let checkLoginExist = await User.findOne({ login: req.body.login });
 
     if (checkMailExist) {
       return res.json({ message: "Cet email est déjà enregistré" });
     }
-    if (checkLoginExist) {
-      return res.json({ message: "Ce login est déjà utilisé" });
+    if (!checkPwd.test(req.body.password)) {
+      return res.json({
+        message: "Le mot de passe ne respecte pas les conditions",
+      });
     }
 
     let newUser = new User({
@@ -61,7 +83,7 @@ export const Register = async (req, res) => {
         },
       ],
       phone: req.body.phone,
-      isAdmin: false
+      isAdmin: false,
     });
 
     // Mon hook pre va s'excuter avant de sauvegarder dans la base de données (hachage de mot de passe)
@@ -79,6 +101,7 @@ export const Register = async (req, res) => {
 
 export const Logout = (req, res) => {
   req.session.destroy((err) => {
+    res.clearCookie();
     res.redirect("/login");
   });
 };
@@ -91,7 +114,7 @@ export const Logout = (req, res) => {
 export const AllUsers = async (req, res) => {
   try {
     let users = await User.find({}).populate("sitter");
-    console.log('all users', users)
+    console.log("all users", users);
     res.json(users);
   } catch (err) {
     res.json({ message: "Impossible de trouver la liste des utilisateurs" });
@@ -119,7 +142,7 @@ export const AddUser = async (req, res) => {
         },
       ],
       phone: req.body.phone,
-      isAdmin: false
+      isAdmin: false,
     });
     await newUser.save();
 
@@ -133,8 +156,8 @@ export const AddUser = async (req, res) => {
 export const GetOneUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    let user = await User.findById(userId);
-    console.log('show user', user)
+    let user = await User.findById(userId).populate("sitter");
+    console.log("show user", user);
     res.json(user);
   } catch (err) {
     res.json({ message: "Impossible de trouver l'utilisateur" });
@@ -157,6 +180,7 @@ export const UpdateUser = async (req, res) => {
           street: req.body.street,
           city: req.body.city,
           zipcode: req.body.zipcode,
+          location: req.body.location,
         },
       ],
       phone: req.body.phone,
@@ -164,7 +188,7 @@ export const UpdateUser = async (req, res) => {
     });
 
     let updatedUser = await User.findByIdAndUpdate(userId, UpdateUser);
-    console.log('updated user', updatedUser)
+    console.log("updated user", updatedUser);
     res.json(updatedUser);
   } catch (err) {
     res.json({ message: "Impossible de mettre à jour l'utilisateur" });
@@ -196,7 +220,7 @@ export const NewUserPet = async (req, res) => {
       gender: req.body.gender,
       specie: req.body.specie,
       element: req.body.element,
-      image: req.body.image
+      image: req.body.image,
     });
     console.log("newPet", newPet);
     // Get user
@@ -239,7 +263,7 @@ export const NewUserSitter = async (req, res) => {
     const newSitter = new Sitter({
       image: req.body.image,
       bio: req.body.bio,
-      species: [req.body.species]
+      species: [req.body.species],
     });
     console.log("newSitter", newSitter);
     // Get user

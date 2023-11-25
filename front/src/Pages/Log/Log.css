@@ -15,7 +15,7 @@ LOG
   width: 30%;
   background: var(--color-cream);
   padding: 2rem 5rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
   text-align: center;
   border-radius: 5px;
 }
@@ -44,4 +44,9 @@ LOG
 }
 .forgot-password:hover {
   text-decoration: underline;
+}
+
+.errorLabel {
+  font-size: 1.5rem;
+  color: var(--color-grey);
 }

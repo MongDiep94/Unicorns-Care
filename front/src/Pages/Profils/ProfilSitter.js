@@ -4,12 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import CardOwnerReviewer from "../../Components/Cards/CardOwnerReviewer";
+import CardOwnerReviewer from "../../Components/Cards/CardOwnerReviewer.js";
 
 const ProfilSitter = () => {
   const [sitter, setSitter] = useState({});
   const [ownerReviewer, setOwnerReviewer] = useState([]);
-
 
   // identification du sitter par son ID
   const { id } = useParams();

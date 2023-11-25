@@ -1,7 +1,9 @@
 import express from 'express'
 import { AddUser, AllUsers, GetOneUser, GetUserPets, GetUserSitter, Login, Logout, NewUserPet, NewUserSitter, Register, UpdateUser } from '../controllers/userController.js';
+import { verifyToken } from '../middlewares/auth.js';
 
 const userRouter = express.Router();
+
 
 //Login form
 userRouter.post("/login", Login)

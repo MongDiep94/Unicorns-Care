@@ -10,6 +10,29 @@ GENERALITIES
 /* *****************************************************************
 DASHBOARD USER
 ***************************************************************** */
+.dashboard__container {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.dashboard__nav {
+  background-color: var(--color-light-grey);
+}
+
+.dashboard__nav img {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+
+}
+
+.dashboard__title {
+  color: var(--color-orange);
+  padding-bottom : 1rem;
+  border-bottom: 0.1rem solid var(--color-orange);
+}
 
 /* *****************************************************************
 DASHBOARD ADMIN
@@ -17,12 +40,6 @@ DASHBOARD ADMIN
 .admin__container {
   width: 60%;
   margin: 0 auto 2rem auto;
-}
-
-.admin__title {
-  color: var(--color-orange);
-  padding-bottom : 1rem;
-  border-bottom: 0.1rem solid var(--color-orange);
 }
 
 .admin {

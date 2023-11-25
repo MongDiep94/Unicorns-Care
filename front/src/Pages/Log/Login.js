@@ -1,14 +1,29 @@
 import React, { useState } from "react";
 import "./Log.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
-const Login = (props) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleSubmit = () => {
+  const handleChange = (e) => {
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name === "password") {
+      setPassword(e.target.value);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let request_data = {
+      email: email,
+      password: password,
+    };
+
     // Mettre les messages d'erreur à vide
     setEmailError("");
     setPasswordError("");
@@ -34,7 +49,14 @@ const Login = (props) => {
       return;
     }
 
-    // Authentication calls will be made here...
+    axios
+      .post(`${process.env.REACT_APP_API}/login`, request_data)
+      .then((res) => {
+        if (res.data.token) {
+          localStorage.setItem("user", JSON.stringify(res.data));
+        }
+        return res.data;
+      });
   };
 
   return (
@@ -42,13 +64,14 @@ const Login = (props) => {
       <div className="login-box">
         <h2>Se connecter</h2>
 
-        <form method="post">
+        <form method="post" onClick={handleSubmit}>
           <div className="textbox">
             <input
               type="email"
+              name="email"
               placeholder="Email"
               value={email}
-              onChange={(ev) => setEmail(ev.target.value)}
+              onChange={handleChange}
             />
             <label className="errorLabel">{emailError}</label>
           </div>
@@ -56,19 +79,15 @@ const Login = (props) => {
           <div className="textbox">
             <input
               type="password"
+              name="password"
               placeholder="Mot de passe"
               value={password}
-              onChange={(ev) => setPassword(ev.target.value)}
+              onChange={handleChange}
             />
             <label className="errorLabel">{passwordError}</label>
           </div>
 
-          <input
-            type="submit"
-            className="btn__orange"
-            onClick={handleSubmit}
-            value={"Se connecter"}
-          />
+          <input type="submit" className="btn__orange" value={"Se connecter"} />
 
           <NavLink to={"/inscription"} className="forgot-password">
             Pas encore inscrit•e ?
