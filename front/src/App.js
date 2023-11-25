@@ -36,7 +36,7 @@ function App() {
         <Route path="/profil-pet/:id" element={<ProfilPet />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<LegalNotice />} />
-        <Route path="/dashboard/user" element ={<DashboardUser />} />
+        <Route path="/dashboard/:id" element ={<DashboardUser />} />
         <Route path="/dashboard/admin" element ={<DashboardAdmin />} />
       </Route>
     </Routes>

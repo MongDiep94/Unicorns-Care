@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
 const Header = () => {
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
   const [admin, setAdmin] = useState(false);
+  const navigate = useNavigate();
 
-  const user = Cookies.get("sessionToken");
-  console.log('cookie', user)
+  const userId = Cookies.get("userId");
+  const sessionToken = Cookies.get("sessionToken");
+
+  // Décomposition + condition d'objet vide si pas de données
+  const { _id, firstName, isAdmin, photo } = user || {};
+
   useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API}/user/${userId}`).then((res) => {
+      setUser(res.data);
+      console.log("set one User", user);
+    });
 
-    if (!user) {
+    if (!userId || !sessionToken) {
       return;
     }
 
-    if (user.isAdmin === true) {
+    if (isAdmin === true) {
       setAdmin(true);
     } else {
       setAdmin(false);
     }
-  }, []);
+  }, [userId, sessionToken]);
 
   const handleClick = () => {
+    Cookies.remove("userId");
     Cookies.remove("sessionToken");
     setAdmin(false);
+    navigate("/");
   };
   return (
     <>
@@ -44,12 +55,20 @@ const Header = () => {
           <NavLink to="/recherche-creatures" className="btn__nav">
             Trouver une créature
           </NavLink>
-          {user ? (
+          {userId || sessionToken ? (
             <>
-              <NavLink to={`/dashboard/${users.userId}`} className="btn__nav">
-                Dashboard
+              <NavLink to={`/dashboard/${_id}`} className="btn__nav">
+                <img
+                  className="navbar__avatar"
+                  src={`${process.env.REACT_APP_API}/images/users/${photo}`}
+                  alt={`Photo de ${firstName}`}
+                />
               </NavLink>
-              <NavLink to={"/login"} onClick={handleClick} className="btn__nav">
+              <NavLink
+                to={"/login"}
+                onClick={handleClick}
+                className="btn__camel margin-left-3"
+              >
                 Se déconnecter
               </NavLink>
             </>

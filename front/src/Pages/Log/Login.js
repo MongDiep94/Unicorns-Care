@@ -64,6 +64,8 @@ const Login = () => {
             expires: 1,
             secure: true,
           });
+          const userId = res.data.userId;
+          Cookies.set('userId', userId, { expires: 1, secure: true });
         }
         setLoginSuccess(true);
         // redirect vers la page avant le login
