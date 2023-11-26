@@ -2,7 +2,7 @@
 GENERALITIES
 ***************************************************************** */
 .bg--green {
-  height: 7rem;
+  height: 15rem;
   background-image: url(../../../public/images/bg_green.svg);
   background-size: 50%;
 }

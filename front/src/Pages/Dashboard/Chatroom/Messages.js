@@ -29,20 +29,20 @@ const Messages = ({ socket }) => {
   }
 
   return (
-    <div className="messagesColumn">
+    <section className="messagesColumn">
       {messagesRecieved.map((msg, i) => (
-        <div className="message" key={i}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <section className="message" key={i}>
+          <section style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span className="msgMeta">{msg.username}</span>
             <span className="msgMeta">
               {formatDateFromTimestamp(msg.__createdtime__)}
             </span>
-          </div>
+          </section>
           <p className="msgText">{msg.message}</p>
           <br />
-        </div>
+        </section>
       ))}
-    </div>
+    </section>
   );
 };
 

@@ -27,15 +27,6 @@ VARIABLES
 }
 
 /* *****************************************************************
-THEMES / OPTIONS
-***************************************************************** */
-
-.line-large {
-	--size-text: 2rem;
-	--line-height: normal;
-}
-
-/* *****************************************************************
 TOOLS
 ***************************************************************** */
 
@@ -212,8 +203,9 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
-  width: 100%
+  z-index: 2;
+  width: 100%;
+
 }
 h1,
 h2,
@@ -255,51 +247,13 @@ a {
   color: var(--color-cream);
 }
 
-/* *****************************************************************
-ACCESSIBILITY
-***************************************************************** */
-
-a:focus,
-select:focus,
-input:focus,
-button:focus {
-	outline: 2px solid #000;
-}
-.hidden-menu a {
-	position: absolute;
-	top: -4em;
-	left: 0;
-	display: block;
-	padding: 0.5em;
-	font-size: 1.2em;
-	color: var(--color-white);
-	background-color: #000;
-	transition: 0.2s;
-}
-.hidden-menu a:focus {
-	top: 0;
-}
-
-/* menu accessibilité */
-.nav__top,
-.nav__main {
-  display: flex;
-  justify-content: space-around;
-  background-color: var(--bg-nav);
-}
-
-button {
-  border: 0;
-  background-color: transparent;
-  color: var(--color-link);
-}
 
 /* *****************************************************************
 CONTACT / LEGAL NOTICE
 ***************************************************************** */
 .banner__mini {
   text-align: center;
-  padding-top: 5rem;
+  padding-top: 15rem;
   padding-bottom: 2rem;
   background-image: url(../../images/bg_green.svg);
   background-size: 50%;

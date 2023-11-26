@@ -64,9 +64,10 @@ io.on("connection", (socket) => {
 
   //Listens when a new user joins the server
   socket.on("newUser", (data) => {
+    console.log('newUser', data )
     //Adds the new user to the list of users
     users.push(data);
-    console.log(users);
+    console.log('users array socket', users);
     //Sends the list of users to the client
     io.emit("newUserResponse", users);
   });

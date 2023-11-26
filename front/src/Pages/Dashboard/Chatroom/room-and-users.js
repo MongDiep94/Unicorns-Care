@@ -27,7 +27,7 @@ const RoomAndUsers = ({ socket, username, room }) => {
     <div className="roomAndUsersColumn">
       <h2 className="roomTitle">{room}</h2>
 
-      <div>
+      <section>
         {roomUsers.length > 0 && <h5 className="usersTitle">Membres</h5>}
         <ul className="usersList">
           {roomUsers.map((user) => (
@@ -41,7 +41,7 @@ const RoomAndUsers = ({ socket, username, room }) => {
             </li>
           ))}
         </ul>
-      </div>
+      </section>
 
       <button className='btn btn-outline' onClick={leaveRoom}>
         Quitter

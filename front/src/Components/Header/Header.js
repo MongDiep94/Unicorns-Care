@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 
@@ -38,51 +38,111 @@ const Header = () => {
     setAdmin(false);
     navigate("/");
   };
+
+  //Interlignage
+  const handleLineLargeClick = (e) => {
+    document.body.style.lineHeight = '3rem';
+    document.body.style.fontSize = '2rem';
+  };
+  const handleLineNormalClick = (e) => {
+    document.body.style.lineHeight = '1.15';
+    document.body.style.fontSize = '1.6rem';
+  };
+
   return (
     <>
-      <header className="menu__header">
-        <NavLink to="/" className="btn__nav">
-          <img
-            src="../images/Logo_UnicornsCare_cream.svg"
-            alt="Logo Unicorns & Care"
-            aria-label="Logo Unicorns & Care"
-          />
-        </NavLink>
-        <nav className="navbar">
-          <NavLink to="/recherche-sitters" className="btn__nav">
-            Trouver un pet Sitter
+      <header>
+        <section className="accessibility">
+          <section className="nav__access">
+            <a href="#home">Home page</a>
+            <a href="#">Haut de page</a>
+            <a href="#search-sitters">recherche pet sitters</a>
+            <a href="#search-creatures">recherche créatures</a>
+            {userId || sessionToken ? (
+              <>
+                <a href="#dahboard">mon dashboard</a>
+                <a href="#logout">Déconnexion</a>
+              </>
+            ) : (
+              <>
+                <a href="#login">Connexion</a>
+                <a href="#register">Inscription</a>
+              </>
+            )}
+          </section>
+
+          <section className="container nav__top">
+            <p>
+              <strong>Interlignage :</strong>{" "}
+              <button id="line-normal" onClick={handleLineNormalClick}>simple</button> |{" "}
+              <button id="line-large" onClick={handleLineLargeClick}>augmenté</button>
+            </p>
+          </section>
+        </section>
+        <section className="menu__header">
+          <NavLink to="/" id="home" className="btn__nav">
+            <img
+              src="../images/Logo_UnicornsCare_cream.svg"
+              alt="Logo Unicorns & Care"
+              aria-label="Logo Unicorns & Care"
+            />
           </NavLink>
-          <NavLink to="/recherche-creatures" className="btn__nav">
-            Trouver une créature
-          </NavLink>
-          {userId || sessionToken ? (
-            <>
-              <NavLink to={`/dashboard/${_id}`} className="btn__nav">
-                <img
-                  className="navbar__avatar"
-                  src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-                  alt={`Photo de ${firstName}`}
-                />
-              </NavLink>
-              <NavLink
-                to={"/login"}
-                onClick={handleClick}
-                className="btn__camel margin-left-3"
-              >
-                Se déconnecter
-              </NavLink>
-            </>
-          ) : (
-            <>
-              <NavLink to="/se-connecter" className="btn__nav">
-                Connexion
-              </NavLink>
-              <NavLink to="/register" className="btn__camel margin-left-3">
-                Inscription
-              </NavLink>
-            </>
-          )}
-        </nav>
+          <nav className="navbar">
+            <NavLink
+              to="/recherche-sitters"
+              id="search-sitters"
+              className="btn__nav"
+            >
+              Trouver un pet Sitter
+            </NavLink>
+            <NavLink
+              to="/recherche-creatures"
+              id="search-creatures"
+              className="btn__nav"
+            >
+              Trouver une créature
+            </NavLink>
+            {userId || sessionToken ? (
+              <>
+                <NavLink
+                  to={`/dashboard/${_id}`}
+                  id="dashboard"
+                  className="btn__nav"
+                >
+                  <img
+                    className="navbar__avatar"
+                    src={`${process.env.REACT_APP_API}/images/users/${photo}`}
+                    alt={`Photo de ${firstName}`}
+                  />
+                </NavLink>
+                <NavLink
+                  to={"/login"}
+                  onClick={handleClick}
+                  id="logout"
+                  className="btn__camel margin-left-3"
+                >
+                  Se déconnecter
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                to="/se-connecter"
+                id="login"
+                className="btn__nav">
+                  Connexion
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  id="register"
+                  className="btn__camel margin-left-3"
+                >
+                  Inscription
+                </NavLink>
+              </>
+            )}
+          </nav>
+        </section>
       </header>
     </>
   );

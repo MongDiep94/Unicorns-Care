@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import "./Log.css";
 import { NavLink, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import Cookies from "js-cookie";
-import io from "socket.io-client";
 
 
 const Login = ({socket}) => {
-  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-  const [prevLocation, setPrevLocation] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -71,17 +69,14 @@ const Login = ({socket}) => {
           const userFirstName = res.data.userFirstName;
           Cookies.set('userFirstName', userFirstName, { expires: 1, secure: true });
           //sends the username and socketID to Node.js server
+          if (socket) {
           socket.emit('newUser', {userName: userFirstName, socketID: socket.id});
+          }
         }
 
         setLoginSuccess(true);
-        // redirect vers la page avant le login
-        if (prevLocation) {
-          navigate(prevLocation);
-        } else {
-          // If there is no previous location, you can redirect to a default location
-          navigate("/");
-        }
+        navigate("/");
+
         return res.data;
       })
       .catch((error) => {
@@ -90,12 +85,12 @@ const Login = ({socket}) => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
+    <main className="login-container">
+      <section className="login-box">
         <h2>Se connecter</h2>
 
         <form method="post" onSubmit={handleSubmit}>
-          <div className="textbox">
+          <section className="textbox">
             <input
               type="email"
               name="email"
@@ -104,9 +99,9 @@ const Login = ({socket}) => {
               onChange={handleChange}
             />
             <label className="errorLabel">{emailError}</label>
-          </div>
+          </section>
 
-          <div className="textbox">
+          <section className="textbox">
             <input
               type="password"
               name="password"
@@ -115,7 +110,7 @@ const Login = ({socket}) => {
               onChange={handleChange}
             />
             <label className="errorLabel">{passwordError}</label>
-          </div>
+          </section>
 
           <input type="submit" className="btn__orange" value={"Se connecter"} />
 
@@ -123,8 +118,8 @@ const Login = ({socket}) => {
             Pas encore inscrit•e ?
           </NavLink>
         </form>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

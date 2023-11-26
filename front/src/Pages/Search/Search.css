@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12rem 0 8rem 0;
+  padding: 20rem 0 8rem 0;
   background-image: url(../../../public/images/bg_green.svg);
   background-size: 50%;
   background-color: var(--color-dark-green);

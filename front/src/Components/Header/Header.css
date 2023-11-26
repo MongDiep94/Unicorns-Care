@@ -1,5 +1,5 @@
 .menu__header {
-  padding: 1rem 5rem;
+  padding: 0 5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,4 +26,76 @@
   height: 5rem;
   background-position: center;
   border-radius: 50%;
+}
+
+/* *****************************************************************
+ACCESSIBILITY
+***************************************************************** */
+
+a:focus,
+select:focus,
+input:focus,
+button:focus {
+  outline: 2px solid #000;
+}
+
+.hidden-menu a {
+  position: absolute;
+  top: -4em;
+  left: 0;
+  display: block;
+  padding: 0.5em;
+  font-size: 1.2em;
+  color: var(--color-white);
+  background-color: var(--color-dark-grey);
+  transition: 0.2s;
+}
+.hidden-menu a:focus {
+  top: 0;
+}
+
+/* menu accessibilité */
+.accessibility {
+  margin-bottom: 2rem;
+  border-bottom: 0.1rem solid var(--color-cream);
+}
+.nav__access {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__access a {
+  position: absolute;
+  display: block;
+  padding: 1em;
+  white-space: nowrap;
+  color: white;
+  background-color: black;
+  opacity: 0;
+}
+
+.nav__access a:focus {
+  opacity: 1;
+}
+
+/* menu accessibilité */
+.nav__top {
+  text-align: end;
+  color: var(--color-cream);
+}
+
+.nav__top button {
+  color: var(--color-cream);
+  border: 0;
+  background-color: transparent;
+}
+.nav__top button:hover {
+  opacity: 0.8;
+}
+
+#line-large {
+  cursor: pointer;
 }
