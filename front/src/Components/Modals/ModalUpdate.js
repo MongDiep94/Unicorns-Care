@@ -97,7 +97,7 @@ const ModalUpdate = ({ closeModal }) => {
         <button
           className="btn__close"
           onClick={() => closeModal(false)}
-          aria-label="bouton pour fermer le modal"
+          titre ="Bouton pour fermer le modal"
         >
           <FontAwesomeIcon icon={faCircleXmark} />
         </button>
@@ -141,10 +141,7 @@ const ModalUpdate = ({ closeModal }) => {
                 </fieldset>
               </section>
 
-            <label>Bio</label>
-            <textarea name="bio"></textarea>
-
-            <input className="btn__submit" type="submit" name="Mettre à jour" />
+            <input className="btn__submit btn__orange " type="submit" name="Mettre à jour" />
 
           </form>
         </section>

@@ -13,8 +13,8 @@
 }
 
 .modal__content{
-  z-index: 11;
   width: 60%;
+  position: relative;
   height: auto;
   border-radius: 0.5rem;
   background-color: white;
@@ -26,6 +26,9 @@
 }
 
 .btn__close {
+  position: absolute;
+  right: 0;
+  font-size: 3rem;;
   color: var(--color-orange);
   text-align: right;
 }
@@ -57,8 +60,13 @@
   flex-direction: column;
 }
 
+.form__profil .civility {
+  width: 47%;
+}
+
 .form__profil .btn__submit {
-  width: 100%;
   background-color: var(--color-orange);
-  color: var(--color-white);
+}
+.form__profil .btn__submit:hover {
+  background-color: var(--color-gold);
 }

@@ -3,9 +3,11 @@ import "./Log.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import io from "socket.io-client";
 
 
-const Login = () => {
+const Login = ({socket}) => {
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -66,7 +68,12 @@ const Login = () => {
           });
           const userId = res.data.userId;
           Cookies.set('userId', userId, { expires: 1, secure: true });
+          const userFirstName = res.data.userFirstName;
+          Cookies.set('userFirstName', userFirstName, { expires: 1, secure: true });
+          //sends the username and socketID to Node.js server
+          socket.emit('newUser', {userName: userFirstName, socketID: socket.id});
         }
+
         setLoginSuccess(true);
         // redirect vers la page avant le login
         if (prevLocation) {

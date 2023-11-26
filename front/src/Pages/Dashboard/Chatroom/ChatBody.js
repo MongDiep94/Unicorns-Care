@@ -1,36 +1,18 @@
 import "./Chatroom.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 
 const ChatBody = ({messages}) => {
+  const userFirstName = Cookies.get("userFirstName");
 
-  console.log(messages);
-  const navigate = useNavigate();
-  const handleLeaveChat = () => {
-    Cookies.remove("userFirstName");
-    navigate('/');
-    window.location.reload();
-  };
+  console.log('messages',messages);
+
 
   return (
     <>
-      <section className="chat__mainHeader">
-        <button
-        type="button"
-        className="leaveChat__btn "
-        title="Quitter la dicussion"
-        onClick={handleLeaveChat}
-        >
-          <FontAwesomeIcon icon={faCircleXmark} />
-        </button>
-      </section>
-
       {/*This shows messages sent from you*/}
-      <div className="message__container">
+      <section className="message__container">
       {messages.map((message)=>
-        message.name === Cookies.get("userFirstName") ? (
+        message.name === userFirstName ? (
           <div className="message__chats" key={message.id}>
             <p className="sender__name">You</p>
             <div className="message__sender">
@@ -51,7 +33,7 @@ const ChatBody = ({messages}) => {
         <div className="message__status">
           <p>Quelqu'un écrit...</p>
         </div>
-      </div>
+      </section>
     </>
   );
 };

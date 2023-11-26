@@ -1,38 +1,61 @@
 import "./Chatroom.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const ChatFooter = ({socket}) => {
-  const [message, setMessage] = useState('')
+const ChatFooter = ({ socket }) => {
+  const [message, setMessage] = useState("");
+  const userFirstName = Cookies.get("userFirstName");
+
 
   const handleSendMessage = (e) => {
-
     e.preventDefault();
-    if (message.trim() && localStorage.getItem('userName')) {
-      socket.emit('message', {
+    if (message.trim() && userFirstName) {
+      socket.emit("message", {
         text: message,
-        name: localStorage.getItem('userName'),
+        name: userFirstName,
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
       });
     }
-    setMessage('');
-    console.log(message, socket.id)
+    setMessage("");
+    console.log(message, socket.id);
+  };
+
+  const navigate = useNavigate();
+
+  const handleLeaveChat = () => {
+    Cookies.remove("userFirstName");
+    navigate("/");
+    window.location.reload();
   };
   return (
-    <div className="chat__footer">
-      <form className="chat__form" onSubmit={handleSendMessage}>
-        <input
-          type="text"
-          placeholder="Ecrivez un message"
-          className="message__chat"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button title="Envoyer message" className="btn__send"><FontAwesomeIcon icon={faPaperPlane} /></button>
-      </form>
-    </div>
+    <>
+      <section className="chat__footer">
+        <form className="chat__form" onSubmit={handleSendMessage}>
+          <textarea
+            type="text"
+            placeholder="Ecrivez un message"
+            className="message__chat"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></textarea>
+          <button title="Envoyer message" className="btn__send">
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </button>
+        </form>
+      </section>
+      <button
+        type="button"
+        className="leaveChat__btn"
+        title="Quitter la dicussion"
+        onClick={handleLeaveChat}
+      >
+        <FontAwesomeIcon icon={faCircleXmark} /> Quitter la discussion
+      </button>
+    </>
   );
 };
 

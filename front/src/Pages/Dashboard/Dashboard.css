@@ -6,9 +6,10 @@ GENERALITIES
   background-image: url(../../../public/images/bg_green.svg);
   background-size: 50%;
 }
-.separator {
-  padding: 1rem 0;
-  border-top: 0.2rem solid var(--color-dark-grey);
+.dashboard__separator {
+  color: var(--color-dark-grey);
+  padding: 2rem 0;
+  border-top: 0.1rem solid var(--color-dark-grey);
 }
 /* *****************************************************************
 DASHBOARD USER

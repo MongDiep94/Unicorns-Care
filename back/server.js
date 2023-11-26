@@ -3,8 +3,8 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import { connectDB } from './config/database.js'
-import { Server } from "socket.io";
 import { createServer } from "http";
+import { Server } from "socket.io";
 import cookieParser from 'cookie-parser'
 
 //Router

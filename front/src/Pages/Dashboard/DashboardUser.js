@@ -6,7 +6,6 @@ import io from "socket.io-client";
 import axios from "axios";
 
 import Chatroom from "./Chatroom/Chatroom.js";
-import ChatBar from "./Chatroom/ChatBar.js";
 
 const DashboardUser = () => {
   const [user, setUser] = useState([]);
@@ -26,6 +25,7 @@ const DashboardUser = () => {
     });
   }, [id]); // rechargement 1 fois
 
+
   return (
     <>
       <div className="bg--green"></div>
@@ -38,14 +38,13 @@ const DashboardUser = () => {
             alt={`Photo de ${firstName}`}
           />
           <nav className="dashboard__menu">
-            <button title="Bouton de l'onglet Profil">Profil</button>
-            <button title="Bouton de l'onglet Gardes" className="separator">Gardes</button>
-            <button title="Bouton de l'onglet Messages" className="separator">Messages</button>
+            <button title="Bouton de l'onglet Profil" className="dashboard__separator">Profil</button>
+            <button title="Bouton de l'onglet Gardes" className="dashboard__separator">Gardes</button>
+            <button title="Bouton de l'onglet Messages" className="dashboard__separator">Messages</button>
           </nav>
         </section>
 
         <section className="dashboard__content">
-          <h1 className="dashboard__title">Title</h1>
           <Chatroom socket={socket} />
         </section>
       </main>

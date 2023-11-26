@@ -7,16 +7,16 @@ import Cookies from "js-cookie";
 const ChatLog = ({socket}) => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState([]);
+  const userFirstName = Cookies.get("userFirstName");
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setUserName(Cookies.get("userFirstName"));
-    localStorage.setItem('userName', userName);
+    setUserName(userFirstName);
     //sends the username and socketID to Node.js server
     socket.emit('newUser', {userName, socketID: socket.id});
-    navigate('/mon-dashboard');
+    navigate('/dashboard/:id');
   };
   return (
     <form style={{ background: 'grey', justifyContent: 'space-between' }} onSubmit={handleSubmit}>
