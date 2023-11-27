@@ -25,21 +25,20 @@ let userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    address: [
-      {
-        number: String,
-        street: String,
-        city: String,
-        zipcode: String,
-        location: String
-      },
-    ],
-    photo:  String,
+    address: {
+      number: String,
+      street: String,
+      city: String,
+      zipcode: String,
+      location: String,
+    },
+    photo: String,
     phone: String,
     isAdmin: Boolean,
     sitter: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Sitter",
+      required: false,
     },
     pets: [
       {
@@ -55,13 +54,16 @@ let userSchema = mongoose.Schema(
 
 // HACHAGE DU MOT DE PASSE
 // Ce hook va se déclencher avant que la fonction save (User.save()) soit déclenché
-userSchema.pre("save", function (next){
-  if(!this.isModified("password")){
-      return next();
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password")) {
+    return next();
   }
-  this.password = bcrypt.hashSync(this.password, 10)
+  this.password = bcrypt.hashSync(this.password, 10);
   next();
-})
+});
+
+//faire un index basé sur l'email des users pour faciliter les recherches
+userSchema.index({ email: 1 }, { unique: true });
 
 let User = mongoose.model("User", userSchema);
 

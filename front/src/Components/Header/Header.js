@@ -116,7 +116,7 @@ const Header = () => {
                   />
                 </NavLink>
                 <NavLink
-                  to={"/login"}
+                  to={"/se-connecter"}
                   onClick={handleClick}
                   id="logout"
                   className="btn__camel margin-left-3"
@@ -133,7 +133,7 @@ const Header = () => {
                   Connexion
                 </NavLink>
                 <NavLink
-                  to="/register"
+                  to="/s-inscrire"
                   id="register"
                   className="btn__camel margin-left-3"
                 >

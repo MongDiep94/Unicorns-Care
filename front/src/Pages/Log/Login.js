@@ -85,8 +85,8 @@ const Login = ({socket}) => {
   };
 
   return (
-    <main className="login-container">
-      <section className="login-box">
+    <main className="login__container">
+      <section className="login__box">
         <h2>Se connecter</h2>
 
         <form method="post" onSubmit={handleSubmit}>
@@ -114,7 +114,7 @@ const Login = ({socket}) => {
 
           <input type="submit" className="btn__orange" value={"Se connecter"} />
 
-          <NavLink to={"/inscription"} className="forgot-password">
+          <NavLink to={"/s-inscrire"} className="forgot-password">
             Pas encore inscrit•e ?
           </NavLink>
         </form>

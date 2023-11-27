@@ -3,32 +3,42 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import Cookies from "js-cookie";
-import io from "socket.io-client";
 
-const Register = ({socket}) => {
+
+const Register = ({ socket }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     if (e.target.name === "email") {
       setEmail(e.target.value);
-    } else if (e.target.name === "password") {
+    }
+    if (e.target.name === "password") {
       setPassword(e.target.value);
+    }
+    if (e.target.name === "firstName") {
+      setFirstName(e.target.value);
+    }
+    if (e.target.name === "lastName") {
+      setLastName(e.target.value);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let request_data = {
-      email: email,
-      password: password,
-    };
+
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("password", password);
+
 
     // Mettre les messages d'erreur à vide
     setEmailError("");
@@ -39,8 +49,8 @@ const Register = ({socket}) => {
       setEmailError("Entrer votre addresse mail.");
       return;
     }
-    // Regex
-    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+    // Regex vérif email
+    if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i.test(email)) {
       setEmailError("Entrer une adresse mail valide, svp.");
       return;
     }
@@ -54,29 +64,13 @@ const Register = ({socket}) => {
       setPasswordError("Entrer un mot de passe de 8 caractères ou plus.");
       return;
     }
+
+
     axios
-      .post(`${process.env.REACT_APP_API}/login`, request_data)
+      .post(`${process.env.REACT_APP_API}/register`, formData)
       .then((res) => {
-        console.log("res", res);
 
-        if (res.data.sessionToken) {
-          Cookies.set("sessionToken", res.data.sessionToken, {
-            expires: 1,
-            secure: true,
-          });
-          const userId = res.data.userId;
-          Cookies.set('userId', userId, { expires: 1, secure: true });
-          const userFirstName = res.data.userFirstName;
-          Cookies.set('userFirstName', userFirstName, { expires: 1, secure: true });
-          //sends the username and socketID to Node.js server
-          if (socket) {
-          socket.emit('newUser', {userName: userFirstName, socketID: socket.id});
-          }
-        }
-
-        setLoginSuccess(true);
-        navigate("/");
-
+        navigate("/se-connecter");
         return res.data;
       })
       .catch((error) => {
@@ -84,37 +78,61 @@ const Register = ({socket}) => {
       });
   };
   return (
-<main className="login-container">
-      <section className="login-box">
+    <main className="login__container">
+      <section className="register__box">
         <h2>S'incrire</h2>
 
-        <form method="post" onSubmit={handleSubmit}>
-          <section className="textbox">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={email}
-              onChange={handleChange}
-            />
-            <label className="errorLabel">{emailError}</label>
-          </section>
+        <form
+          method="post"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
+          <label>Prénom</label>
+          <input
+            className="register__box--input"
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={handleChange}
+          />
+          <label>Nom</label>
+          <input
+            className="register__box--input"
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={handleChange}
+          />
+          <label>Email</label>
+          <input
+            className="register__box--input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleChange}
+          />
+          <label className="errorLabel">{emailError}</label>
 
-          <section className="textbox">
-            <input
-              type="password"
-              name="password"
-              placeholder="Mot de passe"
-              value={password}
-              onChange={handleChange}
-            />
-            <label className="errorLabel">{passwordError}</label>
-          </section>
+          <label>Mot de passe *</label>
+          <input
+            className="register__box--input"
+            type="password"
+            name="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={handleChange}
+          />
+          <span className="note margin-bottom-2">
+            * Au minimum 8 caratères, comprenant au moins 1 chiffre, 1 majuscule et 1
+            caractère spécial.
+          </span>
+          <label className="errorLabel">{passwordError}</label>
 
           <input type="submit" className="btn__orange" value={"Se connecter"} />
 
-          <NavLink to={"/inscription"} className="forgot-password">
-            Pas encore inscrit•e ?
+          <NavLink to={"/se-connecter"} className="forgot-password">
+            Déjà inscrit•e ?
           </NavLink>
         </form>
       </section>

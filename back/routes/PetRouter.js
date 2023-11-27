@@ -8,6 +8,7 @@ import {
   DeletePet,
   GetRandomPet,
 } from "../controllers/petController.js";
+import upload from "../middlewares/multer.js";
 
 const petRouter = express.Router();
 
@@ -24,10 +25,10 @@ petRouter.get("/pet/:petId", GetOnePet);
 petRouter.get("/random-pets", GetRandomPet);
 
 // CREER UNE CREATURE
-petRouter.post("/pet/create", NewPet);
+petRouter.post("/pet/create", upload.single('file'), NewPet);
 
 // METTRE A JOUR UNE CREATURE
-petRouter.patch("/pet/update/:petId", UpdatePet);
+petRouter.patch("/pet/update/:petId", upload.single('file'), UpdatePet);
 
 // SUPPRIMER UNE CREATURE
 petRouter.delete("/pet/delete/:petId", DeletePet);

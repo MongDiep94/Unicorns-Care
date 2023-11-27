@@ -1,15 +1,16 @@
 import express from 'express'
 import { AddUser, AllUsers, GetOneUser, GetUserPets, GetUserSitter, Login, Logout, NewUserPet, NewUserSitter, Register, UpdateUser } from '../controllers/userController.js';
 import { verifyToken } from '../middlewares/auth.js';
+import upload from '../middlewares/multer.js';
 
 const userRouter = express.Router();
 
 
 //Login form
-userRouter.post("/login", Login)
+userRouter.post("/login", verifyToken, Login)
 
 //Register form
-userRouter.post("/register", Register)
+userRouter.post("/register", upload.single('photo'), Register)
 
 //Deconnexion
 userRouter.get("/logout", Logout)
@@ -24,7 +25,7 @@ userRouter.post("/user/add", AddUser)
 userRouter.get("/user/:userId", GetOneUser)
 
 //UPDATE USER
-userRouter.patch("/user/:userId/update", UpdateUser)
+userRouter.patch("/user/:userId/update", upload.single('file'), UpdateUser)
 
 //USER PETS
 userRouter.get("/user/:userId/pet", GetUserPets)

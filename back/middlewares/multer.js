@@ -1,26 +1,27 @@
-import multer from  "multer";
-import path from "path"
+import multer from "multer";
+import path from "path";
 
-
-const maxSize = 3145680 // Environ 3 MO
-
+const maxSize = 3145680; // Environ 3 MO
 
 const storageEngine = multer.diskStorage({
-    destination: "./public/img",
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()} - ${(file.originalname.split(" ")).join("_")}`);
-    }
-})
+  destination: "./public/img",
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      `${Date.now()} - ${(file.originalname.split(" ")).join("_")}`
+    );
+  },
+});
 
 const upload = multer({
-    storage: storageEngine,
-    limits: {
-        fileSize: maxSize,
-    },
-    fileFilter: (req, file, cb) => {
-        checkFileType(file,cb)
-    }
-})
+  storage: storageEngine,
+  limits: {
+    fileSize: maxSize,
+  },
+  fileFilter: (req, file, cb) => {
+    checkFileType(file, cb);
+  },
+});
 
 /**
  *
@@ -29,23 +30,22 @@ const upload = multer({
  * @returns
  * Fonction qui va vérifier le type des fichiers autorisés
  */
-const checkFileType = async (file, cb) =>{
+const checkFileType = async (file, cb) => {
+  // Autorisation des fichiers ilg
+  const fileTypes = /jpg|png|jpeg|gif|webp/;
 
-// Autorisation des fichiers ilg
+  // Vérification les extensions des fichiers
+  const extName = fileTypes.test(
+    path.extname(file.originalname).toLowerCase()
+  );
+  const mimeType = fileTypes.test(file.mimetype);
 
-const fileTypes = /jpg|png|jpeg|gif|webp/
+  if (extName && mimeType) {
+    return cb(null, true);
+  } else {
+    console.error("Format de fichier non supporté");
+    cb("Format de fichier non supporté");
+  }
+};
 
-// Vérification les extensions des fichiers
-
-const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
-const mimeType = fileTypes.test(file.mimetype)
-
-if(extName && mimeType) {
-    return cb(null, true)
-} else {
-    cb("Format de fichier non supporté")
-}
-
-}
-
-export default upload
+export default upload;

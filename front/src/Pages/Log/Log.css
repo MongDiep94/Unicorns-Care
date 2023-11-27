@@ -2,8 +2,10 @@
 LOG
 ***************************************************************** */
 
-.login-container {
+.login__container {
+  padding: 5rem 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -11,7 +13,7 @@ LOG
   background-size: 50%;
 }
 
-.login-box {
+.login__box {
   width: 30%;
   background: var(--color-cream);
   padding: 2rem 5rem;
@@ -19,11 +21,10 @@ LOG
   text-align: center;
   border-radius: 5px;
 }
-.login-box h2 {
+.login__box h2 {
   margin-bottom: 3rem;
   color: var(--color-dark-green);
 }
-
 .textbox {
   position: relative;
   margin-bottom: 2rem;
@@ -48,6 +49,50 @@ LOG
 }
 
 .errorLabel {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--color-orange);
+}
+
+/* *****************************************************************
+REGISTER
+***************************************************************** */
+.register__box {
+
+  width: 40%;
+  height: fit-content;
+  margin: 5rem 0;
+  background: var(--color-cream);
+  padding: 2rem 5rem;
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
+  color: var(--color-dark-grey)
+}
+
+.register__box h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-dark-green);
+}
+
+.register__box form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.register__box--input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: var(--color-white);
+}
+.register__box label {
+  font-weight: bold;
+}
+
+.note {
+  font-size: 1.3rem;
+  line-height: 1.3rem;
   color: var(--color-grey);
 }

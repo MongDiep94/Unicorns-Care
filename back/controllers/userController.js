@@ -15,27 +15,22 @@ export const Login = async (req, res) => {
         return res.status(401).json({
           message: "Mot de passe incorrecte, veuillez revoir votre saisie",
         });
-      // let checkPassword = bcrypt.compareSync(req.body.password, user.password);
-      // if (!checkPassword) {
-      //   return res.status(401).json({
-      //     message: "Mot de passe incorrecte, veuillez revoir votre saisie",
-      //   });
+        // let checkPassword = bcrypt.compareSync(req.body.password, user.password);
+        // if (!checkPassword) {
+        //   return res.status(401).json({
+        //     message: "Mot de passe incorrecte, veuillez revoir votre saisie",
+        //   });
       }
       // Generate an access token
-      const accessToken = jwt.sign(
-        { id: user.id },
-        process.env.SESSION_TOKEN,
-        {
-          expiresIn: "24h",
-        }
-      );
+      const accessToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
+        expiresIn: "24h",
+      });
 
       res.status(200).json({
         userId: user._id,
         userFirstName: user.firstName,
         sessionToken: accessToken,
       });
-
     }
   } catch (err) {
     res.status(401).json({ message: "Utilisateur introuvable avec cet email" });
@@ -50,16 +45,17 @@ export const Register = async (req, res) => {
   //RegEx pwd. entre accepte tous les lettres minuscules et majuscules, les chiffres et caractères spéciaux, entre 8 et 30 caractères.
   const checkPwd =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
+    console.log('ici début')
 
   try {
     // Je vérifie que l'email n'existe pas
     let checkMailExist = await User.findOne({ email: req.body.email });
 
     if (checkMailExist) {
-      return res.json({ message: "Cet email est déjà enregistré" });
+      return res.status(400).json({ message: "Cet email est déjà enregistré" });
     }
     if (!checkPwd.test(req.body.password)) {
-      return res.json({
+      return res.status(400).json({
         message: "Le mot de passe ne respecte pas les conditions",
       });
     }
@@ -69,26 +65,29 @@ export const Register = async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      address: [
-        {
-          number: req.body.number,
-          street: req.body.street,
-          city: req.body.city,
-          zipcode: req.body.zipcode,
-        },
-      ],
-      phone: req.body.phone,
+      photo: "",
+      address: {
+          number:"",
+          street: "",
+          zipcode: "",
+          city: "",
+          location: ""
+      },
+      sitter: null,
+      pet: "",
       isAdmin: false,
     });
+    console.log('newUser', newUser)
 
     // Mon hook pre va s'excuter avant de sauvegarder dans la base de données (hachage de mot de passe)
     await newUser.save();
-
+    console.log('new User save success')
     res.json({ message: "Utilisateur créé avec succès" });
-    res.redirect("/login")
   } catch (err) {
-    res.json({ message: "Impossible de créer un compte" });
+    console.error("Error saving user:", err);
+    res.status(500).json({ message: "Impossible de créer un compte" });
   }
+
 };
 
 // -----------------------------------------------------
