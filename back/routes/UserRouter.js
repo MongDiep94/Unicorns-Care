@@ -7,7 +7,7 @@ const userRouter = express.Router();
 
 
 //Login form
-userRouter.post("/login", verifyToken, Login)
+userRouter.post("/login", Login)
 
 //Register form
 userRouter.post("/register", upload.single('photo'), Register)

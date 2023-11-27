@@ -3,12 +3,20 @@ import { NavLink, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import CardOwnerReviewer from "../../Components/Cards/CardOwnerReviewer.js";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
-const ProfilSitter = () => {
+const ProfilSitter = ({socket}) => {
   const [sitter, setSitter] = useState({});
   const [ownerReviewer, setOwnerReviewer] = useState([]);
+  const [userName, setUserName] = useState("");
+
+  const currentUserId = Cookies.get('userId')
+  console.log('currentUserId', currentUserId)
+
+  const navigate = useNavigate();
 
   // identification du sitter par son ID
   const { id } = useParams();
@@ -18,17 +26,33 @@ const ProfilSitter = () => {
   const { firstName, lastName, address, photo } = user || {};
 
   useEffect(() => {
+
     axios.get(`${process.env.REACT_APP_API}/sitter/${id}`).then((res) => {
       setSitter(res.data);
-      console.log("set one Sitter", sitter);
     });
+
     axios.get(`${process.env.REACT_APP_API}/random-pets`).then((res) => {
       // Ensure that the response is an array
       const ownerData = Array.isArray(res.data) ? res.data : [res.data];
       setOwnerReviewer(ownerData);
-      console.log("set random Pet", ownerReviewer);
     });
+
   }, [id]); // écoute sur le changement de l'ID
+
+  const handleContact = (e) => {
+    e.preventDefault()
+    setUserName(firstName);
+
+    if (socket && socket.connected) {
+      //sends the username and socketID to Node.js server
+      socket.emit('newUser', { userName, socketID: socket.id });
+      console.log('newuser', userName, socket.id);
+    } else {
+      console.error('Socket is undefined or not connected.');
+    }
+
+    navigate(`/dashboard/${currentUserId}`);
+  }
 
   return (
     <>
@@ -76,7 +100,7 @@ const ProfilSitter = () => {
               <table>
                 <thead>
                   <tr>
-                    <th colspan="2">Disponibilités</th>
+                    <th colSpan="2">Disponibilités</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -91,7 +115,7 @@ const ProfilSitter = () => {
                 </tbody>
               </table>
             </section>
-            <NavLink to="#" className="btn__orange">
+            <NavLink to="#" className="btn__orange" onClick={handleContact}>
               Contacter {firstName}
             </NavLink>
           </section>
@@ -106,9 +130,9 @@ const ProfilSitter = () => {
           <iframe
             src={address && address.length > 0 && address[0].location}
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
             aria-hidden="false"
-            title="Adresse Tohya"
+            aria-label={`Adresse de ${firstName}`}
           />
         </section>
       </section>

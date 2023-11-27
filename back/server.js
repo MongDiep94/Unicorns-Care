@@ -38,11 +38,6 @@ app.use(cookieParser());
 
 connectDB
 
-app.use(petRouter)
-app.use(sitterRouter)
-app.use(userRouter)
-app.use(chatroomRouter)
-
 // Paramètres web socket
 //// Connect io with the front-react server and allow for CORS from http://localhost:3000 with GET and POST methods
 const io = new Server(server, {
@@ -50,6 +45,11 @@ const io = new Server(server, {
     origin: process.env.BASE_URL_FRONT,
   },
 });
+
+app.use(petRouter)
+app.use(sitterRouter)
+app.use(userRouter)
+app.use(chatroomRouter)
 
 let users = [];
 // Listen for when the client connects via socket.io-client

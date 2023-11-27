@@ -25,13 +25,15 @@ let userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    address: {
-      number: String,
-      street: String,
-      city: String,
-      zipcode: String,
-      location: String,
-    },
+    address: [
+      {
+        number: String,
+        street: String,
+        city: String,
+        zipcode: String,
+        location: String,
+      }
+    ],
     photo: String,
     phone: String,
     isAdmin: Boolean,

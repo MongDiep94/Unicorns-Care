@@ -45,7 +45,6 @@ export const Register = async (req, res) => {
   //RegEx pwd. entre accepte tous les lettres minuscules et majuscules, les chiffres et caractères spéciaux, entre 8 et 30 caractères.
   const checkPwd =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
-    console.log('ici début')
 
   try {
     // Je vérifie que l'email n'existe pas
@@ -66,15 +65,15 @@ export const Register = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       photo: "",
-      address: {
+      address: [{
           number:"",
           street: "",
           zipcode: "",
           city: "",
           location: ""
-      },
+      }],
       sitter: null,
-      pet: "",
+      pet: [""],
       isAdmin: false,
     });
     console.log('newUser', newUser)
@@ -109,7 +108,6 @@ export const Logout = (req, res) => {
 export const AllUsers = async (req, res) => {
   try {
     let users = await User.find({}).populate("sitter");
-    console.log("all users", users);
     res.json(users);
   } catch (err) {
     res.json({ message: "Impossible de trouver la liste des utilisateurs" });
@@ -152,7 +150,6 @@ export const GetOneUser = async (req, res) => {
   try {
     const { userId } = req.params;
     let user = await User.findById(userId).populate("sitter");
-    console.log("show user", user);
     res.json(user);
   } catch (err) {
     res.json({ message: "Impossible de trouver l'utilisateur" });
