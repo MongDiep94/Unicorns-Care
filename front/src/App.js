@@ -15,7 +15,7 @@ import SearchPetSitters from "./Pages/Search/SearchPetSitters.js"
 import Contact from "./Pages/Contact/Contact.js";
 import LegalNotice from "./Pages/LegalNotice/LegalNotice.js"
 import ProfilPet from "./Pages/Profils/ProfilPet.js";
-import DashboardUser from "./Pages/Dashboard/DashboardUser.js";
+import DashboardUser from "./Pages/Dashboard/DashboardUser/DashboardUser.js";
 import DashboardAdmin from "./Pages/Dashboard/DashboardAdmin.js";
 
 
