@@ -63,11 +63,12 @@ const Login = ({socket}) => {
           Cookies.set("sessionToken", res.data.sessionToken, {
             expires: 1,
             secure: true,
-          });
+          })
           const userId = res.data.userId;
           Cookies.set('userId', userId, { expires: 1, secure: true });
           const userFirstName = res.data.userFirstName;
           Cookies.set('userFirstName', userFirstName, { expires: 1, secure: true });
+
           //sends the username and socketID to Node.js server
           if (socket) {
           socket.emit('newUser', {userName: userFirstName, socketID: socket.id});

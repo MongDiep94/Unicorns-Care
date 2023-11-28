@@ -26,10 +26,19 @@ export const Login = async (req, res) => {
         expiresIn: "24h",
       });
 
-      res.status(200).json({
+      res
+      .cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: process.env.SESSION_TOKEN === "production",
+      })
+      .status(200)
+      .json({
         userId: user._id,
         userFirstName: user.firstName,
+        email:user.email,
+        role: user.role,
         sessionToken: accessToken,
+        message: "Logged in successfully 😊 👌"
       });
     }
   } catch (err) {
@@ -74,7 +83,7 @@ export const Register = async (req, res) => {
       }],
       sitter: null,
       pet: [""],
-      isAdmin: false,
+      role: "user",
     });
     console.log('newUser', newUser)
 
@@ -94,10 +103,10 @@ export const Register = async (req, res) => {
 // -----------------------------------------------------
 
 export const Logout = (req, res) => {
-  req.session.destroy((err) => {
-    res.clearCookie();
-    res.redirect("/login");
-  });
+    res
+    .clearCookie("accessToken")
+    .status(200)
+    .json({ message: "Successfully logged out 😏 🍀" });
 };
 
 // -----------------------------------------------------

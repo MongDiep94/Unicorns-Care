@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-export const getCookie =  () => {
+export const auth =  () => {
   // Récupérer les données de session du cookie
   let sessionData =  Cookies.get('sessionToken');
 

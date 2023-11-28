@@ -8,6 +8,7 @@ import {
   DeleteSitter,
   GetRandomSitter,
 } from "../controllers/sitterController.js";
+import { isAdmin, verifyToken } from "../middlewares/auth.js";
 
 const sitterRouter = express.Router();
 
@@ -24,13 +25,13 @@ sitterRouter.get("/sitter/:id", GetOneSitter);
 sitterRouter.get("/random-sitters", GetRandomSitter);
 
 // CREER UN SITTER
-sitterRouter.post("/sitter/create", NewSitter);
+sitterRouter.post("/sitter/create", verifyToken, NewSitter);
 
 // METTRE A JOUR UN SITTER
-sitterRouter.patch("/sitter/update/:sitterId", UpdateSitter);
+sitterRouter.patch("/sitter/update/:sitterId", verifyToken, UpdateSitter);
 
 // SUPPRIMER UN SITTER
-sitterRouter.delete("/sitter/delete/:sitterId", DeleteSitter);
+sitterRouter.delete("/sitter/delete/:sitterId", verifyToken, isAdmin, DeleteSitter);
 
 
 export default sitterRouter;
