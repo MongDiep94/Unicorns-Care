@@ -21,13 +21,11 @@ const ProfilPet = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/pet/${id}`).then((res) => {
       setPet(res.data);
-      console.log("set one pet", pet);
     });
     axios.get(`${process.env.REACT_APP_API}/random-sitters`).then((res) => {
       // Ensure that the response is an array
       const sitterData = Array.isArray(res.data) ? res.data : [res.data];
       setSitterReviewer(sitterData);
-      console.log("set random Sitter", sitterReviewer);
     });
   }, [id]); // écoute sur le changement de l'ID
 

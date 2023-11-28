@@ -7,13 +7,11 @@ import axios from "axios";
 
 import Chatroom from "./Chatroom/Chatroom.js";
 import ProfilUser from "./ProfilUser.js";
-import UserPet from "./UserPet.js";
 
 const DashboardUser = () => {
   const [user, setUser] = useState([]);
   // menu dashboard
   const [showProfil, setShowProfil] = useState(true);
-  const [showPet, setShowPet] = useState(false);
   const [showChatroom, setShowChatroom] = useState(false);
 
 
@@ -37,11 +35,6 @@ const DashboardUser = () => {
       setShowProfil(true);
     } else {
       setShowProfil(false);
-    }
-    if (value === "pet") {
-      setShowPet(true);
-    } else {
-      setShowPet(false);
     }
     if (value === "chatroom") {
       setShowChatroom(true);
@@ -71,14 +64,6 @@ const DashboardUser = () => {
               Profil
             </button>
             <button
-              title="Bouton de l'onglet Gardes"
-              className="dashboard__separator"
-              value="pet"
-              onClick={() => handleClick("pet")}
-            >
-              Pet
-            </button>
-            <button
               title="Bouton de l'onglet Messages"
               className="dashboard__separator"
               value="messages"
@@ -92,7 +77,6 @@ const DashboardUser = () => {
         <section className="dashboard__content">
             <>
             {showProfil && <ProfilUser id={id}/>}
-            {showPet && <UserPet />}
             {showChatroom && <Chatroom socket={socket} />}
             </>
         </section>

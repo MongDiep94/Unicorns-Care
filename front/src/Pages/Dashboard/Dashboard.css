@@ -18,11 +18,15 @@ DASHBOARD USER
   display: flex;
   flex-direction: row;
   gap: 3rem;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: fit-content;
 }
 
+/* MENU ASIDE */
 .dashboard__nav {
   width: 20%;
+  min-height: 100vh;
+  max-height: fit-content;
   padding: 3rem 2rem;
   color: var(--color-dark-grey);
   text-align: center;
@@ -47,6 +51,79 @@ DASHBOARD USER
 }
 .dashboard__content {
   width: 100%;
+}
+
+/* DASHBOARD CONTENT */
+
+/* profil */
+.dashboard__profil {
+  display: flex;
+  flex-direction: row;
+  color: var(--color-dark-grey);
+  background-color: var(--color-white);
+}
+.dashboard__profil p {
+  margin: 0.5rem 0;
+}
+.dashboard__profil .box__infos {
+  padding: 0 2rem 2rem 2rem;
+  width: 100%;
+}
+.address {
+  display: flex;
+  flex-direction: row;
+}
+.address {
+  margin: 0.8rem 0;
+}
+.dashboard__profil .box__infos h1 {
+  margin-bottom: 0.5rem;
+}
+.dashboard__profil h2 {
+  margin-bottom: 2rem;
+}
+.icon {
+  font-size: 2rem;
+}
+.box__specie p {
+  margin: 0;
+}
+.dashboard__profil .box__availability {
+  width: 60%;
+}
+
+.dashboard__guard {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-cream);
+}
+
+/* Species */
+.dashboard__species {
+  padding: 0.5rem 2rem 2rem 2rem;
+  margin: 2rem 0;
+  background-color: var(--color-white);
+}
+.dashboard__species p {
+  color: var(--color-dark-grey);
+}
+
+/* Pets */
+.dashboard__pets {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+  background-color: var(--color-white);
+}
+
+.dashboard__pets .profil__img {
+  width: 50%;
+  height: auto;
+}
+
+.dashboard__pets .box__infos {
+  width: 100%;
+  color: var(--color-dark-grey)
 }
 
 /* *****************************************************************

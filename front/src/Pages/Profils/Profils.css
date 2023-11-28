@@ -43,11 +43,10 @@ PROFIL SITTER
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  gap: 1rem;
   align-items: center;
 }
-.box__specie p {
-  margin-right: 1rem;
-}
+
 .box__availability {
   width: 33%;
   padding-left: 2rem;
@@ -91,7 +90,7 @@ PROFIL SITTER
 
 .box {
   padding: 1rem;
-  margin: 0 auto;
+  margin: 0;
 }
 .box__details {
   display: flex;

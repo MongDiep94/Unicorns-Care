@@ -149,7 +149,7 @@ export const AddUser = async (req, res) => {
 export const GetOneUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    let user = await User.findById(userId).populate("sitter");
+    let user = await User.findById(userId).populate("sitter").populate("pets");
     res.json(user);
   } catch (err) {
     res.json({ message: "Impossible de trouver l'utilisateur" });
