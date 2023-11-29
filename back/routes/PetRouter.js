@@ -26,12 +26,18 @@ petRouter.get("/pet/:petId", GetOnePet);
 petRouter.get("/random-pets", GetRandomPet);
 
 // CREER UNE CREATURE
-petRouter.post("/pet/create", verifyToken, NewPet);
+// petRouter.post("/pet/create", verifyToken, NewPet);
+petRouter.post("/pet/create", NewPet);
+
 
 // METTRE A JOUR UNE CREATURE
-petRouter.patch("/pet/update/:petId", verifyToken, UpdatePet);
+// petRouter.patch("/pet/update/:petId", verifyToken, UpdatePet);
+petRouter.patch("/pet/update/:petId", UpdatePet);
+
 
 // SUPPRIMER UNE CREATURE
-petRouter.delete("/pet/delete/:petId", verifyToken, DeletePet);
+// petRouter.delete("/pet/delete/:petId", verifyToken, DeletePet);
+petRouter.delete("/pet/delete/:petId", DeletePet);
+
 
 export default petRouter;

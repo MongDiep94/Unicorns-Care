@@ -22,26 +22,25 @@ export const Login = async (req, res) => {
         //   });
       }
       // Generate an access token
-      const accessToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
+      const sessionToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
         expiresIn: "24h",
       });
-
+      console.log('Generated Token:', sessionToken);
       res
-      .cookie("accessToken", accessToken, {
+      .cookie("sessionToken", sessionToken, {
         httpOnly: true,
-        secure: process.env.SESSION_TOKEN === "production",
+        secure: false,
       })
       .status(200)
       .json({
         userId: user._id,
         userFirstName: user.firstName,
-        email:user.email,
-        role: user.role,
-        sessionToken: accessToken,
-        message: "Logged in successfully 😊 👌"
+        sessionToken: sessionToken,
       });
+
     }
   } catch (err) {
+    console.error("Login error:", err.message);
     res.status(401).json({ message: "Utilisateur introuvable avec cet email" });
   }
 };
@@ -104,7 +103,7 @@ export const Register = async (req, res) => {
 
 export const Logout = (req, res) => {
     res
-    .clearCookie("accessToken")
+    .clearCookie("accessToken", "firstName")
     .status(200)
     .json({ message: "Successfully logged out 😏 🍀" });
 };

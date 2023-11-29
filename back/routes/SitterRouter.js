@@ -28,10 +28,14 @@ sitterRouter.get("/random-sitters", GetRandomSitter);
 sitterRouter.post("/sitter/create", verifyToken, NewSitter);
 
 // METTRE A JOUR UN SITTER
-sitterRouter.patch("/sitter/update/:sitterId", verifyToken, UpdateSitter);
+// sitterRouter.patch("/sitter/update/:sitterId", verifyToken, UpdateSitter);
+sitterRouter.patch("/sitter/update/:sitterId", UpdateSitter);
+
 
 // SUPPRIMER UN SITTER
-sitterRouter.delete("/sitter/delete/:sitterId", verifyToken, isAdmin, DeleteSitter);
+// sitterRouter.delete("/sitter/delete/:sitterId", verifyToken, isAdmin, DeleteSitter);
+sitterRouter.delete("/sitter/delete/:sitterId", DeleteSitter);
+
 
 
 export default sitterRouter;

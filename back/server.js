@@ -27,7 +27,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 // appel du module cors pour lier les urls back et front
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // middleware body parser pour lire les données des fichiers json
 app.use(bodyParser.json())
