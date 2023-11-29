@@ -1,6 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/UserModel.js";
+import Sitter from "../models/SitterModel.js";
+import Pet from "../models/PetModel.js";
+
 
 // -----------------------------------------------------
 // LOGIN
@@ -22,17 +25,25 @@ export const Login = async (req, res) => {
         //   });
       }
       // Generate an access token
-      const accessToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
+      const sessionToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
         expiresIn: "24h",
       });
-
-      res.status(200).json({
+      console.log('Generated Token:', sessionToken);
+      res
+      .cookie("sessionToken", sessionToken, {
+        httpOnly: true,
+        secure: false,
+      })
+      .status(200)
+      .json({
         userId: user._id,
         userFirstName: user.firstName,
-        sessionToken: accessToken,
+        sessionToken: sessionToken,
       });
+
     }
   } catch (err) {
+    console.error("Login error:", err.message);
     res.status(401).json({ message: "Utilisateur introuvable avec cet email" });
   }
 };
@@ -74,7 +85,7 @@ export const Register = async (req, res) => {
       }],
       sitter: null,
       pet: [""],
-      isAdmin: false,
+      role: "user",
     });
     console.log('newUser', newUser)
 
@@ -161,7 +172,11 @@ export const UpdateUser = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    let UpdateUser = new User({
+    let updatedUser;
+
+    if(req.file){
+
+    updatedUser = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -171,15 +186,34 @@ export const UpdateUser = async (req, res) => {
           number: req.body.number,
           street: req.body.street,
           city: req.body.city,
-          zipcode: req.body.zipcode,
-          location: req.body.location,
+          zipcode: req.body.zipcode
         },
       ],
-      phone: req.body.phone,
-      isAdmin: false,
-    });
+      photo: {
+        src: req.file.filename
+      }
+    }
+    } else {
+      updatedUser = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        address: [
+          {
+            number: req.body.number,
+            street: req.body.street,
+            city: req.body.city,
+            zipcode: req.body.zipcode
+          },
+        ],
+        photo: {
+          src: ""
+        }
+      }
+    }
 
-    let updatedUser = await User.findByIdAndUpdate(userId, UpdateUser);
+    await User.findByIdAndUpdate(userId, UpdateUser);
     console.log("updated user", updatedUser);
     res.json(updatedUser);
   } catch (err) {
@@ -219,7 +253,6 @@ export const DeleteUser = async (req, res) => {
     });
   }
 };
-
 
 // -----------------------------------------------------
 // PET

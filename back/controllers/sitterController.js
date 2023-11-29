@@ -121,7 +121,7 @@ export const UpdateSitter = async (req, res) => {
 export const DeleteSitter = async (req, res) => {
   try {
     const { sitterId } = req.params;
-    // Chercher le pet
+    // Chercher le sitter
     const sitter = await Sitter.findById(sitterId);
     if (!sitter) {
       return res.json({ message: "Impossible de trouver le pet sitter" });
