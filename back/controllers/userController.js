@@ -94,10 +94,10 @@ export const Register = async (req, res) => {
 // -----------------------------------------------------
 
 export const Logout = (req, res) => {
-  req.session.destroy((err) => {
-    res.clearCookie();
-    res.redirect("/login");
-  });
+  res
+  .clearCookie("accessToken", "firstName")
+  .status(200)
+  .json({ message: "Successfully logged out 😏 🍀" });
 };
 
 // -----------------------------------------------------
@@ -186,6 +186,40 @@ export const UpdateUser = async (req, res) => {
     res.json({ message: "Impossible de mettre à jour l'utilisateur" });
   }
 };
+
+// DELETE USER
+export const DeleteUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log("selected user", userId);
+
+    const userDeleted = await User.findOneAndDelete({ _id: userId })
+    console.log("deleted user", userDeleted);
+
+    // si le user est déjà supprimé
+    if (!userDeleted) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé avec cet ID.' });
+    }
+
+    // Si le user est sitter, supprimer le sitter associé
+    if (userDeleted.sitter) {
+      await Sitter.findByIdAndDelete(userDeleted.sitter);
+    }
+
+    // Si le user a des pets, supprimer les pets
+    if (userDeleted.pets.length > 0) {
+      await Pet.deleteMany({ _id: { $in: userDeleted.pets } });
+    }
+
+    res.status(200).json({ message: 'Utilisateur supprimé.' });
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    res.status(500).json({
+      message: "Impossible de supprimer cet utilisateur",
+    });
+  }
+};
+
 
 // -----------------------------------------------------
 // PET
