@@ -26,6 +26,13 @@ const DashboardAdmin = () => {
 
   const handleDelete = async (userId) => {
     console.log('userId', userId)
+
+    const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce profil ?");
+
+    if (!confirmed) {
+      return;
+    }
+
     try {
       if (!userId) {
         console.error("L'utilisateur est introuvable.");

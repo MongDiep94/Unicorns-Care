@@ -1,6 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/UserModel.js";
+import Sitter from "../models/SitterModel.js";
+import Pet from "../models/PetModel.js";
+
 
 // -----------------------------------------------------
 // LOGIN
@@ -226,10 +229,22 @@ export const DeleteUser = async (req, res) => {
 
     const userDeleted = await User.findOneAndDelete({ _id: userId })
     console.log("deleted user", userDeleted);
+
     // si le user est déjà supprimé
     if (!userDeleted) {
       return res.status(404).json({ message: 'Utilisateur non trouvé avec cet ID.' });
     }
+
+    // Si le user est sitter, supprimer le sitter associé
+    if (userDeleted.sitter) {
+      await Sitter.findByIdAndDelete(userDeleted.sitter);
+    }
+
+    // Si le user a des pets, supprimer les pets
+    if (userDeleted.pets.length > 0) {
+      await Pet.deleteMany({ _id: { $in: userDeleted.pets } });
+    }
+
     res.status(200).json({ message: 'Utilisateur supprimé.' });
   } catch (err) {
     console.error("Error deleting user:", err);

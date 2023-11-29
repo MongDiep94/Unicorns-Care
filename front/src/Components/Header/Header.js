@@ -32,7 +32,7 @@ const Header = () => {
     }
   }, [userId, sessionToken]);
 
-  const handleClick = () => {
+  const handleLogOut = () => {
     Cookies.remove("userId");
     Cookies.remove("sessionToken");
     setAdmin(false);
@@ -117,7 +117,7 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                   to={"/se-connecter"}
-                  onClick={handleClick}
+                  onClick={handleLogOut}
                   id="logout"
                   className="btn__camel margin-left-3"
                 >
