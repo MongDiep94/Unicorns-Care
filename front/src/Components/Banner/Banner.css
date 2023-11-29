@@ -23,3 +23,29 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+/* *****************************************************************
+MEDIA QUERIES
+***************************************************************** */
+/* SMARTPHONES (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .banner {
+    padding: 25rem 5rem 5rem 5rem;
+  }
+  .banner img {
+    display: none;
+  }
+  .intro {
+    width: 100vw;
+    padding: 0 2rem
+  }
+  .cta-area {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  }
+
+  /* TABLETTES (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  /* Styles */
+  }

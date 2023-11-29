@@ -41,12 +41,12 @@ const Header = () => {
 
   //Interlignage
   const handleLineLargeClick = (e) => {
-    document.body.style.lineHeight = '3rem';
-    document.body.style.fontSize = '2rem';
+    document.body.style.lineHeight = "3rem";
+    document.body.style.fontSize = "2rem";
   };
   const handleLineNormalClick = (e) => {
-    document.body.style.lineHeight = '1.15';
-    document.body.style.fontSize = '1.6rem';
+    document.body.style.lineHeight = "1.15";
+    document.body.style.fontSize = "1.6rem";
   };
 
   return (
@@ -74,8 +74,13 @@ const Header = () => {
           <section className="container nav__top">
             <p>
               <strong>Interlignage :</strong>{" "}
-              <button id="line-normal" onClick={handleLineNormalClick}>simple</button> |{" "}
-              <button id="line-large" onClick={handleLineLargeClick}>augmenté</button>
+              <button id="line-normal" onClick={handleLineNormalClick}>
+                simple
+              </button>{" "}
+              |{" "}
+              <button id="line-large" onClick={handleLineLargeClick}>
+                augmenté
+              </button>
             </p>
           </section>
         </section>
@@ -105,6 +110,14 @@ const Header = () => {
             {userId || sessionToken ? (
               <>
                 <NavLink
+                  to={"/se-connecter"}
+                  onClick={handleLogOut}
+                  id="logout"
+                  className="btn__nav"
+                >
+                  Se déconnecter
+                </NavLink>
+                <NavLink
                   to={`/dashboard/${_id}`}
                   id="dashboard"
                   className="btn__nav"
@@ -115,21 +128,10 @@ const Header = () => {
                     alt={`Photo de ${firstName}`}
                   />
                 </NavLink>
-                <NavLink
-                  to={"/se-connecter"}
-                  onClick={handleLogOut}
-                  id="logout"
-                  className="btn__camel margin-left-3"
-                >
-                  Se déconnecter
-                </NavLink>
               </>
             ) : (
               <>
-                <NavLink
-                to="/se-connecter"
-                id="login"
-                className="btn__nav">
+                <NavLink to="/se-connecter" id="login" className="btn__nav">
                   Connexion
                 </NavLink>
                 <NavLink
