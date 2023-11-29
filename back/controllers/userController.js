@@ -4,7 +4,6 @@ import User from "../models/UserModel.js";
 import Sitter from "../models/SitterModel.js";
 import Pet from "../models/PetModel.js";
 
-
 // -----------------------------------------------------
 // LOGIN
 // -----------------------------------------------------
@@ -25,22 +24,25 @@ export const Login = async (req, res) => {
         //   });
       }
       // Generate an access token
-      const sessionToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
-        expiresIn: "24h",
-      });
-      console.log('Generated Token:', sessionToken);
+      const sessionToken = jwt.sign(
+        { id: user.id },
+        process.env.SESSION_TOKEN,
+        {
+          expiresIn: "24h",
+        }
+      );
+      console.log("Generated Token:", sessionToken);
       res
-      .cookie("sessionToken", sessionToken, {
-        httpOnly: true,
-        secure: false,
-      })
-      .status(200)
-      .json({
-        userId: user._id,
-        userFirstName: user.firstName,
-        sessionToken: sessionToken,
-      });
-
+        .cookie("sessionToken", sessionToken, {
+          httpOnly: true,
+          secure: false,
+        })
+        .status(200)
+        .json({
+          userId: user._id,
+          userFirstName: user.firstName,
+          sessionToken: sessionToken,
+        });
     }
   } catch (err) {
     console.error("Login error:", err.message);
@@ -55,7 +57,7 @@ export const Login = async (req, res) => {
 export const Register = async (req, res) => {
   //RegEx pwd. entre accepte tous les lettres minuscules et majuscules, les chiffres et caractères spéciaux, entre 8 et 30 caractères.
   const checkPwd =
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
+  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
 
   try {
     // Je vérifie que l'email n'existe pas
@@ -76,28 +78,30 @@ export const Register = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       photo: "",
-      address: [{
-          number:"",
+      phone:"",
+      address: [
+        {
+          number: "",
           street: "",
           zipcode: "",
           city: "",
-          location: ""
-      }],
+          location: "",
+        },
+      ],
       sitter: null,
       pet: [""],
       role: "user",
     });
-    console.log('newUser', newUser)
+    console.log("newUser", newUser);
 
     // Mon hook pre va s'excuter avant de sauvegarder dans la base de données (hachage de mot de passe)
     await newUser.save();
-    console.log('new User save success')
+    console.log("new User save success");
     res.json({ message: "Utilisateur créé avec succès" });
   } catch (err) {
     console.error("Error saving user:", err);
     res.status(500).json({ message: "Impossible de créer un compte" });
   }
-
 };
 
 // -----------------------------------------------------
@@ -106,9 +110,9 @@ export const Register = async (req, res) => {
 
 export const Logout = (req, res) => {
   res
-  .clearCookie("accessToken", "firstName")
-  .status(200)
-  .json({ message: "Successfully logged out 😏 🍀" });
+    .clearCookie("accessToken", "firstName")
+    .status(200)
+    .json({ message: "Successfully logged out 😏 🍀" });
 };
 
 // -----------------------------------------------------
@@ -174,25 +178,24 @@ export const UpdateUser = async (req, res) => {
 
     let updatedUser;
 
-    if(req.file){
-
-    updatedUser = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      address: [
-        {
-          number: req.body.number,
-          street: req.body.street,
-          city: req.body.city,
-          zipcode: req.body.zipcode
+    if (req.file) {
+      updatedUser = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        address: [
+          {
+            number: req.body.number,
+            street: req.body.street,
+            city: req.body.city,
+            zipcode: req.body.zipcode,
+          },
+        ],
+        photo: {
+          src: req.file.filename,
         },
-      ],
-      photo: {
-        src: req.file.filename
-      }
-    }
+      };
     } else {
       updatedUser = {
         firstName: req.body.firstName,
@@ -204,13 +207,13 @@ export const UpdateUser = async (req, res) => {
             number: req.body.number,
             street: req.body.street,
             city: req.body.city,
-            zipcode: req.body.zipcode
+            zipcode: req.body.zipcode,
           },
         ],
         photo: {
-          src: ""
-        }
-      }
+          src: "",
+        },
+      };
     }
 
     await User.findByIdAndUpdate(userId, UpdateUser);
@@ -227,12 +230,14 @@ export const DeleteUser = async (req, res) => {
     const { userId } = req.params;
     console.log("selected user", userId);
 
-    const userDeleted = await User.findOneAndDelete({ _id: userId })
+    const userDeleted = await User.findOneAndDelete({ _id: userId });
     console.log("deleted user", userDeleted);
 
     // si le user est déjà supprimé
     if (!userDeleted) {
-      return res.status(404).json({ message: 'Utilisateur non trouvé avec cet ID.' });
+      return res
+        .status(404)
+        .json({ message: "Utilisateur non trouvé avec cet ID." });
     }
 
     // Si le user est sitter, supprimer le sitter associé
@@ -245,7 +250,7 @@ export const DeleteUser = async (req, res) => {
       await Pet.deleteMany({ _id: { $in: userDeleted.pets } });
     }
 
-    res.status(200).json({ message: 'Utilisateur supprimé.' });
+    res.status(200).json({ message: "Utilisateur supprimé." });
   } catch (err) {
     console.error("Error deleting user:", err);
     res.status(500).json({
