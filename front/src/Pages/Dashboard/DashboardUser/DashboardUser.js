@@ -24,11 +24,7 @@ const DashboardUser = () => {
   const { id } = useParams();
 
   // Décomposition + condition d'objet vide si pas de données
-<<<<<<< HEAD
   const { firstName, photo } = user || {};
-=======
-  const { _id, firstName, photo } = user || {};
->>>>>>> 17509a77f6e0e413154f28c3975a8219a536da7f
 
   //instanciation du port d'écoute de socketIO
   const socket = io.connect(process.env.REACT_APP_API);
