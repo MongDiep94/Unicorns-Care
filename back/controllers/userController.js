@@ -169,7 +169,11 @@ export const UpdateUser = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    let UpdateUser = new User({
+    let updatedUser;
+
+    if(req.file){
+
+    updatedUser = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -179,19 +183,59 @@ export const UpdateUser = async (req, res) => {
           number: req.body.number,
           street: req.body.street,
           city: req.body.city,
-          zipcode: req.body.zipcode,
-          location: req.body.location,
+          zipcode: req.body.zipcode
         },
       ],
-      phone: req.body.phone,
-      isAdmin: false,
-    });
+      photo: {
+        src: req.file.filename
+      }
+    }
+    } else {
+      updatedUser = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        address: [
+          {
+            number: req.body.number,
+            street: req.body.street,
+            city: req.body.city,
+            zipcode: req.body.zipcode
+          },
+        ],
+        photo: {
+          src: ""
+        }
+      }
+    }
 
-    let updatedUser = await User.findByIdAndUpdate(userId, UpdateUser);
+    await User.findByIdAndUpdate(userId, UpdateUser);
     console.log("updated user", updatedUser);
     res.json(updatedUser);
   } catch (err) {
     res.json({ message: "Impossible de mettre à jour l'utilisateur" });
+  }
+};
+
+// DELETE USER
+export const DeleteUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log("selected user", userId);
+
+    const userDeleted = await User.findOneAndDelete({ _id: userId })
+    console.log("deleted user", userDeleted);
+    // si le user est déjà supprimé
+    if (!userDeleted) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé avec cet ID.' });
+    }
+    res.status(200).json({ message: 'Utilisateur supprimé.' });
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    res.status(500).json({
+      message: "Impossible de supprimer cet utilisateur",
+    });
   }
 };
 

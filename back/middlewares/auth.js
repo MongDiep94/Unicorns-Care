@@ -17,7 +17,7 @@ export const verifyToken = async (req, res, next) => {
     console.log("Decoded Token:", decodedToken);
 
     // Add the userId to the request object
-req.userId = userId;
+    req.userId = userId;
     // Si tout est OK, exécution de la fonction
     next();
   } catch (error) {

@@ -3,51 +3,37 @@ import "./Header.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
-import jwt from "jsonwebtoken";
 
 const Header = () => {
   const [user, setUser] = useState([]);
   const [admin, setAdmin] = useState(false);
   const navigate = useNavigate();
 
+  const userId = Cookies.get("userId");
+  const sessionToken = Cookies.get("sessionToken");
+
   // Décomposition + condition d'objet vide si pas de données
-  const { _id, firstName, role, photo } = user || {};
+  const { _id, firstName, isAdmin, photo } = user || {};
 
   useEffect(() => {
-    // Retrieve the session token from cookies
-    const sessionToken = Cookies.get("sessionToken");
+    axios.get(`${process.env.REACT_APP_API}/user/${userId}`).then((res) => {
+      setUser(res.data);
+      console.log("set one User", user);
+    });
 
-    // If there is no session token, return early
-    if (!sessionToken) {
+    if (!userId || !sessionToken) {
       return;
     }
 
-    try {
-      // Decode the session token to get user information
-      const decodedToken = jwt.decode(sessionToken);
-
-      // Extract userId from the decoded token
-      const userId = decodedToken.id;
-
-      // Fetch user information using the userId
-      axios.get(`${process.env.REACT_APP_API}/user/${userId}`).then((res) => {
-        setUser(res.data);
-        console.log("set one User", user);
-      });
-
-      // Check if the user is an admin and update the state
-      if (role === "Admin") {
-        setAdmin(true);
-      } else {
-        setAdmin(false);
-      }
-    } catch (error) {
-      // Handle any errors that occur during decoding or fetching user information
-      console.error("Error decoding session token:", error);
+    if (isAdmin === true) {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
     }
-  }, []);
+  }, [userId, sessionToken]);
 
   const handleClick = () => {
+    Cookies.remove("userId");
     Cookies.remove("sessionToken");
     setAdmin(false);
     navigate("/");
@@ -55,12 +41,12 @@ const Header = () => {
 
   //Interlignage
   const handleLineLargeClick = (e) => {
-    document.body.style.lineHeight = "3rem";
-    document.body.style.fontSize = "2rem";
+    document.body.style.lineHeight = '3rem';
+    document.body.style.fontSize = '2rem';
   };
   const handleLineNormalClick = (e) => {
-    document.body.style.lineHeight = "1.15";
-    document.body.style.fontSize = "1.6rem";
+    document.body.style.lineHeight = '1.15';
+    document.body.style.fontSize = '1.6rem';
   };
 
   return (
@@ -69,10 +55,10 @@ const Header = () => {
         <section className="accessibility">
           <section className="nav__access">
             <a href="#home">Home page</a>
+            <a href="#">Haut de page</a>
             <a href="#search-sitters">recherche pet sitters</a>
             <a href="#search-creatures">recherche créatures</a>
-            <a href="#">Haut de page</a>
-            {_id ? (
+            {userId || sessionToken ? (
               <>
                 <a href="#dahboard">mon dashboard</a>
                 <a href="#logout">Déconnexion</a>
@@ -88,13 +74,8 @@ const Header = () => {
           <section className="container nav__top">
             <p>
               <strong>Interlignage :</strong>{" "}
-              <button id="line-normal" onClick={handleLineNormalClick}>
-                simple
-              </button>{" "}
-              |{" "}
-              <button id="line-large" onClick={handleLineLargeClick}>
-                augmenté
-              </button>
+              <button id="line-normal" onClick={handleLineNormalClick}>simple</button> |{" "}
+              <button id="line-large" onClick={handleLineLargeClick}>augmenté</button>
             </p>
           </section>
         </section>
@@ -121,7 +102,7 @@ const Header = () => {
             >
               Trouver une créature
             </NavLink>
-            {_id ? (
+            {userId || sessionToken ? (
               <>
                 <NavLink
                   to={`/dashboard/${_id}`}
@@ -145,7 +126,10 @@ const Header = () => {
               </>
             ) : (
               <>
-                <NavLink to="/se-connecter" id="login" className="btn__nav">
+                <NavLink
+                to="/se-connecter"
+                id="login"
+                className="btn__nav">
                   Connexion
                 </NavLink>
                 <NavLink

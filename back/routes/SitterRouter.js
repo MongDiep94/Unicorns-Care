@@ -25,7 +25,7 @@ sitterRouter.get("/sitter/:id", GetOneSitter);
 sitterRouter.get("/random-sitters", GetRandomSitter);
 
 // CREER UN SITTER
-sitterRouter.post("/sitter/create", verifyToken, NewSitter);
+sitterRouter.post("/sitter/create", NewSitter);
 
 // METTRE A JOUR UN SITTER
 // sitterRouter.patch("/sitter/update/:sitterId", verifyToken, UpdateSitter);
