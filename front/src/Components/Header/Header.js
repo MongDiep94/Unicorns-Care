@@ -18,7 +18,6 @@ const Header = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/user/${userId}`).then((res) => {
       setUser(res.data);
-      console.log("set one User", user);
     });
 
     if (!userId || !sessionToken) {

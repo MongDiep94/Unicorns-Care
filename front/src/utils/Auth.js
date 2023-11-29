@@ -11,7 +11,6 @@ export const getCookie =  () => {
   }
 
   if (sessionData && sessionData.isLogged) {
-    console.log('ID de l\'utilisateur :', sessionData.isLogged);
     return sessionData.isLogged
   }
   return false

@@ -57,7 +57,6 @@ const Login = ({socket}) => {
     axios
       .post(`${process.env.REACT_APP_API}/login`, request_data)
       .then((res) => {
-        console.log("res", res);
 
         if (res.data.sessionToken) {
           Cookies.set("sessionToken", res.data.sessionToken, {
@@ -79,9 +78,7 @@ const Login = ({socket}) => {
 
         return res.data;
       })
-      .catch((error) => {
-        console.log("error", error);
-      });
+
   };
 
   return (

@@ -4,8 +4,6 @@ import Cookies from "js-cookie";
 const ChatBody = ({ messages }) => {
   const userFirstName = Cookies.get("userFirstName");
 
-  console.log("messages", messages);
-
   return (
     <>
       {/*This shows messages sent from you*/}

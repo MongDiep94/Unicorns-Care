@@ -10,7 +10,7 @@ const userRouter = express.Router();
 userRouter.post("/login", Login)
 
 //Register form
-userRouter.post("/register", upload.single('photo'), Register)
+userRouter.post("/register", Register)
 
 //Deconnexion
 userRouter.get("/logout", Logout)

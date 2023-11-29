@@ -6,14 +6,11 @@ import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 const CardUser = ({oneSitter}) => {
   // décomposition de oneSitter;
   const { user, _id } = oneSitter;
-  const { address, firstName, photo } = user;
+  const { firstName, photo } = user;
 
 
   // décomposition de l'adresse avec condition
   const city = user && user.address && user.address.length > 0 ? user.address[0].city : "";
-
-  //console.log('oneSitter:', oneSitter);
-  //console.log('address', user.address[0].city);
 
   return (
     <article className="card">

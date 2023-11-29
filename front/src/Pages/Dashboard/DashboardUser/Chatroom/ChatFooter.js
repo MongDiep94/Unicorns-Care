@@ -21,7 +21,6 @@ const ChatFooter = ({ socket }) => {
       });
     }
     setMessage("");
-    console.log(message, socket.id);
   };
 
   const navigate = useNavigate();

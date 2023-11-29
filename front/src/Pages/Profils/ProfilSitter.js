@@ -14,7 +14,6 @@ const ProfilSitter = ({socket}) => {
   const [userName, setUserName] = useState("");
 
   const currentUserId = Cookies.get('userId')
-  console.log('currentUserId', currentUserId)
 
   const navigate = useNavigate();
 
@@ -46,7 +45,6 @@ const ProfilSitter = ({socket}) => {
     if (socket && socket.connected) {
       //sends the username and socketID to Node.js server
       socket.emit('newUser', { userName, socketID: socket.id });
-      console.log('newuser', userName, socket.id);
     } else {
       console.error('Socket is undefined or not connected.');
     }

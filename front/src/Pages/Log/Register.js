@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-const Register = ({ socket }) => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -73,9 +73,7 @@ const Register = ({ socket }) => {
         navigate("/se-connecter");
         return res.data;
       })
-      .catch((error) => {
-        console.log("error", error);
-      });
+
   };
   return (
     <main className="login__container">

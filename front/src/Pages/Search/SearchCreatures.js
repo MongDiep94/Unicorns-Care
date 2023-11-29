@@ -24,10 +24,6 @@ const SearchCreatures = () => {
       // Récupérer tous les différents éléments uniques
       const uniqueElements = [...new Set(res.data.map((pet) => pet.element))];
       setElements(uniqueElements);
-
-      console.log("set all Pets", res.data);
-      console.log("set Species", uniqueSpecies);
-      console.log("set Species", uniqueElements);
     });
   }, []);
 
@@ -58,7 +54,6 @@ const SearchCreatures = () => {
   const handleSearchChange = (e) => {
     e.preventDefault();
     const searchName = e.target.value;
-    console.log("search input", searchName);
     // Filtrer les Sitters, basé sur le choix du searchName
     const filteredPets =
       searchName === "all"

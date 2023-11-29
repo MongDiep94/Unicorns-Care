@@ -22,7 +22,6 @@ const SearchPetSitters = ({ oneSitter }) => {
       ];
       setSpecies(allSpecies);
     });
-    //console.log("AllSitters", allSitters);
   }, []);
 
   const handleSpeciesChange = (e) => {

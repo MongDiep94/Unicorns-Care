@@ -10,7 +10,6 @@ const Chatroom = ({ socket }) => {
 
   useEffect(() => {
     socket.on("messageResponse", (data) => {
-      console.log("messageResponse", messages, data);
       return setMessages([...messages, data]);
     });
   }, [socket, messages]);

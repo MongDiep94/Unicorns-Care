@@ -16,7 +16,6 @@ const ProfilPet = () => {
   // Décomposition + condition d'objet vide si pas de données
   const { name, age, gender, specie, element, bio, image, owner } = pet || {};
   const { firstName, address } = owner || {};
-  //console.log('city', address[0].city)
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/pet/${id}`).then((res) => {

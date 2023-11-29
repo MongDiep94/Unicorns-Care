@@ -21,8 +21,6 @@ const Contact = () => {
   const sendEmail = event => {
     event.preventDefault();
 
-    console.log(state);
-    // code to trigger Sending email
     setMessage("Votre demande a été envoyée")
 
   };

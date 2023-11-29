@@ -19,7 +19,6 @@ const ProfilUser = ({ id }) => {
     axios.get(`${process.env.REACT_APP_API}/user/${id}`).then((res) => {
       setUser(res.data);
       setPets(res.data.pets);
-      console.log("user", user);
     });
 
     axios.get(`${process.env.REACT_APP_API}/random-pets`).then((res) => {

@@ -6,7 +6,6 @@ const CardOwnerReviewer = ({ownerReviewer}) => {
   // Décomposition + condition d'objet vide si pas de données
   const { name, owner } = ownerReviewer || {};
   const { firstName, photo } = owner[0] || {};
-  //console.log("random owner reviewer", ownerReviewer);
 
 
   return (
