@@ -8,7 +8,8 @@ import {
   DeletePet,
   GetRandomPet,
 } from "../controllers/petController.js";
-import upload from "../middlewares/multer.js";
+import { verifyToken } from '../middlewares/auth.js';
+
 
 const petRouter = express.Router();
 
@@ -25,12 +26,18 @@ petRouter.get("/pet/:petId", GetOnePet);
 petRouter.get("/random-pets", GetRandomPet);
 
 // CREER UNE CREATURE
-petRouter.post("/pet/create", upload.single('file'), NewPet);
+// petRouter.post("/pet/create", verifyToken, NewPet);
+petRouter.post("/pet/create", NewPet);
+
 
 // METTRE A JOUR UNE CREATURE
-petRouter.patch("/pet/update/:petId", upload.single('file'), UpdatePet);
+// petRouter.patch("/pet/update/:petId", verifyToken, UpdatePet);
+petRouter.patch("/pet/update/:petId", UpdatePet);
+
 
 // SUPPRIMER UNE CREATURE
+// petRouter.delete("/pet/delete/:petId", verifyToken, DeletePet);
 petRouter.delete("/pet/delete/:petId", DeletePet);
+
 
 export default petRouter;

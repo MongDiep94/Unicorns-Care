@@ -1,6 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/UserModel.js";
+import Sitter from "../models/SitterModel.js";
+import Pet from "../models/PetModel.js";
+
 
 // -----------------------------------------------------
 // LOGIN
@@ -22,17 +25,25 @@ export const Login = async (req, res) => {
         //   });
       }
       // Generate an access token
-      const accessToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
+      const sessionToken = jwt.sign({ id: user.id }, process.env.SESSION_TOKEN, {
         expiresIn: "24h",
       });
-
-      res.status(200).json({
+      console.log('Generated Token:', sessionToken);
+      res
+      .cookie("sessionToken", sessionToken, {
+        httpOnly: true,
+        secure: false,
+      })
+      .status(200)
+      .json({
         userId: user._id,
         userFirstName: user.firstName,
-        sessionToken: accessToken,
+        sessionToken: sessionToken,
       });
+
     }
   } catch (err) {
+    console.error("Login error:", err.message);
     res.status(401).json({ message: "Utilisateur introuvable avec cet email" });
   }
 };
@@ -74,7 +85,7 @@ export const Register = async (req, res) => {
       }],
       sitter: null,
       pet: [""],
-      isAdmin: false,
+      role: "user",
     });
     console.log('newUser', newUser)
 
@@ -94,10 +105,10 @@ export const Register = async (req, res) => {
 // -----------------------------------------------------
 
 export const Logout = (req, res) => {
-  req.session.destroy((err) => {
-    res.clearCookie();
-    res.redirect("/login");
-  });
+    res
+    .clearCookie("accessToken", "firstName")
+    .status(200)
+    .json({ message: "Successfully logged out 😏 🍀" });
 };
 
 // -----------------------------------------------------
@@ -161,7 +172,11 @@ export const UpdateUser = async (req, res) => {
   try {
     const { userId } = req.params;
 
-    let UpdateUser = new User({
+    let updatedUser;
+
+    if(req.file){
+
+    updatedUser = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -171,19 +186,71 @@ export const UpdateUser = async (req, res) => {
           number: req.body.number,
           street: req.body.street,
           city: req.body.city,
-          zipcode: req.body.zipcode,
-          location: req.body.location,
+          zipcode: req.body.zipcode
         },
       ],
-      phone: req.body.phone,
-      isAdmin: false,
-    });
+      photo: {
+        src: req.file.filename
+      }
+    }
+    } else {
+      updatedUser = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        address: [
+          {
+            number: req.body.number,
+            street: req.body.street,
+            city: req.body.city,
+            zipcode: req.body.zipcode
+          },
+        ],
+        photo: {
+          src: ""
+        }
+      }
+    }
 
-    let updatedUser = await User.findByIdAndUpdate(userId, UpdateUser);
+    await User.findByIdAndUpdate(userId, UpdateUser);
     console.log("updated user", updatedUser);
     res.json(updatedUser);
   } catch (err) {
     res.json({ message: "Impossible de mettre à jour l'utilisateur" });
+  }
+};
+
+// DELETE USER
+export const DeleteUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log("selected user", userId);
+
+    const userDeleted = await User.findOneAndDelete({ _id: userId })
+    console.log("deleted user", userDeleted);
+
+    // si le user est déjà supprimé
+    if (!userDeleted) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé avec cet ID.' });
+    }
+
+    // Si le user est sitter, supprimer le sitter associé
+    if (userDeleted.sitter) {
+      await Sitter.findByIdAndDelete(userDeleted.sitter);
+    }
+
+    // Si le user a des pets, supprimer les pets
+    if (userDeleted.pets.length > 0) {
+      await Pet.deleteMany({ _id: { $in: userDeleted.pets } });
+    }
+
+    res.status(200).json({ message: 'Utilisateur supprimé.' });
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    res.status(500).json({
+      message: "Impossible de supprimer cet utilisateur",
+    });
   }
 };
 

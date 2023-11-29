@@ -36,7 +36,7 @@ let userSchema = mongoose.Schema(
     ],
     photo: String,
     phone: String,
-    isAdmin: Boolean,
+    role: String,
     sitter: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Sitter",

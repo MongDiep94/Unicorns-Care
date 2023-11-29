@@ -6,7 +6,6 @@
   align-items: center;
   background-color: none;
 }
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -20,13 +19,13 @@
   opacity: 0.6;
   transition: 0.3 ease-in-out;
 }
-
 .navbar__avatar {
   width: 5rem;
   height: 5rem;
   background-position: center;
   border-radius: 50%;
 }
+
 
 /* *****************************************************************
 ACCESSIBILITY
@@ -99,3 +98,49 @@ button:focus {
 #line-large {
   cursor: pointer;
 }
+
+
+/* *****************************************************************
+MEDIA QUERIES
+***************************************************************** */
+/* SMARTPHONES (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .accessibility {
+    display: none;
+  }
+  .menu__header {
+    margin: 2rem auto;
+    flex-direction: column;
+  }
+  .menu__header img {
+    width: 100%;
+  }
+  .menu__header a {
+    font-size: calc(0.5rem + 2.5vw);
+    margin: 0.5rem auto;
+  }
+  .navbar {
+    width: 100%;
+    margin: 2rem 0;
+    flex-direction: column;
+  }
+  .navbar a {
+    margin: 0;
+    padding: 1rem 3rem;
+  }
+  }
+
+  /* TABLETTES (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .accessibility {
+    display: none;
+  }
+  .menu__header img {
+    width: 33%;
+  }
+
+  .menu__header a {
+    font-size: calc(0.5rem + 1.5vw);
+    margin: 0.5rem auto;
+  }
+  }

@@ -18,7 +18,7 @@ const Chatroom = ({ socket }) => {
     <>
       <h1 className="dashboard__title">Messages</h1>
       <section className="chat">
-        <ChatBar socket={socket} />
+        {/* <ChatBar socket={socket} /> */}
         <section className="chat__main">
           <ChatBody messages={messages} />
           <ChatFooter socket={socket} />

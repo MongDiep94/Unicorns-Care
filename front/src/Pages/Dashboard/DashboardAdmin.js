@@ -8,6 +8,8 @@ import ModalUpdate from "../../Components/Modals/ModalUpdate.js";
 
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
+  const [deletedUserId, setDeletedUserId] = useState(null);
+
   // Modals state
   const [openModal, setOpenModal] = useState(false);
 
@@ -16,15 +18,36 @@ const DashboardAdmin = () => {
     axios.get(`${process.env.REACT_APP_API}/users`).then((res) => {
       setUsers(res.data);
     });
-  }, []); // rechargement 1 fois
+  }, [deletedUserId]); // Ecoute les changements sur deletedUserId
 
-
-
-  const handleUpdate = (e, ) => {
+  const handleUpdate = (e) => {
     setOpenModal(true);
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (userId) => {
+    console.log('userId', userId)
+
+    const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce profil ?");
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      if (!userId) {
+        console.error("L'utilisateur est introuvable.");
+        return;
+      }
+
+      await axios.delete(`${process.env.REACT_APP_API}/user/delete/${userId}`);
+      // Remet à jour la liste des users sans le user supprimé
+      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
+      // l'id du user supprimer force le reload du tableau utilisateurs
+      setDeletedUserId(userId);
+
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
 
   };
 
@@ -47,8 +70,8 @@ const DashboardAdmin = () => {
           <tbody>
             {users &&
               users.length > 0 &&
-              users.map((user, _id) => (
-                <tr key={_id}>
+              users.map((user) => (
+                <tr key={user._id}>
                   <td>
                     <img
                       className="table__admin__photo"
@@ -70,7 +93,7 @@ const DashboardAdmin = () => {
                   <td>
                     <button
                     className="delete"
-                    onClick={handleDelete}>
+                    onClick={() => handleDelete(user._id)}>
                       <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                   </td>

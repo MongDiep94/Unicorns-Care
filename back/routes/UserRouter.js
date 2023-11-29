@@ -1,7 +1,6 @@
 import express from 'express'
-import { AddUser, AllUsers, GetOneUser, GetUserPets, GetUserSitter, Login, Logout, NewUserPet, NewUserSitter, Register, UpdateUser } from '../controllers/userController.js';
-import { verifyToken } from '../middlewares/auth.js';
-import upload from '../middlewares/multer.js';
+import { AddUser, AllUsers, DeleteUser, GetOneUser, GetUserPets, GetUserSitter, Login, Logout, NewUserPet, NewUserSitter, Register, UpdateUser } from '../controllers/userController.js';
+import { isAdmin, verifyToken } from '../middlewares/auth.js';
 
 const userRouter = express.Router();
 
@@ -13,7 +12,9 @@ userRouter.post("/login", Login)
 userRouter.post("/register", Register)
 
 //Deconnexion
+// userRouter.get("/logout", verifyToken, Logout)
 userRouter.get("/logout", Logout)
+
 
 //SHOW ALL USERS
 userRouter.get("/users", AllUsers)
@@ -21,19 +22,23 @@ userRouter.get("/users", AllUsers)
 //ADD USER
 userRouter.post("/user/add", AddUser)
 
+
 //SHOW USER
 userRouter.get("/user/:userId", GetOneUser)
 
 //UPDATE USER
-userRouter.patch("/user/:userId/update", upload.single('file'), UpdateUser)
+userRouter.patch("/user/update/:userId", UpdateUser)
+
+//DELETE USER
+userRouter.delete("/user/delete/:userId", DeleteUser)
 
 //USER PETS
-userRouter.get("/user/:userId/pet", GetUserPets)
-userRouter.post("/user/:userId/new-pet", NewUserPet)
+userRouter.get("/user/pet/:userId", GetUserPets)
+userRouter.post("/user/new-pet/:userId", NewUserPet)
 
 //USER SITTERS
-userRouter.get("/user/:userId/sitter", GetUserSitter)
-userRouter.post("/user/:userId/new-sitter", NewUserSitter)
+userRouter.get("/user/sitter/:userId", GetUserSitter)
+userRouter.post("/user/new-sitter/:userId", NewUserSitter)
 
 
 export default userRouter

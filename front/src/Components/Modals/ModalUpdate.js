@@ -14,7 +14,7 @@ const ModalUpdate = ({ closeModal }) => {
   const { id } = useParams();
   // Décomposition + condition d'objet vide si pas de données
   // const { bio, species, user } = sitter || {};
-  const { firstName, lastName, email, password, phone, address, photo } = user || {};
+  const { firstName, lastName, email, password, address } = user || {};
 
   useEffect(() => {
 
@@ -22,58 +22,13 @@ const ModalUpdate = ({ closeModal }) => {
       setUser(res.data);
     });
 
-    // axios.get(`${process.env.REACT_APP_API}/userRouter.patch("/user/${id}/update", UpdateUser)
-    // `).then((res) => {
-    //   setUser(res.data);
-    // });
+    axios.patch(`${process.env.REACT_APP_API}/userRouter.patch("/user/update.${id}", UpdateUser)
+    `).then((res) => {
+      setUser(res.data);
+    });
   }, [id]); // écoute sur le changement de l'ID
 
-  // const EditPostSubmit = async (req, res) => {
-  //   try {
-  //     const id = req.params.id;
 
-  //     let editProfil;
-
-  //     // Si l'utilisateur ne modifie pas l'image
-  //     if (req.file) {
-  //       editProfil = {
-  //         firstName: req.body.firstName,
-  //         lastName: req.body.lastName,
-  //         email: req.body.email,
-  //         password: req.body.password,
-  //         phone: req.body.phone,
-  //         adress: [
-  //           {
-  //             number: req.body.number,
-  //             street: req.body.street,
-  //             zipcode: req.body.zipcode,
-  //             city: req.body.city,
-  //             location: req.body.location
-  //           }
-  //         ],
-  //         images: {
-  //           src: req.file.filename,
-  //           alt: req.file.originalfilename,
-  //         },
-  //       };
-  //     } else {
-  //       editProfil = {
-  //         title: req.body.title,
-  //         description: req.body.content,
-  //         images: {
-  //           src: "",
-  //           alt: "",
-  //         },
-  //       };
-  //     }
-
-  //     await User.updateOne({ _id: id }, editProfil);
-
-  //     res.redirect("/dashboard/admin");
-  //   } catch (err) {
-  //     res.send("Erreur, aucun utilisateur trouvé avec cet ID pour l'édition");
-  //   }
-  // };
 
   const handleInputChange = (e) => {
     setUser({
@@ -84,10 +39,8 @@ const ModalUpdate = ({ closeModal }) => {
 
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // EditPostSubmit();
     closeModal(true);
   };
 
@@ -108,7 +61,7 @@ const ModalUpdate = ({ closeModal }) => {
           <form
             method="post"
             encType="multipart/form-data"
-            onClick={handleSubmit}
+            onSubmit={handleSubmit}
             className="form__profil"
           >
               <section className="profil__infos">
@@ -121,8 +74,6 @@ const ModalUpdate = ({ closeModal }) => {
                   <input type="email" name="email" value={email} />
                   <label>Mot de passe</label>
                   <input type="text" name="password" value={password} />
-                  <label>Téléphone</label>
-                  <input type="phone" name="phone" value={phone} />
                   <label>Photo</label>
                   <input type="file" name="file" onChange={handleInputChange} />
                 </section>
@@ -136,8 +87,6 @@ const ModalUpdate = ({ closeModal }) => {
                   <input type="text" name="zipcode" value="{address[0].zipcode}" />
                   <label>city</label>
                   <input type="text" name="city" value="{address[0].city}" />
-                  <label>location</label>
-                  <input type="text" name="location" value="{address[0].location}" />
                 </fieldset>
               </section>
 

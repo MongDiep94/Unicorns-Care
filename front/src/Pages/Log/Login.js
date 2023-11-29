@@ -4,9 +4,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import Cookies from "js-cookie";
+import { auth } from "../../utils/Auth.js";
 
-
-const Login = ({socket}) => {
+const Login = ({ socket }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -55,21 +55,41 @@ const Login = ({socket}) => {
       return;
     }
     axios
+<<<<<<< HEAD
       .post(`${process.env.REACT_APP_API}/login`, request_data)
       .then((res) => {
+=======
+      .post(`${process.env.REACT_APP_API}/login`, request_data, {
+        headers: auth(),
+      })
+      .then(async (res) => {
+        console.log("Server Response:", res.data);
+        const { userId, sessionToken } = res.data;
+>>>>>>> 17509a77f6e0e413154f28c3975a8219a536da7f
 
-        if (res.data.sessionToken) {
-          Cookies.set("sessionToken", res.data.sessionToken, {
+        if (sessionToken) {
+          Cookies.set("sessionToken", sessionToken, {
             expires: 1,
             secure: true,
           });
-          const userId = res.data.userId;
-          Cookies.set('userId', userId, { expires: 1, secure: true });
-          const userFirstName = res.data.userFirstName;
-          Cookies.set('userFirstName', userFirstName, { expires: 1, secure: true });
+          console.log("Cookies:", Cookies.get());
+
+          const userInfoResponse = await axios.get(
+            `${process.env.REACT_APP_API}/user/${userId}`,
+            {
+              headers: auth(),
+              withCredentials: true,
+            },
+          );
+          const { firstName } = userInfoResponse.data;
+
+
           //sends the username and socketID to Node.js server
           if (socket) {
-          socket.emit('newUser', {userName: userFirstName, socketID: socket.id});
+            socket.emit("newUser", {
+              userName: firstName,
+              socketID: socket.id,
+            });
           }
         }
 
@@ -78,7 +98,19 @@ const Login = ({socket}) => {
 
         return res.data;
       })
+<<<<<<< HEAD
 
+=======
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          // Handle specific error messages from the server
+          console.log("Server error:", error.response.data.message);
+        } else {
+          // Handle generic error
+          console.error("Error during login:", error.message);
+        }
+      });
+>>>>>>> 17509a77f6e0e413154f28c3975a8219a536da7f
   };
 
   return (
