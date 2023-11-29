@@ -73,6 +73,9 @@ const Register = () => {
         navigate("/se-connecter");
         return res.data;
       })
+      .catch((error) => {
+        console.error("Error registering user:", error);
+      });
 
   };
   return (
