@@ -10,11 +10,13 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 import Chatroom from "./Chatroom/Chatroom.js";
 import ProfilUser from "./ProfilUser.js";
+import DashboardAdmin from "../DashboardAdmin.js";
 
 const DashboardUser = () => {
   const [user, setUser] = useState([]);
   const [admin, setAdmin] = useState(false);
   // menu dashboard
+  const [showAdmin, setShowAdmin] = useState(false);
   const [showProfil, setShowProfil] = useState(true);
   const [showChatroom, setShowChatroom] = useState(false);
 
@@ -32,12 +34,18 @@ const DashboardUser = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/user/${id}`).then((res) => {
       setUser(res.data);
+      setAdmin(res.data.role);
       console.log('user id', id)
       console.log('_id', user._id)
     });
   }, [id]); // rechargement 1 fois
 
   const handleClick = (value) => {
+    if (value === "admin") {
+      setShowAdmin(true);
+    } else {
+      setShowAdmin(false);
+    }
     if (value === "profil") {
       setShowProfil(true);
     } else {
@@ -69,6 +77,7 @@ const DashboardUser = () => {
 
       await axios.delete(`${process.env.REACT_APP_API}/user/delete/${id}`);
       Cookies.remove("userId");
+      Cookies.remove("firstName");
       Cookies.remove("sessionToken");
       setAdmin(false);
       navigate("/");
@@ -90,7 +99,7 @@ const DashboardUser = () => {
             alt={`Photo de ${firstName}`}
             // // Si pas de src, on appelle default image
             // onError={(e) => {
-            //   e.target.src = `${process.env.REACT_APP_API}/images/Avatar_Licorne.svg`;
+            //   e.target.src = `${process.env.REACT_APP_API}/images/avatar_licorne.svg`;
             // }}
           />
           <nav className="dashboard__menu">
@@ -99,15 +108,25 @@ const DashboardUser = () => {
               className="dashboard__separator"
               value="profil"
               onClick={() => handleClick("profil")}
-            >
+              >
               Profil
             </button>
+            {admin === "admin" &&
+              <button
+                  title="Bouton de l'onglet Profil"
+                  className="dashboard__separator"
+                  value="profil"
+                  onClick={() => handleClick("admin")}
+                >
+                  Tableau de bord
+                </button>
+            }
             <button
               title="Bouton de l'onglet Messages"
               className="dashboard__separator"
               value="messages"
               onClick={() => handleClick("chatroom")}
-            >
+              >
               Messages
             </button>
             <button
@@ -123,6 +142,7 @@ const DashboardUser = () => {
 
         <section className="dashboard__content">
           <>
+            {showAdmin && <DashboardAdmin />}
             {showProfil && <ProfilUser id={id} />}
             {showChatroom && <Chatroom socket={socket} />}
           </>
