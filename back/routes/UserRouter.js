@@ -1,5 +1,5 @@
 import express from 'express'
-import { AddUser, AllUsers, GetOneUser, GetUserPets, GetUserSitter, Login, Logout, NewUserPet, NewUserSitter, Register, UpdateUser } from '../controllers/userController.js';
+import { AddUser, AllUsers, DeleteUser, GetOneUser, GetUserPets, GetUserSitter, Login, Logout, NewUserPet, NewUserSitter, Register, UpdateUser } from '../controllers/userController.js';
 import { verifyToken } from '../middlewares/auth.js';
 import upload from '../middlewares/multer.js';
 
@@ -25,7 +25,10 @@ userRouter.post("/user/add", AddUser)
 userRouter.get("/user/:userId", GetOneUser)
 
 //UPDATE USER
-userRouter.patch("/user/:userId/update", upload.single('file'), UpdateUser)
+userRouter.patch("/user/update/:userId", upload.single('file'), UpdateUser)
+
+//DELETE USER
+userRouter.delete("/user/delete/:userId", DeleteUser)
 
 //USER PETS
 userRouter.get("/user/:userId/pet", GetUserPets)

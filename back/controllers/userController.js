@@ -110,7 +110,7 @@ export const Register = async (req, res) => {
 
 export const Logout = (req, res) => {
   res
-    .clearCookie("accessToken", "firstName")
+    .clearCookie("accessToken", "firstName", "userId")
     .status(200)
     .json({ message: "Successfully logged out 😏 🍀" });
 };

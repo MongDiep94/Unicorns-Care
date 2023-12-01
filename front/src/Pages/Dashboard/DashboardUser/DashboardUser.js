@@ -36,7 +36,6 @@ const DashboardUser = () => {
       setUser(res.data);
       setAdmin(res.data.role);
       console.log('user id', id)
-      console.log('_id', user._id)
     });
   }, [id]); // rechargement 1 fois
 
