@@ -27,7 +27,15 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 // appel du module cors pour lier les urls back et front
-app.use(cors());
+app.use(cors(
+  {
+    methods: "HEAD,GET,PUT,PATCH,POST,UPDATE,DELETE",
+    origin: "*",
+    // origin: process.env.BASE_URL_FRONT,
+    preflightContinue: true,
+
+  },
+));
 
 // middleware body parser pour lire les données des fichiers json
 app.use(bodyParser.json())
@@ -39,7 +47,7 @@ app.use(cookieParser());
 connectDB
 
 // Paramètres web socket
-//// Connect io with the front-react server and allow for CORS from http://localhost:3000 with GET and POST methods
+//// Connect io with the front-react server and allow for CORS from http://localhost:3000
 const io = new Server(server, {
   cors: {
     origin: process.env.BASE_URL_FRONT,
