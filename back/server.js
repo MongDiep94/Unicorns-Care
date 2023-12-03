@@ -29,11 +29,11 @@ app.use(express.urlencoded({extended:true}))
 // appel du module cors pour lier les urls back et front
 app.use(cors(
   {
-    methods: "HEAD,GET,PUT,PATCH,POST,UPDATE,DELETE",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     origin: "*",
     // origin: process.env.BASE_URL_FRONT,
-    preflightContinue: true,
-
+    preflightContinue: false,
+    optionsSuccessStatus: 204
   },
 ));
 
