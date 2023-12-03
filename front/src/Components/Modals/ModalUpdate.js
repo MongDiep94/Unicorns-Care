@@ -22,7 +22,7 @@ const ModalUpdate = ({ closeModal }) => {
       setUser(res.data);
     });
 
-    axios.patch(`${process.env.REACT_APP_API}/userRouter.patch("/user/update/${id}", UpdateUser)
+    axios.patch(`${process.env.REACT_APP_API}/user/update/${id}", UpdateUser)
     `).then((res) => {
       setUser(res.data);
     });

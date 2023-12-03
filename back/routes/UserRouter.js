@@ -25,7 +25,7 @@ userRouter.post("/user/add", AddUser)
 userRouter.get("/user/:userId", GetOneUser)
 
 //UPDATE USER
-userRouter.patch("/user/update/:userId", upload.single('file'), UpdateUser)
+userRouter.patch("/user/update/:userId", UpdateUser)
 
 //DELETE USER
 userRouter.delete("/user/delete/:userId", DeleteUser)
