@@ -121,7 +121,7 @@ const ProfilPet = () => {
           <iframe
             src={address && address.length > 0 && address[0].location}
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
             aria-hidden="false"
             title="Adresse Tohya"
           />

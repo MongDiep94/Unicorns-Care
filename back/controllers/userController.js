@@ -57,7 +57,7 @@ export const Login = async (req, res) => {
 export const Register = async (req, res) => {
   //RegEx pwd. entre accepte tous les lettres minuscules et majuscules, les chiffres et caractères spéciaux, entre 8 et 30 caractères.
   const checkPwd =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
 
   try {
     // Je vérifie que l'email n'existe pas
@@ -78,7 +78,7 @@ export const Register = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       photo: "",
-      phone:"",
+      phone: "",
       address: [
         {
           number: "",
@@ -175,52 +175,42 @@ export const GetOneUser = async (req, res) => {
 export const UpdateUser = async (req, res) => {
   try {
     const { userId } = req.params;
-
+    console.log("user Id", userId);
     let updatedUser;
-
+    updatedUser = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      address: [
+        {
+          number: req.body.address[0].number,
+          street: req.body.address[0].street,
+          city: req.body.address[0].city,
+          zipcode: req.body.address[0].zipcode,
+        },
+      ],
+    };
     if (req.file) {
-      updatedUser = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        address: [
-          {
-            number: req.body.number,
-            street: req.body.street,
-            city: req.body.city,
-            zipcode: req.body.zipcode,
-          },
-        ],
-        photo: {
-          src: req.file.filename,
-        },
-      };
-    } else {
-      updatedUser = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        address: [
-          {
-            number: req.body.number,
-            street: req.body.street,
-            city: req.body.city,
-            zipcode: req.body.zipcode,
-          },
-        ],
-        photo: {
-          src: "",
-        },
-      };
+      // S'il y a un file, l'ajouter à updateUser
+      updatedUser.photo = req.file.filename;
     }
 
-    await User.findByIdAndUpdate(userId, UpdateUser);
-    console.log("updated user", updatedUser);
-    res.json(updatedUser);
+    const updatedDocument = await User.findByIdAndUpdate(userId, updatedUser);
+    if (!updatedDocument) {
+      return res.status(404).json({ message: "Aucun utilisateur trouvé avec cet Id." });
+    }
+
+    await updatedDocument.save();
+    res.json({ message: "Le profil de l'utilisateur est bien mis à jour." });
   } catch (err) {
-    res.json({ message: "Impossible de mettre à jour l'utilisateur" });
+    console.error("Error updating user:", err);
+    // Check for Mongoose validation errors
+    if (err.name === "ValidationError") {
+      return res.status(400).json({ message: err.message });
+    }
+    res
+      .status(500)
+      .json({ message: "Impossible de mettre à jour l'utilisateur" });
   }
 };
 

@@ -61,7 +61,6 @@ const DashboardAdmin = () => {
               <th></th>
               <th>Prénom</th>
               <th>Nom</th>
-              <th>Créature</th>
               <th colSpan="2"></th>
             </tr>
           </thead>
@@ -79,7 +78,6 @@ const DashboardAdmin = () => {
                   </td>
                   <td>{user.firstName}</td>
                   <td>{user.lastName}</td>
-                  <td>{user.pet && user.pet.name}</td>
                   <td>
                     <button
                     className="update"

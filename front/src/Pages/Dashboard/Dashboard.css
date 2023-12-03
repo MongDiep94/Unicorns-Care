@@ -131,6 +131,10 @@ DASHBOARD USER
   width: 100%;
   color: var(--color-dark-grey)
 }
+/* Reviews */
+.dashboard__reviews {
+  margin-bottom: 5rem;
+}
 
 /* *****************************************************************
 DASHBOARD ADMIN
