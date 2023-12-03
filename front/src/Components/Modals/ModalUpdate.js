@@ -39,8 +39,8 @@ const ModalUpdate = ({ closeModal }) => {
     e.preventDefault();
     axios
       .patch(
-        `${process.env.REACT_APP_API}/user/update/${id}`, user
-q      .then((res) => {});
+        `${process.env.REACT_APP_API}/user/update/${id}`, user)
+      .then((res) => {});
 
     closeModal(true);
   };
