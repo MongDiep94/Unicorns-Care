@@ -1,4 +1,4 @@
-import "./Chatroom.css";
+import "../../../../css/styles.css";
 import React, { useEffect, useState } from "react";
 
 const ChatBar = ({ socket }) => {

@@ -1,4 +1,4 @@
-import "./Chatroom.css";
+import "../../../../css/styles.css";
 import Cookies from "js-cookie";
 
 const ChatBody = ({ messages }) => {

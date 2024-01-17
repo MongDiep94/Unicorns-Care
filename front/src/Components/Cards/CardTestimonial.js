@@ -1,5 +1,5 @@
 import React from "react";
-import "./Cards.css";
+import "../../css/styles.css";
 
 const CardTestimonial = ({ testimonials }) => {
 
@@ -7,7 +7,7 @@ const CardTestimonial = ({ testimonials }) => {
     <article className="testimony__content">
       <img
         className="testimony__photo"
-        src="../../images/users/tohya.png"
+        src={`${process.env.REACT_APP_API}/images/users/tohya.png`}
         alt="Photo pet-sitter Tohya Sakuria"
         aria-label="Photo pet-sitter Tohya Sakuria"
       />

@@ -1,0 +1,61 @@
+/* PET SITTERS */
+
+.search__banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rem 0 8rem 0;
+  background-image: url(../images/bg_green.svg);
+  background-size: 50%;
+  background-color: var(--color-dark-green);
+}
+/* SEARCH BAR */
+
+form {
+  margin-bottom: 0;
+}
+
+.separator {
+  width: 8%;
+  color: var(--color-dark-green);
+  font-weight: bold;
+  text-align: center;
+}
+.search__bar {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  width: 70%;
+  height: auto;
+  height: 3rem;
+  padding: 2rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.search__bar input,
+.search__bar select {
+  border: none;
+  background-color: transparent;
+}
+.search__bar form {
+  width: 70%;
+}
+.search__bar input {
+  width: 100%;
+  line-height: 2rem;
+}
+.search__bar .select {
+  width: 20%;
+}
+.search__bar select {
+  color: var(--color-dark-green);
+  font-weight: bold;
+  width: 100%;
+}
+.search__bar ::-moz-placeholder {
+  color: var(--color-grey);
+}
+.search__bar ::placeholder {
+  color: var(--color-grey);
+}

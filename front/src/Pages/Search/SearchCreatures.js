@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Search.css";
+import "../../css/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import CardPet from "../../Components/Cards/CardPet.js";

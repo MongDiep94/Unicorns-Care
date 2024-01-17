@@ -1,4 +1,4 @@
-import "./Profils.css";
+import "../../css/styles.css";
 import { NavLink, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";

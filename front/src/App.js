@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
-import "./App.css";
+import './css/styles.css';
 import WithoutHearder from "./Components/WithoutHeader.js";
 import WithHeader from "./Components/WithHeader.js";
 

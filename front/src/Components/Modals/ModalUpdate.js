@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Modals.css";
+import "../../css/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";

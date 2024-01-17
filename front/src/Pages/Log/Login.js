@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Log.css";
+import "../../css/styles.css";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import axios from "axios";

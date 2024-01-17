@@ -1,5 +1,4 @@
-//import "./Chatroom.css";
-
+import "../../../../css/styles.css";
 import React, { useEffect, useState } from "react";
 import ChatBody from "./ChatBody.js";
 import ChatFooter from "./ChatFooter.js";

@@ -1,0 +1,100 @@
+/* *****************************************************************
+BUTTON
+***************************************************************** */
+
+.btn__camel {
+  padding: 0.8rem 1rem;
+  background-color: var(--color-camel);
+  box-shadow: -4px 4px 0 var(--color-cream);
+  transition: all 0.2s ease-in-out;
+}
+.btn__camel:hover {
+  background-color: var(--color-gold);
+  box-shadow: none;
+  transition: 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn__orange {
+  color: var(--color-white);
+  display: block;
+  margin: auto;
+  width: 100%;;
+  padding: 0.8rem 1rem;
+  background-color: var(--color-orange);
+  box-shadow: -4px 4px 0 var(--color-gold);
+  transition: all 0.2s ease-in-out;
+}
+.btn__orange:hover {
+  background-color: var(--color-gold);
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn__gold {
+  padding: 0.8rem 1rem;
+  background-color: var(--color-gold);
+  box-shadow: -4px 4px 0 var(--color-cream);
+  transition: all 0.2s ease-in-out;
+}
+.btn__gold:hover {
+  background-color: var(--color-orange);
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn__seeMore--orange {
+  font-family: 'Young Serif';
+  color: var(--color-orange);
+  justify-content: center;
+}
+.btn__seeMore--orange:after{
+  content:"";
+  display:inline-block;
+  width:3.5rem;
+  height:1.6rem;
+  margin-left: 1rem;
+  background:url(../images/pictos/arrow2_d_orange.svg) no-repeat;
+  background-size:100%;
+  transition: all 0.5s ease-in-out;
+
+}
+.btn__seeMore--orange:hover:after {
+  margin-left: 2rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn__seeMore--cream {
+  font-family: 'Young Serif';
+  color: var(--color-cream);
+  justify-content: center;
+}
+.btn__seeMore--cream:after{
+  content:"";
+  display:inline-block;
+  width:3.5rem;
+  height:1.6rem;
+  margin-left: 1rem;
+  background:url(../images/pictos/arrow2_d_cream.svg) no-repeat;
+  background-size:100%;
+  transition: all 0.5s ease-in-out;
+}
+.btn__seeMore--cream:hover:after {
+  margin-left: 2rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn__camel:focus,
+.btn__orange:focus,
+.btn__gold:focus,
+.btn__seeMore--orrange:focus,
+.btn__seeMore--cream:focus {
+  outline: 2px solid #000;
+}
+
+.btn-like {
+  position: absolute;
+  max-width: 3rem;
+  top: 1.5rem;
+  right: 1.5rem;
+}

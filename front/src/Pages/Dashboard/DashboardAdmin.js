@@ -1,4 +1,5 @@
-import "./Dashboard.css";
+import "../../css/styles.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 

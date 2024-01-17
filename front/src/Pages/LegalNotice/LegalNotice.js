@@ -1,5 +1,6 @@
 import React from "react";
-import "./LegalNotice.css"
+import "../../css/styles.css";
+
 
 const LegalNotice = () => {
   return (

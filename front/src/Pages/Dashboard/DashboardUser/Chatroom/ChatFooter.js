@@ -1,4 +1,4 @@
-import "./Chatroom.css";
+import "../../../../css/styles.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
