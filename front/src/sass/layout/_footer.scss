@@ -1,28 +1,29 @@
 .footer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 5rem;
-  padding: 1rem 5rem;
+  height: fit-content;
+  padding: 1rem;
   background-color: var(--color-gold);
+
+  a {
+    font-size: 1.5rem;
+  }
 }
 
 .credits {
-  display: flex;
+  display: inline-block;
   align-items: center;
-}
-.credits a {
-  margin-left: 2rem;
-}
+  margin-bottom: 1rem;
 
-.footer a {
-  font-size: 1.5rem;
+  a {
+    margin-left: 2rem;
+  }
 }
 
 .footer__nav {
   color: var(--color-cream);
-  font-size: 1.5rem;
   margin-left: 3rem;
 }
 

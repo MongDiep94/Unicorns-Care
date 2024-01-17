@@ -11,11 +11,11 @@ const Footer = () => {
         <a href="https://woodsplitterleecross.com/" target= "_blank">©Lee Cross</a>
         <a href="https://www.linkedin.com/in/mong-diep-le-devfullstackjs/" target="_blank">©Mong Diep LÊ</a>
       </section>
-      <section>
+      <nav>
         <NavLink to="/" className="footer__nav"><FontAwesomeIcon icon={faHouse} /></NavLink>
         <NavLink to="/contact" className="footer__nav">Contact</NavLink>
         <NavLink to="/mentions-legales" className="footer__nav">Mentions légales</NavLink>
-      </section>
+      </nav>
     </footer>
   );
 };
