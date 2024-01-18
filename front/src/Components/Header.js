@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../css/styles.css";
+import "../css/styles.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -136,7 +136,7 @@ const Header = () => {
                 <NavLink
                   to="/s-inscrire"
                   id="register"
-                  className="btn__camel margin-left-3"
+                  className="btn btn__camel margin-left-3"
                 >
                   Inscription
                 </NavLink>

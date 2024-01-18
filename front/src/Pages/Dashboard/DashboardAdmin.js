@@ -5,7 +5,7 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ModalUpdate from "../../Components/Modals/ModalUpdate.js";
+import ModalUpdate from "../../Components/ModalUpdate.js";
 
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);

@@ -6,27 +6,42 @@
   height: fit-content;
   padding: 1rem;
   background-color: var(--color-gold);
-
-  a {
-    font-size: 1.5rem;
-  }
+    a {
+      font-size: 1.5rem;
+    }
 }
 
 .credits {
-  display: inline-block;
-  align-items: center;
   margin-bottom: 1rem;
-
-  a {
-    margin-left: 2rem;
-  }
+    a {
+      margin-left: 2rem;
+    }
 }
 
 .footer__nav {
   color: var(--color-cream);
   margin-left: 3rem;
+    &:hover {
+      opacity: 0.6;
+    }
 }
 
-.footer__nav:hover {
-  opacity: 0.6;
+
+
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .footer {
+    flex-direction: row;
+  }
+  .credits {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .footer {
+    flex-direction: row;
+  }
+  .credits {
+    margin-bottom: 0;
+  }
 }

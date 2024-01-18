@@ -1,0 +1,18 @@
+/* *****************************************************************
+BUTTON
+***************************************************************** */
+
+@mixin btn-color($color, $color-shadow, $color-bg) {
+  background-color: $color;
+  box-shadow: -4px 4px 0 $color-shadow;
+  &:hover {
+    background-color: $color-bg;
+  }
+}
+
+@mixin btn-seeMore-color($color, $bgImg) {
+  color: $color;
+  &:after {
+    background:url($bgImg) no-repeat;
+  }
+}

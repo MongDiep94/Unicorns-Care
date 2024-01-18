@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/styles.css";
+import "../css/styles.css";
 import { NavLink } from "react-router-dom";
 
 const Banner = () => {
@@ -11,10 +11,10 @@ const Banner = () => {
           voluptatibus dolores sit rerum .
         </h1>
         <div className="cta-area">
-          <NavLink to="/recherche-sitters" className="btn__gold style-h3 bold">
+          <NavLink to="/recherche-sitters" className="btn btn__gold style-h3 bold">
             Trouver votre Pet Sitter
           </NavLink>
-          <NavLink to="/recherche-creatures" className="btn__gold style-h3 bold">
+          <NavLink to="/recherche-creatures" className="btn btn__gold style-h3 bold">
             Trouver votre créature
           </NavLink>
         </div>

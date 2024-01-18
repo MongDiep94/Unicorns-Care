@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
-import Banner from "../../Components/Banner/Banner.js";
+import Banner from "../../Components/Banner.js";
 import CardUser from "../../Components/Cards/CardUser.js";
 import CardPet from "../../Components/Cards/CardPet.js";
 import CardTestimonial from "../../Components/Cards/CardTestimonial.js";
@@ -75,7 +75,7 @@ const Home = () => {
           </section>
           <NavLink
             to="/recherche-sitters"
-            className="btn__seeMore--orange"
+            className="btn__seeMore btn__seeMore--orange"
             aria-label="Lien pour aller sur la page de recherche de tous les sitters"
           >
             Voir plus de profils
@@ -90,7 +90,7 @@ const Home = () => {
           </section>
           <NavLink
             to="/recherche-creatures"
-            className="btn__seeMore--cream"
+            className="btn__seeMore btn__seeMore--cream"
             aria-label="Lien pour aller sur la page de recherche de toutes lescréatures"
           >
             Voir plus de créatures
