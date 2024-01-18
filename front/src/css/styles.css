@@ -598,13 +598,13 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 20rem 5rem 0rem 5rem;
+  padding: 15rem 0 5rem 0;
   background-image: url(../images/bg_green.svg);
-  background-size: 50%;
+  background-size: 80%;
   background-color: var(--color-dark-green);
 }
-
 .banner img {
+  display: none;
   position: relative;
   max-width: 25%;
   opacity: 0.4;
@@ -614,11 +614,13 @@ a {
 
 .intro {
   text-align: center;
-  width: 50%;
+  width: 90%;
 }
 
 .cta-area {
   display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
   justify-content: space-evenly;
 }
 
@@ -633,8 +635,65 @@ a {
 }
 
 /* *****************************************************************
+RESPONSIVE
+***************************************************************** */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 15rem 5rem 5rem 5rem;
+    background-size: 50%;
+  }
+  .banner img {
+    display: none;
+  }
+  .intro {
+    text-align: center;
+    width: 80%;
+  }
+  .cta-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+@media screen and (min-width: 960px) {
+  .banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20rem 5rem 5rem 5rem;
+    background-size: 50%;
+  }
+  .banner img {
+    display: block;
+  }
+  .intro {
+    text-align: center;
+    width: 50%;
+  }
+  .cta-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+/* *****************************************************************
 BUTTON
 ***************************************************************** */
+.btn:focus,
+.btn__seeMore:focus {
+  outline: 2px solid #000;
+}
+
+.btn-like {
+  position: absolute;
+  max-width: 3rem;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
 /* *****************************************************************
 BUTTON
 ***************************************************************** */
@@ -714,27 +773,15 @@ BUTTON SEE MORE
   background: url("../images/pictos/arrow2_d_cream.svg") no-repeat;
 }
 
-.btn__camel:focus,
-.btn__orange:focus,
-.btn__gold:focus,
-.btn__seeMore--orrange:focus,
-.btn__seeMore--cream:focus {
-  outline: 2px solid #000;
-}
-
-.btn-like {
-  position: absolute;
-  max-width: 3rem;
-  top: 1.5rem;
-  right: 1.5rem;
-}
-
 /* *****************************************************************
 CARD USER
 ***************************************************************** */
 .petsitters {
   text-align: center;
   padding: 5rem 0;
+}
+.petsitters h1 {
+  margin-top: 1rem;
 }
 
 .arabesque1:before {
@@ -759,16 +806,21 @@ CARD USER
 
 .cards {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
+  align-items: center;
   margin: 5rem auto;
-  column-gap: 3.5rem;
   row-gap: 3.5rem;
+}
+
+.card > * {
+  grid-column: 1/2;
+  grid-row: 1/2;
 }
 
 .card {
   position: relative;
-  display: grid;
+  justify-self: center;
   border-radius: 5px;
   place-items: end center;
   height: 50vh;
@@ -776,11 +828,6 @@ CARD USER
   height: 30rem;
   overflow: hidden;
   box-shadow: var(--box-shadow);
-}
-
-.card > * {
-  grid-column: 1/2;
-  grid-row: 1/2;
 }
 
 .card__background {
@@ -896,6 +943,28 @@ CARD USER
     transition-delay: 500ms;
   }
 }
+/*
+RESPONSIVE
+*/
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    margin: 5rem auto;
+    row-gap: 3.5rem;
+  }
+}
+@media screen and (min-width: 960px) {
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin: 5rem auto;
+    column-gap: 3.5rem;
+    row-gap: 3.5rem;
+  }
+}
 /* *****************************************************************
 CARD CREATURES
 ***************************************************************** */
@@ -905,7 +974,6 @@ CARD CREATURES
   padding-bottom: 5rem;
   background-image: url(../images/bg_orange.svg);
 }
-
 .creatures h1 {
   color: var(--color-cream);
   margin-top: 1rem;
@@ -979,7 +1047,7 @@ CARD TESTIMONIAL
 }
 
 .testimony__photo {
-  width: 20%;
+  width: 100%;
   margin: auto;
   border-radius: 100%;
 }
@@ -998,6 +1066,23 @@ CARD TESTIMONIAL
   background-size: 100%;
 }
 
+/*
+RESPONSIVE
+*/
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .testimony__photo {
+    width: 40%;
+    margin: auto;
+    border-radius: 100%;
+  }
+}
+@media screen and (min-width: 960px) {
+  .testimony__photo {
+    width: 20%;
+    margin: auto;
+    border-radius: 100%;
+  }
+}
 .modal__backgound {
   width: 100vw;
   height: 100vh;
@@ -1180,6 +1265,9 @@ button:focus {
   cursor: pointer;
 }
 
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
 .footer {
   display: flex;
   flex-direction: column;
@@ -1702,6 +1790,9 @@ REGISTER
   width: 50%;
 }
 
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
 @media screen and (min-width: 480px) and (max-width: 960px) {
   .licorne-dab {
     max-width: 50%;

@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
-import Banner from "../../Components/Banner.js";
-import CardUser from "../../Components/Cards/CardUser.js";
-import CardPet from "../../Components/Cards/CardPet.js";
-import CardTestimonial from "../../Components/Cards/CardTestimonial.js";
+import Banner from "../Components/Banner.js";
+import CardUser from "../Components/Cards/CardUser.js";
+import CardPet from "../Components/Cards/CardPet.js";
+import CardTestimonial from "../Components/Cards/CardTestimonial.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -68,11 +68,11 @@ const Home = () => {
       <main>
         <section className="petsitters">
           <h1 className="arabesque1 orange">Découvrez vos Pet Sitters</h1>
-          <section className="container cards">
+          <div className="container cards">
             {lastSitters.map((lastSitter, i) => (
               <CardUser key={i} oneSitter={lastSitter} />
             ))}
-          </section>
+          </div>
           <NavLink
             to="/recherche-sitters"
             className="btn__seeMore btn__seeMore--orange"
@@ -83,11 +83,11 @@ const Home = () => {
         </section>
         <section className="creatures">
           <h1 className="arabesque2 cream">Découvrez nos créatures à garder</h1>
-          <section className="container cards">
+          <div className="container cards">
             {lastPets.map((lastPet, i) => (
               <CardPet key={i} onePet={lastPet} />
             ))}
-          </section>
+          </div>
           <NavLink
             to="/recherche-creatures"
             className="btn__seeMore btn__seeMore--cream"
@@ -98,13 +98,13 @@ const Home = () => {
         </section>
         <section className="testimonials">
           <h1 className="chapo green">Les témoignages</h1>
-          <section className="container margin-bottom-5">
+          <div className="container margin-bottom-5">
             <Slider {...settings}>
               <CardTestimonial />
               <CardTestimonial />
               <CardTestimonial />
             </Slider>
-          </section>
+          </div>
           <span className="testimonials__end"></span>
         </section>
       </main>

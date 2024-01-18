@@ -4,6 +4,9 @@ CARD USER
 .petsitters {
   text-align: center;
   padding: 5rem 0;
+  h1 {
+    margin-top: 1rem;
+  }
 }
 .arabesque1:before {
   content:"";
@@ -21,19 +24,23 @@ CARD USER
   height:3rem;
   margin-left: 2rem;
   background:url(../images/pictos/arabesque1_d_orange.svg) no-repeat;
-  background-size:100%;
+  background-size: 100%;
 }
 .cards {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
+  align-items: center;
   margin: 5rem auto;
-  column-gap: 3.5rem;
   row-gap: 3.5rem;
+}
+.card > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
 }
 .card {
   position: relative;
-  display: grid;
+  justify-self: center;
   border-radius: 5px;
   place-items: end center;
   height: 50vh;
@@ -41,10 +48,6 @@ CARD USER
   height: 30rem;
   overflow: hidden;
   box-shadow: var(--box-shadow);
-}
-.card > * {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
 }
 .card__background {
   object-fit: cover;
@@ -159,6 +162,31 @@ CARD USER
   }
 }
 
+/*
+RESPONSIVE
+*/
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    margin: 5rem auto;
+    row-gap: 3.5rem;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin: 5rem auto;
+    column-gap: 3.5rem;
+    row-gap: 3.5rem;
+  }
+
+}
+
 /* *****************************************************************
 CARD CREATURES
 ***************************************************************** */
@@ -167,10 +195,10 @@ CARD CREATURES
   padding-top: 3rem;
   padding-bottom: 5rem;
   background-image: url(../images/bg_orange.svg);
-}
-.creatures h1 {
-  color: var(--color-cream);
-  margin-top: 1rem;
+  h1 {
+    color: var(--color-cream);
+    margin-top: 1rem;
+  }
 }
 .arabesque2:before {
   content:"";
@@ -203,6 +231,7 @@ CARD CREATURES
 .card__pet__description p {
   margin: 1rem 0;
 }
+
 /* *****************************************************************
 CARD TESTIMONIAL
 ***************************************************************** */
@@ -231,7 +260,7 @@ CARD TESTIMONIAL
   text-align: center;
 }
 .testimony__photo {
-  width: 20%;
+  width: 100%;
   margin: auto;
   border-radius: 100%;
 }
@@ -246,4 +275,23 @@ CARD TESTIMONIAL
   margin: auto;
   background:url(../images/pictos/chapo_bottom_green.svg) no-repeat;
   background-size:100%;
+}
+
+/*
+RESPONSIVE
+*/
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .testimony__photo {
+    width: 40%;
+    margin: auto;
+    border-radius: 100%;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .testimony__photo {
+    width: 20%;
+    margin: auto;
+    border-radius: 100%;
+  }
 }

@@ -7,13 +7,13 @@ import WithHeader from "./Components/WithHeader.js";
 
 import Login from "./Pages/Log/Login.js";
 import Register from "./Pages/Log/Register.js";
-import NotFound from "./Pages/NotFound/NotFound.js";
-import Home from "./Pages/Home/Home.js";
+import NotFound from "./Pages/NotFound.js";
+import Home from "./Pages/Home.js";
 import ProfilSitter from "./Pages/Profils/ProfilSitter.js";
 import SearchCreatures from "./Pages/Search/SearchCreatures.js";
 import SearchPetSitters from "./Pages/Search/SearchPetSitters.js"
-import Contact from "./Pages/Contact/Contact.js";
-import LegalNotice from "./Pages/LegalNotice/LegalNotice.js"
+import Contact from "./Pages/Contact.js";
+import LegalNotice from "./Pages/LegalNotice.js"
 import ProfilPet from "./Pages/Profils/ProfilPet.js";
 import DashboardUser from "./Pages/Dashboard/DashboardUser/DashboardUser.js";
 import DashboardAdmin from "./Pages/Dashboard/DashboardAdmin.js";

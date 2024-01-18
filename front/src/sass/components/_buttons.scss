@@ -1,5 +1,16 @@
 @use "../utils/_mixins.scss" as m;
 
+.btn:focus,
+.btn__seeMore:focus {
+  outline: 2px solid #000;
+}
+
+.btn-like {
+  position: absolute;
+  max-width: 3rem;
+  top: 1.5rem;
+  right: 1.5rem;
+}
 
 /* *****************************************************************
 BUTTON
@@ -60,19 +71,4 @@ BUTTON SEE MORE
 
 .btn__seeMore--cream {
   @include m.btn-seeMore-color(var(--color-cream), "../images/pictos/arrow2_d_cream.svg");
-}
-
-.btn__camel:focus,
-.btn__orange:focus,
-.btn__gold:focus,
-.btn__seeMore--orrange:focus,
-.btn__seeMore--cream:focus {
-  outline: 2px solid #000;
-}
-
-.btn-like {
-  position: absolute;
-  max-width: 3rem;
-  top: 1.5rem;
-  right: 1.5rem;
 }
