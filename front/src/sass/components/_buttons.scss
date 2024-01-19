@@ -17,6 +17,8 @@ BUTTON
 ***************************************************************** */
 
 .btn {
+  font-family: 'Young Serif';
+  color: var(--color-white);
   padding: 0.8rem 1rem;
   transition: all 0.2s ease-in-out;
   &:hover {
