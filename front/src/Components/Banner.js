@@ -19,7 +19,6 @@ const Banner = () => {
           </NavLink>
         </div>
       </article>
-      <img src="../../images/beast1_outline_cream.svg" alt="Dessin d'un griffon." aria-label="Dessin d'un griffon."/>
     </section>
   );
 };

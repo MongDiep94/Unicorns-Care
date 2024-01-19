@@ -5,27 +5,24 @@ CARD USER
   text-align: center;
   padding: 5rem 0;
   h1 {
-    margin-top: 1rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 1.5rem auto 1.5rem;
   }
 }
-.arabesque1:before {
-  content:"";
-  display:inline-block;
+
+.arabesque1--before {
   width:6rem;
   height:3rem;
-  margin-right: 2rem;
-  background:url(../images/pictos/arabesque1_g_orange.svg) no-repeat;
-  background-size:100%;
+  margin-right: 1rem;
 }
-.arabesque1:after {
-  content:"";
-  display:inline-block;
+.arabesque1--after {
   width:6rem;
   height:3rem;
-  margin-left: 2rem;
-  background:url(../images/pictos/arabesque1_d_orange.svg) no-repeat;
-  background-size: 100%;
+  margin-left: 1rem;
 }
+
 .cards {
   display: grid;
   grid-template-columns: 1fr;
@@ -97,13 +94,13 @@ CARD USER
   font-weight: bold;
   border: 1px solid transparent;
   color: var(--color-cream);
-}
-.card__button:focus {
-  outline: 2px solid var(--color-cream);
-}
-.card__button:hover {
-  color: color-gold;
-  text-decoration: underline;
+    &:focus {
+      outline: 2px solid var(--color-cream);
+    }
+    &:hover {
+      color: color-gold;
+      text-decoration: underline;
+    }
 }
 
 @media (any-hover: hover) and (any-pointer: fine) {
@@ -173,6 +170,17 @@ RESPONSIVE
     margin: 5rem auto;
     row-gap: 3.5rem;
   }
+
+  .arabesque1--before {
+    width:5rem;
+    height:3rem;
+    margin-right: 1rem;
+  }
+  .arabesque1--after {
+    width:5rem;
+    height:3rem;
+    margin-left: 1rem;
+  }
 }
 
 @media screen and (min-width: 960px){
@@ -196,27 +204,22 @@ CARD CREATURES
   padding-bottom: 5rem;
   background-image: url(../images/bg_orange.svg);
   h1 {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 1.5rem auto 1.5rem;
     color: var(--color-cream);
-    margin-top: 1rem;
   }
 }
-.arabesque2:before {
-  content:"";
-  display:inline-block;
-  width:10rem;
+.arabesque2--before {
+  width:7rem;
   height:4rem;
-  margin-right: 2rem;
-  background:url(../images/pictos/arabesque5_g_cream.svg) no-repeat;
-  background-size:100%;
+  margin-right: 1rem;
 }
-.arabesque2:after {
-  content:"";
-  display:inline-block;
-  width:10rem;
+.arabesque2--after {
+  width:7rem;
   height:4rem;
-  margin-left: 2rem;
-  background:url(../images/pictos/arabesque5_d_cream.svg) no-repeat;
-  background-size:100%;
+  margin-left: 1rem;
 }
 .picto__element {
   width: 4rem;
@@ -227,9 +230,44 @@ CARD CREATURES
   flex-direction: row;
   justify-content: space-between;
   text-align: left;
+  p {
+    margin: 1rem 0;
+  }
 }
-.card__pet__description p {
-  margin: 1rem 0;
+
+/*
+RESPONSIVE
+*/
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .creatures {
+    h1 {
+      margin: 1rem 1rem auto 1rem;
+    }
+  }
+  .arabesque2--before {
+    width:8rem;
+    height:4rem;
+    margin-right: 1rem;
+  }
+  .arabesque2--after {
+    width:8rem;
+    height:4rem;
+    margin-left: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .arabesque2--before {
+    width:10rem;
+    height:4rem;
+    margin-right: 1rem;
+  }
+  .arabesque2--after {
+    width:10rem;
+    height:4rem;
+    margin-left: 1.5rem;
+  }
+
 }
 
 /* *****************************************************************
@@ -242,17 +280,17 @@ CARD TESTIMONIAL
 }
 .chapo {
   margin-bottom: 0;
-}
-.chapo:before {
-  content:"";
-  display: block;
-  width:15rem;
-  height:5rem;
-  margin-bottom: 2rem;
-  margin-right: auto;
-  margin-left: auto;
-  background:url(../images/pictos/chapo_top_green.svg) no-repeat;
-  background-size:100%;
+  &:before {
+    content:"";
+    display: block;
+    width:15rem;
+    height:5rem;
+    margin-bottom: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    background:url(../images/pictos/chapo_top_green.svg) no-repeat;
+    background-size:100%;
+  }
 }
 .testimony__content {
   padding: 5rem 0 0 0;

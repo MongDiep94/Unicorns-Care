@@ -598,18 +598,10 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 15rem 0 5rem 0;
+  padding: 10rem 0 5rem 0;
   background-image: url(../images/bg_green.svg);
   background-size: 80%;
   background-color: var(--color-dark-green);
-}
-.banner img {
-  display: none;
-  position: relative;
-  max-width: 25%;
-  opacity: 0.4;
-  bottom: 2rem;
-  right: 1rem;
 }
 
 .intro {
@@ -645,12 +637,9 @@ RESPONSIVE
     padding: 15rem 5rem 5rem 5rem;
     background-size: 50%;
   }
-  .banner img {
-    display: none;
-  }
   .intro {
     text-align: center;
-    width: 80%;
+    width: 90%;
   }
   .cta-area {
     display: flex;
@@ -663,15 +652,12 @@ RESPONSIVE
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 20rem 5rem 5rem 5rem;
+    padding: 15rem 5rem 5rem 5rem;
     background-size: 50%;
-  }
-  .banner img {
-    display: block;
   }
   .intro {
     text-align: center;
-    width: 50%;
+    width: 65%;
   }
   .cta-area {
     display: flex;
@@ -699,7 +685,7 @@ BUTTON
 ***************************************************************** */
 .btn {
   font-family: "Young Serif";
-  color: var(--color-white);
+  color: var(--color-cream);
   padding: 0.8rem 1rem;
   transition: all 0.2s ease-in-out;
 }
@@ -783,27 +769,22 @@ CARD USER
   padding: 5rem 0;
 }
 .petsitters h1 {
-  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 1.5rem auto 1.5rem;
 }
 
-.arabesque1:before {
-  content: "";
-  display: inline-block;
+.arabesque1--before {
   width: 6rem;
   height: 3rem;
-  margin-right: 2rem;
-  background: url(../images/pictos/arabesque1_g_orange.svg) no-repeat;
-  background-size: 100%;
+  margin-right: 1rem;
 }
 
-.arabesque1:after {
-  content: "";
-  display: inline-block;
+.arabesque1--after {
   width: 6rem;
   height: 3rem;
-  margin-left: 2rem;
-  background: url(../images/pictos/arabesque1_d_orange.svg) no-repeat;
-  background-size: 100%;
+  margin-left: 1rem;
 }
 
 .cards {
@@ -880,11 +861,9 @@ CARD USER
   border: 1px solid transparent;
   color: var(--color-cream);
 }
-
 .card__button:focus {
   outline: 2px solid var(--color-cream);
 }
-
 .card__button:hover {
   color: color-gold;
   text-decoration: underline;
@@ -956,6 +935,16 @@ RESPONSIVE
     margin: 5rem auto;
     row-gap: 3.5rem;
   }
+  .arabesque1--before {
+    width: 5rem;
+    height: 3rem;
+    margin-right: 1rem;
+  }
+  .arabesque1--after {
+    width: 5rem;
+    height: 3rem;
+    margin-left: 1rem;
+  }
 }
 @media screen and (min-width: 960px) {
   .cards {
@@ -977,28 +966,23 @@ CARD CREATURES
   background-image: url(../images/bg_orange.svg);
 }
 .creatures h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 1.5rem auto 1.5rem;
   color: var(--color-cream);
-  margin-top: 1rem;
 }
 
-.arabesque2:before {
-  content: "";
-  display: inline-block;
-  width: 10rem;
+.arabesque2--before {
+  width: 7rem;
   height: 4rem;
-  margin-right: 2rem;
-  background: url(../images/pictos/arabesque5_g_cream.svg) no-repeat;
-  background-size: 100%;
+  margin-right: 1rem;
 }
 
-.arabesque2:after {
-  content: "";
-  display: inline-block;
-  width: 10rem;
+.arabesque2--after {
+  width: 7rem;
   height: 4rem;
-  margin-left: 2rem;
-  background: url(../images/pictos/arabesque5_d_cream.svg) no-repeat;
-  background-size: 100%;
+  margin-left: 1rem;
 }
 
 .picto__element {
@@ -1012,11 +996,40 @@ CARD CREATURES
   justify-content: space-between;
   text-align: left;
 }
-
 .card__pet__description p {
   margin: 1rem 0;
 }
 
+/*
+RESPONSIVE
+*/
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .creatures h1 {
+    margin: 1rem 1rem auto 1rem;
+  }
+  .arabesque2--before {
+    width: 8rem;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+  .arabesque2--after {
+    width: 8rem;
+    height: 4rem;
+    margin-left: 1.5rem;
+  }
+}
+@media screen and (min-width: 960px) {
+  .arabesque2--before {
+    width: 10rem;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+  .arabesque2--after {
+    width: 10rem;
+    height: 4rem;
+    margin-left: 1.5rem;
+  }
+}
 /* *****************************************************************
 CARD TESTIMONIAL
 ***************************************************************** */
@@ -1029,7 +1042,6 @@ CARD TESTIMONIAL
 .chapo {
   margin-bottom: 0;
 }
-
 .chapo:before {
   content: "";
   display: block;
@@ -1172,19 +1184,24 @@ RESPONSIVE
 }
 
 .menu__header {
-  padding: 0 5rem;
+  padding: 0 2rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   background-color: none;
+}
+.menu__header img {
+  width: 50%;
+  margin-top: 2rem;
+}
+.menu__header a {
+  margin: 0;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: right;
 }
 
 .btn__nav {
@@ -1203,6 +1220,51 @@ RESPONSIVE
   border-radius: 50%;
 }
 
+/* RESPONSIVE */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .menu__header {
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    justify-content: space-between;
+    background-color: none;
+  }
+  .menu__header img {
+    width: 100%;
+    margin-top: 0;
+  }
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    column-gap: 4rem;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 960px) {
+  .menu__header {
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: none;
+  }
+  .menu__header img {
+    width: 100%;
+    margin-top: 0;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+  }
+  .navbar a {
+    margin-left: 3rem;
+  }
+}
 /* *****************************************************************
 ACCESSIBILITY
 ***************************************************************** */
@@ -1231,6 +1293,7 @@ button:focus {
 
 /* menu accessibilité */
 .accessibility {
+  display: none;
   margin-bottom: 2rem;
   border-bottom: 0.1rem solid var(--color-cream);
 }
@@ -1277,9 +1340,30 @@ button:focus {
   cursor: pointer;
 }
 
-/* *****************************************************************
-RESPONSIVE
-***************************************************************** */
+/* RESPONSIVE */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .menu__header {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: none;
+  }
+}
+@media screen and (min-width: 960px) {
+  .accessibility {
+    display: block;
+  }
+  .menu__header {
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: none;
+  }
+}
 .footer {
   display: flex;
   flex-direction: column;
@@ -1297,7 +1381,7 @@ RESPONSIVE
   margin-bottom: 1rem;
 }
 .credits a {
-  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .footer__nav {

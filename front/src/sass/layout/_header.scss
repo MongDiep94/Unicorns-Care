@@ -1,17 +1,22 @@
 .menu__header {
-  padding: 0 5rem;
+  padding: 0 2rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   background-color: none;
+    img {
+      width: 50%;
+      margin-top: 2rem;
+    }
+    a {
+      margin: 0;
+    }
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: right;
 }
 .btn__nav {
   margin-left: 3rem;
@@ -26,6 +31,55 @@
   height: 5rem;
   background-position: center;
   border-radius: 50%;
+}
+
+/* RESPONSIVE */
+
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .menu__header {
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    justify-content: space-between;
+    background-color: none;
+      img {
+        width: 100%;
+        margin-top: 0;
+      }
+  }
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    column-gap: 4rem;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .menu__header {
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: none;
+      img {
+        width: 100%;
+        margin-top: 0;
+      }
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+      a{
+        margin-left: 3rem;
+      }
+  }
+
 }
 
 /* *****************************************************************
@@ -56,6 +110,7 @@ button:focus {
 
 /* menu accessibilité */
 .accessibility {
+  display: none;
   margin-bottom: 2rem;
   border-bottom: 0.1rem solid var(--color-cream);
 }
@@ -100,13 +155,29 @@ button:focus {
   cursor: pointer;
 }
 
-/* *****************************************************************
-RESPONSIVE
-***************************************************************** */
-@media screen and (min-width: 480px) and (max-width: 960px) {
+/* RESPONSIVE */
 
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .menu__header {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: none;
+  }
 }
 
 @media screen and (min-width: 960px){
-
+  .accessibility {
+    display: block;
+  }
+  .menu__header {
+    padding: 0 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: none;
+  }
 }

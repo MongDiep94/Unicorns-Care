@@ -67,7 +67,19 @@ const Home = () => {
       <Banner />
       <main>
         <section className="petsitters">
-          <h1 className="arabesque1 orange">Découvrez vos Pet Sitters</h1>
+          <h1 className="orange">
+            <img
+              className="arabesque1--before"
+              src={`../images/pictos/arabesque1_g_orange.svg`}
+              alt={`arabesque décorative`}
+            />
+            Découvrez vos Pet Sitters
+            <img
+              className="arabesque1--after"
+              src={`../images/pictos/arabesque1_d_orange.svg`}
+              alt={`arabesque décorative`}
+            />
+          </h1>
           <div className="container cards">
             {lastSitters.map((lastSitter, i) => (
               <CardUser key={i} oneSitter={lastSitter} />
@@ -82,7 +94,19 @@ const Home = () => {
           </NavLink>
         </section>
         <section className="creatures">
-          <h1 className="arabesque2 cream">Découvrez nos créatures à garder</h1>
+          <h1 className="cream">
+            <img
+                className="arabesque2--before"
+                src={`../images/pictos/arabesque5_g_cream.svg`}
+                alt={`arabesque décorative`}
+              />
+              Découvrez nos créatures à garder
+              <img
+                className="arabesque2--after"
+                src={`../images/pictos/arabesque5_d_cream.svg`}
+                alt={`arabesque décorative`}
+              />
+            </h1>
           <div className="container cards">
             {lastPets.map((lastPet, i) => (
               <CardPet key={i} onePet={lastPet} />
