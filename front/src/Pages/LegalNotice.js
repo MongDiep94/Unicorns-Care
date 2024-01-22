@@ -8,7 +8,8 @@ const LegalNotice = () => {
       <section className="banner__mini">
         <h1>Mentions légales</h1>
       </section>
-      <article className="legale-notice">
+
+      <section className="legale-notice">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
@@ -75,7 +76,7 @@ const LegalNotice = () => {
           imperdiet. Ultrices dui sapien eget mi proin sed libero enim sed.
           Venenatis a condimentum vitae sapien pellentesque habitant morbi.
         </p>
-      </article>
+      </section>
     </>
   );
 };

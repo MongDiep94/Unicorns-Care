@@ -59,22 +59,21 @@ const SearchPetSitters = ({ oneSitter }) => {
 
   return (
     <>
-      <section className="search__banner">
-        <section id="search" className="search__bar">
-          <select
-            className="select"
-            name="species"
-            id="species"
-            onChange={handleSpeciesChange}
-          >
-            <option value="all">Espèces</option>
-            {species.map((specie, i) => (
-              <option key={i} value={specie}>
-                {specie}
-              </option>
-            ))}
-          </select>
-          <span className="separator">|</span>
+      <section id="search" className="search__banner">
+        <select
+          name="species"
+          id="species"
+          onChange={handleSpeciesChange}
+        >
+          <option value="all">Espèces</option>
+          {species.map((specie, i) => (
+            <option key={i} value={specie}>
+              {specie}
+            </option>
+          ))}
+        </select>
+        <span className="separator">|</span>
+        <div className="search__bar">
           <form action="" method="get">
             <input
               type="search"
@@ -85,10 +84,11 @@ const SearchPetSitters = ({ oneSitter }) => {
             />
           </form>
           <button title="bouton Rechercher">
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="green" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="cream" />
           </button>
-        </section>
+        </div>
       </section>
+
       <section className="container cards">
       {searchInput.length > 0
           ? searchInput.map((sitter) => (

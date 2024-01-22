@@ -68,8 +68,7 @@ const SearchCreatures = () => {
 
   return (
     <>
-      <section className="search__banner">
-        <section id="search" className="search__bar">
+      <section id="search" className="search__banner">
           <select
             className="select"
             name="elements"
@@ -98,19 +97,20 @@ const SearchCreatures = () => {
             ))}
           </select>
           <span className="separator">|</span>
-          <form action="" method="get">
-            <input
-              type="text"
-              name="search_name"
-              id="search_name"
-              placeholder="Chercher une créature par son nom"
-              onChange={handleSearchChange}
-            />
-          </form>
-          <button>
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="green" />
-          </button>
-        </section>
+          <div className="search__bar">
+            <form action="" method="get">
+              <input
+                type="text"
+                name="search_name"
+                id="search_name"
+                placeholder="Chercher une créature par son nom"
+                onChange={handleSearchChange}
+              />
+            </form>
+            <button>
+              <FontAwesomeIcon icon={faMagnifyingGlass} className="green" />
+            </button>
+          </div>
       </section>
       <section className="container cards">
       {searchInput.length > 0

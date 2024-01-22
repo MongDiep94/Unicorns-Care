@@ -38,22 +38,13 @@ body {
   }
 }
 
-/* Clearfix */
-.clearfix::after {
-  content: '';
-  display: block;
-  clear: both;
-}
 /* unstyled */
 ol.unstyled,
 ul.unstyled {
   padding: 0;
   list-style: none;
 }
-/* hidden */
-.hidden {
-  display: none;
-}
+
 .absolute {
   position: absolute;
 }
@@ -172,8 +163,8 @@ header {
   left: 0;
   z-index: 2;
   width: 100%;
-
 }
+
 h1,
 h2,
 h3 {
@@ -191,24 +182,30 @@ h2 {
 h3 {
   font-size: var(--size-title-3);
 }
-p{
+
+p {
   font-size: var(--size-text);
 }
+
 img {
   width: 100%;
   height: auto;
 }
+
 button,
 input {
   background-color: transparent;
   border: 0;
 }
+
 article{
   margin: 0;
 }
+
 form {
   margin-bottom: 1rem;
 }
+
 a {
   text-decoration: none;
   color: var(--color-cream);
