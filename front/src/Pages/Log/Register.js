@@ -145,7 +145,7 @@ const Register = () => {
           </span>
           <label className="errorLabel">{passwordError}</label>
 
-          <input type="submit" className="btn__orange" value={"Se connecter"} />
+          <input type="submit" className="btn btn__orange" value={"Se connecter"} />
 
           <NavLink to={"/se-connecter"} className="forgot-password">
             Déjà inscrit•e ?

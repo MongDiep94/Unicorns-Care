@@ -619,7 +619,7 @@ a {
 /* MINI-BANNER */
 .banner__mini {
   text-align: center;
-  padding-top: 15rem;
+  padding-top: 5rem;
   padding-bottom: 2rem;
   background-image: url(../images/bg_green.svg);
   background-size: 50%;
@@ -646,6 +646,15 @@ RESPONSIVE
     flex-direction: row;
     justify-content: space-evenly;
   }
+  /* MINI-BANNER */
+  .banner__mini {
+    text-align: center;
+    padding-top: 15rem;
+    padding-bottom: 2rem;
+    background-image: url(../images/bg_green.svg);
+    background-size: 50%;
+    background-color: var(--color-dark-green);
+  }
 }
 @media screen and (min-width: 960px) {
   .banner {
@@ -663,6 +672,15 @@ RESPONSIVE
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+  }
+  /* MINI-BANNER */
+  .banner__mini {
+    text-align: center;
+    padding-top: 15rem;
+    padding-bottom: 2rem;
+    background-image: url(../images/bg_green.svg);
+    background-size: 50%;
+    background-color: var(--color-dark-green);
   }
 }
 /* *****************************************************************
@@ -1381,23 +1399,34 @@ button:focus {
   margin-bottom: 1rem;
 }
 .credits a {
-  margin-right: 2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .footer__nav {
   color: var(--color-cream);
-  margin-left: 3rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 .footer__nav:hover {
   opacity: 0.6;
 }
 
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
 @media screen and (min-width: 480px) and (max-width: 960px) {
   .footer {
     flex-direction: row;
   }
   .credits {
     margin-bottom: 0;
+    margin-right: 2rem;
+    margin-left: 0;
+  }
+  .footer__nav {
+    margin-left: 3rem;
+    margin-right: 0;
   }
 }
 @media screen and (min-width: 960px) {
@@ -1406,6 +1435,12 @@ button:focus {
   }
   .credits {
     margin-bottom: 0;
+    margin-right: 2rem;
+    margin-left: 0;
+  }
+  .footer__nav {
+    margin-left: 3rem;
+    margin-right: 0;
   }
 }
 .chat {
@@ -1521,12 +1556,10 @@ button:focus {
   display: flex;
   flex-direction: column;
   margin: 5rem auto;
-  max-width: 50%;
+  max-width: 100%;
   height: fit-content;
 }
-
-.contact select,
-.contact input {
+.contact select, .contact input {
   width: 100%;
   margin: 1rem 0;
   padding: 0.5rem;
@@ -1535,10 +1568,9 @@ button:focus {
   text-align: center;
   font-weight: 700;
   font-size: var(--size-text);
-  color: var(--color-dark-grey);
+  color: var(--color-grey);
   background: #eee;
 }
-
 .contact textarea {
   width: 100%;
   border-radius: 0.5rem;
@@ -1549,6 +1581,19 @@ button:focus {
   background: #eee;
 }
 
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .contact {
+    max-width: 60%;
+  }
+}
+@media screen and (min-width: 960px) {
+  .contact {
+    max-width: 50%;
+  }
+}
 /* *****************************************************************
 GENERALITIES
 ***************************************************************** */
@@ -1757,9 +1802,24 @@ button {
 
 .legale-notice {
   color: var(--color-dark-grey);
-  padding: 8rem;
+  padding: 3rem;
 }
 
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .legale-notice {
+    color: var(--color-dark-grey);
+    padding: 5rem;
+  }
+}
+@media screen and (min-width: 960px) {
+  .legale-notice {
+    color: var(--color-dark-grey);
+    padding: 8rem;
+  }
+}
 /* *****************************************************************
 LOG
 ***************************************************************** */
@@ -1775,14 +1835,13 @@ LOG
 }
 
 .login__box {
-  width: 30%;
+  width: 80%;
   background: var(--color-cream);
-  padding: 2rem 5rem;
+  padding: 2rem 3rem;
   box-shadow: var(--box-shadow);
   text-align: center;
   border-radius: 5px;
 }
-
 .login__box h2 {
   margin-bottom: 3rem;
   color: var(--color-dark-green);
@@ -1792,7 +1851,6 @@ LOG
   position: relative;
   margin-bottom: 2rem;
 }
-
 .textbox input {
   width: 100%;
   padding: 1rem;
@@ -1808,7 +1866,6 @@ LOG
   color: var(--color-dark-green);
   cursor: pointer;
 }
-
 .forgot-password:hover {
   text-decoration: underline;
 }
@@ -1818,20 +1875,34 @@ LOG
   color: var(--color-orange);
 }
 
+/* **
+RESPONSIVE
+** */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .login__box {
+    width: 60%;
+    padding: 2rem 5rem;
+  }
+}
+@media screen and (min-width: 960px) {
+  .login__box {
+    width: 40%;
+    padding: 2rem 5rem;
+  }
+}
 /* *****************************************************************
 REGISTER
 ***************************************************************** */
 .register__box {
-  width: 40%;
+  width: 80%;
   height: fit-content;
   margin: 5rem 0;
   background: var(--color-cream);
-  padding: 2rem 5rem;
+  padding: 2rem 3rem;
   box-shadow: var(--box-shadow);
   border-radius: 5px;
   color: var(--color-dark-grey);
 }
-
 .register__box h2 {
   text-align: center;
   margin-bottom: 3rem;
@@ -1843,6 +1914,9 @@ REGISTER
   flex-direction: column;
   row-gap: 0.5rem;
 }
+.register__box form label {
+  font-weight: bold;
+}
 
 .register__box--input {
   width: 100%;
@@ -1852,16 +1926,27 @@ REGISTER
   background-color: var(--color-white);
 }
 
-.register__box label {
-  font-weight: bold;
-}
-
 .note {
   font-size: 1.3rem;
   line-height: 1.3rem;
   color: var(--color-grey);
 }
 
+/* **
+RESPONSIVE
+** */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .register__box {
+    width: 60%;
+    padding: 2rem 5rem;
+  }
+}
+@media screen and (min-width: 960px) {
+  .register__box {
+    width: 40%;
+    padding: 2rem 5rem;
+  }
+}
 .bg__not-found {
   background-image: url(../images/fond-arc-en-ciel.png);
   background-repeat: repeat-y;

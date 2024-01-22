@@ -8,7 +8,7 @@ const Banner = () => {
       <article className="intro">
         <h1>
           Lorem ipsum dolor sit amet. Sit voluptate quam 33 eaque maiores sed
-          voluptatibus dolores sit rerum .
+          voluptatibus dolores sit rerum.
         </h1>
         <div className="cta-area">
           <NavLink to="/recherche-sitters" className="btn btn__gold style-h3 bold">

@@ -109,7 +109,7 @@ const Login = ({socket}) => {
             <label className="errorLabel">{passwordError}</label>
           </section>
 
-          <input type="submit" className="btn__orange" value={"Se connecter"} />
+          <input type="submit" className="btn btn__orange" value={"Se connecter"} />
 
           <NavLink to={"/s-inscrire"} className="forgot-password">
             Pas encore inscrit•e ?

@@ -54,6 +54,7 @@ const Contact = () => {
               <option value="reclamation">Reclamation</option>
               <option value="other">Autre</option>
             </select>
+
             <label><textarea
             type="textarea"
             name="content"
@@ -64,7 +65,7 @@ const Contact = () => {
             onChange={onInputChange}>
             </textarea></label>
 
-            <button type="submit" name="Envoyer" className="btn__orange">Envoyer</button>
+            <button type="submit" name="Envoyer" className="btn btn__orange">Envoyer</button>
           </form>
           {message &&
           <p className="message margin-top-3">{message}</p>

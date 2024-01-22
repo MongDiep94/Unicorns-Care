@@ -22,7 +22,7 @@
 /* MINI-BANNER */
 .banner__mini {
   text-align: center;
-  padding-top: 15rem;
+  padding-top: 5rem;
   padding-bottom: 2rem;
   background-image: url(../images/bg_green.svg);
   background-size: 50%;
@@ -49,6 +49,15 @@ RESPONSIVE
     flex-direction: row;
     justify-content: space-evenly;
   }
+  /* MINI-BANNER */
+    .banner__mini {
+      text-align: center;
+      padding-top: 15rem;
+      padding-bottom: 2rem;
+      background-image: url(../images/bg_green.svg);
+      background-size: 50%;
+      background-color: var(--color-dark-green);
+    }
 }
 
 @media screen and (min-width: 960px){
@@ -68,4 +77,14 @@ RESPONSIVE
     flex-direction: row;
     justify-content: space-evenly;
   }
+
+    /* MINI-BANNER */
+    .banner__mini {
+      text-align: center;
+      padding-top: 15rem;
+      padding-bottom: 2rem;
+      background-image: url(../images/bg_green.svg);
+      background-size: 50%;
+      background-color: var(--color-dark-green);
+    }
 }

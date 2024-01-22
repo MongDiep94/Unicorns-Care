@@ -1,4 +1,22 @@
 .legale-notice {
   color: var(--color-dark-grey);
-  padding: 8rem;
+  padding: 3rem;
+}
+
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
+
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .legale-notice {
+    color: var(--color-dark-grey);
+    padding: 5rem;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .legale-notice {
+    color: var(--color-dark-grey);
+    padding: 8rem;
+  }
 }

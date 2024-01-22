@@ -83,6 +83,7 @@ const Header = () => {
             </p>
           </section>
         </section>
+
         <section className="menu__header">
           <NavLink to="/" id="home" className="btn__nav">
             <img
@@ -141,6 +142,7 @@ const Header = () => {
                   Inscription
                 </NavLink>
               </>
+
             )}
           </nav>
         </section>

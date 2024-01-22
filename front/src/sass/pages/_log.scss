@@ -14,27 +14,27 @@ LOG
 }
 
 .login__box {
-  width: 30%;
+  width: 80%;
   background: var(--color-cream);
-  padding: 2rem 5rem;
+  padding: 2rem 3rem;
   box-shadow: var(--box-shadow);
   text-align: center;
   border-radius: 5px;
-}
-.login__box h2 {
-  margin-bottom: 3rem;
-  color: var(--color-dark-green);
+  & h2 {
+    margin-bottom: 3rem;
+    color: var(--color-dark-green);
+  }
 }
 .textbox {
   position: relative;
   margin-bottom: 2rem;
-}
-.textbox input {
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: var(--color-white);
+  & input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--color-white);
+  }
 }
 
 .forgot-password {
@@ -43,9 +43,9 @@ LOG
   margin-top: 3rem;
   color: var(--color-dark-green);
   cursor: pointer;
-}
-.forgot-password:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .errorLabel {
@@ -53,31 +53,51 @@ LOG
   color: var(--color-orange);
 }
 
+/* **
+RESPONSIVE
+** */
+
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .login__box {
+    width: 60%;
+    padding: 2rem 5rem;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .login__box {
+    width: 40%;
+    padding: 2rem 5rem;
+  }
+}
+
+
 /* *****************************************************************
 REGISTER
 ***************************************************************** */
 .register__box {
-
-  width: 40%;
+  width: 80%;
   height: fit-content;
   margin: 5rem 0;
   background: var(--color-cream);
-  padding: 2rem 5rem;
+  padding: 2rem 3rem;
   box-shadow: var(--box-shadow);
   border-radius: 5px;
-  color: var(--color-dark-grey)
-}
-
-.register__box h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-  color: var(--color-dark-green);
+  color: var(--color-dark-grey);
+    & h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--color-dark-green);
+    }
 }
 
 .register__box form {
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
+  & label {
+    font-weight: bold;
+  }
 }
 
 .register__box--input {
@@ -87,12 +107,27 @@ REGISTER
   border-radius: 5px;
   background-color: var(--color-white);
 }
-.register__box label {
-  font-weight: bold;
-}
 
 .note {
   font-size: 1.3rem;
   line-height: 1.3rem;
   color: var(--color-grey);
+}
+
+/* **
+RESPONSIVE
+** */
+
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .register__box {
+    width: 60%;
+    padding: 2rem 5rem;
+  }
+}
+
+@media screen and (min-width: 960px){
+  .register__box {
+    width: 40%;
+    padding: 2rem 5rem;
+  }
 }

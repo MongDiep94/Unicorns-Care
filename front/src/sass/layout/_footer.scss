@@ -14,19 +14,23 @@
 .credits {
   margin-bottom: 1rem;
     a {
-      margin-right: 2rem;
+      margin-right: 1rem;
+      margin-left: 1rem;
     }
 }
 
 .footer__nav {
   color: var(--color-cream);
-  margin-left: 3rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
     &:hover {
       opacity: 0.6;
     }
 }
 
-
+/* *****************************************************************
+RESPONSIVE
+***************************************************************** */
 
 @media screen and (min-width: 480px) and (max-width: 960px) {
   .footer {
@@ -34,6 +38,12 @@
   }
   .credits {
     margin-bottom: 0;
+    margin-right: 2rem;
+    margin-left: 0;
+  }
+  .footer__nav {
+    margin-left: 3rem;
+    margin-right: 0;
   }
 }
 
@@ -43,5 +53,12 @@
   }
   .credits {
     margin-bottom: 0;
+    margin-right: 2rem;
+    margin-left: 0;
+  }
+  .footer__nav {
+    margin-left: 3rem;
+    margin-right: 0;
+
   }
 }
