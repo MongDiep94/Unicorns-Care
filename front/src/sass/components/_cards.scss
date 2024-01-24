@@ -38,6 +38,7 @@ CARD USER
 }
 .card {
   position: relative;
+  display: grid;
   border-radius: 5px;
   place-items: end center;
   height: 50vh;
