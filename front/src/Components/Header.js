@@ -5,6 +5,8 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 const Header = () => {
+  // Burger fermé par défaut
+  const[showBurger, SetShowBurger] = useState(false)
   const [user, setUser] = useState([]);
   const [admin, setAdmin] = useState(false);
   const navigate = useNavigate();
@@ -31,14 +33,13 @@ const Header = () => {
     }
   }, [userId, sessionToken]);
 
-  const handleLogOut = () => {
-    Cookies.remove("userId");
-    Cookies.remove("sessionToken");
-    setAdmin(false);
-    navigate("/");
-  };
+  // Menu Burger
+  const handleShowBurger = () => {
+    // Menu Burger s'active seulement si valeur différent de false
+    SetShowBurger(!showBurger)
+  }
 
-  //Interlignage
+  // Interlignage
   const handleLineLargeClick = (e) => {
     document.body.style.lineHeight = "3rem";
     document.body.style.fontSize = "2rem";
@@ -46,6 +47,14 @@ const Header = () => {
   const handleLineNormalClick = (e) => {
     document.body.style.lineHeight = "1.15";
     document.body.style.fontSize = "1.6rem";
+  };
+
+  // Déconnexion
+  const handleLogOut = () => {
+    Cookies.remove("userId");
+    Cookies.remove("sessionToken");
+    setAdmin(false);
+    navigate("/");
   };
 
   return (
@@ -84,68 +93,78 @@ const Header = () => {
           </section>
         </section>
 
-        <section className="menu__header">
-          <NavLink to="/" id="home" className="btn__nav">
+        <nav className={`navbar ${showBurger ? "show-nav" : "hide-nav"}`}>
+          <NavLink to="/" id="home" className="navbar__logo">
             <img
               src="../images/Logo_UnicornsCare_cream.svg"
               alt="Logo Unicorns & Care"
               aria-label="Logo Unicorns & Care"
             />
           </NavLink>
-          <nav className="navbar">
-            <NavLink
-              to="/recherche-sitters"
-              id="search-sitters"
-              className="btn__nav"
-            >
-              Trouver un pet Sitter
-            </NavLink>
-            <NavLink
-              to="/recherche-creatures"
-              id="search-creatures"
-              className="btn__nav"
-            >
-              Trouver une créature
-            </NavLink>
+          <ul className="navbar__links">
+            <li className="navbar__item">
+              <NavLink
+                to="/recherche-sitters"
+                id="search-sitters"
+                className="navbar__link"
+              >
+                Trouver un pet Sitter
+              </NavLink>
+            </li>
+            <li className="navbar__item">
+              <NavLink
+                to="/recherche-creatures"
+                id="search-creatures"
+                className="navbar__link"
+              >
+                Trouver une créature
+              </NavLink>
+            </li>
             {userId || sessionToken ? (
               <>
-                <NavLink
-                  to={"/se-connecter"}
-                  onClick={handleLogOut}
-                  id="logout"
-                  className="btn__nav"
-                >
-                  Se déconnecter
-                </NavLink>
-                <NavLink
-                  to={`/dashboard/${_id}`}
-                  id="dashboard"
-                  className="btn__nav"
-                >
-                  <img
-                    className="navbar__avatar"
-                    src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-                    alt={`Photo de ${firstName}`}
-                  />
-                </NavLink>
+                <li className="navbar__item">
+                  <NavLink
+                    to={"/se-connecter"}
+                    onClick={handleLogOut}
+                    id="logout"
+                    className="navbar__link"
+                  >
+                    Se déconnecter
+                  </NavLink>
+                </li>
+                <li className="navbar__item">
+                  <NavLink
+                    to={`/dashboard/${_id}`}
+                    id="dashboard"
+                    className="navbar__link"
+                  >
+                    <img
+                      className="navbar__avatar"
+                      src={`${process.env.REACT_APP_API}/images/users/${photo}`}
+                      alt={`Photo de ${firstName}`}
+                    />
+                  </NavLink>
+                </li>
               </>
             ) : (
               <>
-                <NavLink to="/se-connecter" id="login" className="btn__nav">
+                <NavLink to="/se-connecter" id="login" className="navbar__link">
                   Connexion
                 </NavLink>
                 <NavLink
                   to="/s-inscrire"
                   id="register"
-                  className="btn btn__camel margin-left-3"
+                  className="navbar__link btn btn__camel"
                 >
                   Inscription
                 </NavLink>
               </>
-
             )}
-          </nav>
-        </section>
+          </ul>
+          <button className="navbar__burger" onClick={handleShowBurger}>
+            <span className="burger--line"></span>
+          </button>
+        </nav>
       </header>
     </>
   );

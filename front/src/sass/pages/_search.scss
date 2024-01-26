@@ -6,9 +6,9 @@
   justify-content: space-between;
   row-gap: 2rem;
   align-items: center;
-  padding: 8rem 2rem 3.5rem 2rem;
+  padding: 10rem 2rem 3.5rem 2rem;
   background-image: url(../images/bg_green.svg);
-  background-size: 50%;
+  background-size: 100%;
   background-color: var(--color-dark-green);
 }
 
@@ -71,6 +71,7 @@ RESPONSIVE
 ***************************************************************** */
 @media screen and (min-width: 480px) and (max-width: 960px) {
   .search__banner {
+    background-size: 80%;
     padding: 17rem 2rem 5rem 2rem;
     flex-direction: row;
   }
@@ -84,6 +85,7 @@ RESPONSIVE
 
 @media screen and (min-width: 960px){
   .search__banner {
+    background-size: 50%;
     padding: 20rem 20rem 5rem 20rem;
     flex-direction: row;
   }

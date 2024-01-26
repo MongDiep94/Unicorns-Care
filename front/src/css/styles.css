@@ -348,8 +348,8 @@ body {
   }
 }
 /* unstyled */
-ol.unstyled,
-ul.unstyled {
+ol,
+ul {
   padding: 0;
   list-style: none;
 }
@@ -588,7 +588,7 @@ a {
   justify-content: space-around;
   padding: 10rem 0 5rem 0;
   background-image: url(../images/bg_green.svg);
-  background-size: 80%;
+  background-size: 100%;
   background-color: var(--color-dark-green);
 }
 
@@ -623,7 +623,7 @@ RESPONSIVE
     flex-direction: row;
     justify-content: space-around;
     padding: 15rem 5rem 5rem 5rem;
-    background-size: 50%;
+    background-size: 80%;
   }
   .intro {
     text-align: center;
@@ -640,7 +640,7 @@ RESPONSIVE
     padding-top: 15rem;
     padding-bottom: 2rem;
     background-image: url(../images/bg_green.svg);
-    background-size: 50%;
+    background-size: 80%;
     background-color: var(--color-dark-green);
   }
 }
@@ -1190,32 +1190,46 @@ RESPONSIVE
   background-color: var(--color-gold);
 }
 
-.menu__header {
-  padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: none;
-}
-.menu__header img {
+.navbar__logo {
   width: 50%;
-  margin-top: 2rem;
-}
-.menu__header a {
-  margin: 0;
 }
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  min-height: auto;
+  padding: 2rem;
+  width: 100vw;
+  color: var(--color-cream);
+  background-image: url(../images/bg_green.svg);
+  background-size: 100%;
 }
 
-.btn__nav {
-  margin-left: 3rem;
+.navbar__links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: -100vw;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  padding: 2rem;
+  margin: 0;
+  visibility: hidden;
+  transition: all 0.8s ease-out;
 }
 
-.btn__nav:hover {
+.navbar__link {
+  display: block;
+  padding: 1.5rem;
+  font-size: 5vw;
+}
+.navbar__link:hover {
   opacity: 0.6;
   transition: 0.3 ease-in-out;
 }
@@ -1227,49 +1241,125 @@ RESPONSIVE
   border-radius: 50%;
 }
 
+.navbar__burger {
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  display: block;
+}
+.navbar__burger:hover {
+  cursor: pointer;
+}
+
+.burger--line,
+.burger--line::before,
+.burger--line::after {
+  display: block;
+  width: 3.5rem;
+  height: 0.2rem;
+  position: relative;
+  border-radius: 0.5rem;
+  background-color: var(--color-cream);
+  transition: all 0.5s ease-in-out;
+}
+
+.burger--line::before,
+.burger--line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.burger--line::before {
+  transform: translateY(-1rem);
+}
+
+.burger--line::after {
+  transform: translateY(1rem);
+}
+
+.show-nav .navbar__links {
+  width: 100vw;
+  top: 0;
+  right: 0;
+  visibility: visible;
+  background: var(--color-dark-green);
+}
+
+.show-nav .burger--line {
+  width: 0;
+  background: transparent;
+}
+
+.show-nav .burger--line::before {
+  transform: rotate(45deg);
+}
+
+.show-nav .burger--line::after {
+  transform: rotate(-45deg);
+}
+
+.show-nav .navbar__item::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 2rem;
+  height: 0.3rem;
+  background: var(--color-cream);
+}
+
+.show-nav .navbar__item:last-child:after {
+  display: none;
+}
+
 /* RESPONSIVE */
-@media screen and (min-width: 480px) and (max-width: 960px) {
-  .menu__header {
-    padding: 0 5rem;
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-    justify-content: space-between;
-    background-color: none;
-  }
-  .menu__header img {
-    width: 100%;
+@media screen and (min-width: 960px) {
+  .navbar__logo {
+    width: 20%;
     margin-top: 0;
   }
   .navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100vw;
+    min-height: auto;
+    padding: 1rem;
+    color: var(--color-cream);
+    background-image: url(../images/bg_green.svg);
+    background-size: 50%;
+  }
+  .navbar__links {
     display: flex;
     flex-direction: row;
-    column-gap: 4rem;
-    justify-content: space-around;
+    justify-content: end;
     align-items: center;
-    text-align: center;
+    position: unset;
+    right: -100vw;
+    padding: 0;
+    visibility: visible;
+    background-color: transparent;
   }
-}
-@media screen and (min-width: 960px) {
-  .menu__header {
-    padding: 0 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: none;
-  }
-  .menu__header img {
-    width: 100%;
-    margin-top: 0;
-  }
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: right;
-  }
-  .navbar a {
+  .navbar__links a {
     margin-left: 3rem;
+  }
+  .show-nav .navbar__links {
+    right: 0;
+    width: 100vw;
+    visibility: visible;
+  }
+  .navbar__link {
+    font-size: var(--size-text);
+    padding: 0 0.3rem;
+    color: inherit;
+  }
+  .navbar__burger {
+    display: none;
   }
 }
 /* *****************************************************************
@@ -1348,27 +1438,9 @@ button:focus {
 }
 
 /* RESPONSIVE */
-@media screen and (min-width: 480px) and (max-width: 960px) {
-  .menu__header {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: none;
-  }
-}
 @media screen and (min-width: 960px) {
   .accessibility {
     display: block;
-  }
-  .menu__header {
-    padding: 0 5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: none;
   }
 }
 .footer {
@@ -2154,9 +2226,9 @@ CARD REVIEW
   justify-content: space-between;
   row-gap: 2rem;
   align-items: center;
-  padding: 8rem 2rem 3.5rem 2rem;
+  padding: 10rem 2rem 3.5rem 2rem;
   background-image: url(../images/bg_green.svg);
-  background-size: 50%;
+  background-size: 100%;
   background-color: var(--color-dark-green);
 }
 
@@ -2216,6 +2288,7 @@ RESPONSIVE
 ***************************************************************** */
 @media screen and (min-width: 480px) and (max-width: 960px) {
   .search__banner {
+    background-size: 80%;
     padding: 17rem 2rem 5rem 2rem;
     flex-direction: row;
   }
@@ -2228,6 +2301,7 @@ RESPONSIVE
 }
 @media screen and (min-width: 960px) {
   .search__banner {
+    background-size: 50%;
     padding: 20rem 20rem 5rem 20rem;
     flex-direction: row;
   }
