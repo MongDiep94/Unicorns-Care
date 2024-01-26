@@ -10,6 +10,7 @@ import axios from "axios";
 const Home = () => {
   // settings slider Slick
   const settings = {
+    arrows: false,
     dots: true,
     fade: true,
     centerMode: true,

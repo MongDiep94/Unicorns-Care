@@ -107,8 +107,8 @@
 .show-nav .navbar__item::after {
   content: "";
   display: block;
-  margin: 0 auto;
-  width: 2rem;
+  margin: 2rem auto;
+  width: 2.5rem;
   height: 0.3rem;
   background: var(--color-cream);
 }
