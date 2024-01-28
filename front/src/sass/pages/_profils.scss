@@ -5,15 +5,15 @@ PROFIL SITTER
   height: 7rem;
   background-image: url(../images/bg_green.svg);
   background-size: 50%;
+  visibility: hidden;
 }
 
 .profil {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   color: var(--color-dark-grey);
   background-color: var(--color-white);
-
   & p {
     margin: 0.5rem 0;
   }
@@ -24,7 +24,7 @@ PROFIL SITTER
 }
 
 .profil__img {
-  width: 30%;
+  width: 100%;
   line-height: 0;
     & img {
       height: 100%;
@@ -34,14 +34,17 @@ PROFIL SITTER
 
 .box__infos {
   padding: 0 2rem 2rem 2rem;
-  width: 40%;
+  width: 100%;
 }
+
 .sitter__rating {
   display: flex;
     & p {
+      font-weight: 700;
       margin-right: 3rem;
     }
 }
+
 .box__specie {
   display: flex;
   flex-wrap: wrap;
@@ -51,11 +54,14 @@ PROFIL SITTER
 }
 
 .box__availability {
-  width: 33%;
-  padding-left: 2rem;
-  margin: 4rem 4rem 2rem 0;
+  width: 100%;
+  padding: 0 2rem 3rem 2rem;
+  margin: 1rem 0;
   height: min-content;
   text-align: center;
+  & a {
+    width: 100%;
+  }
 }
 
 .profil__table {
@@ -77,12 +83,17 @@ PROFIL SITTER
       background-color: var(--color-cream);
     }
     & th, td {
-      padding: 1rem 0;
+      padding: 1rem 2rem;
       border-bottom: 1.5rem solid var(--color-cream);
       background-color: var(--color-white);
     }
 }
 
+.days,
+.hours {
+  font-weight: 700;
+  color: var(--color-grey)
+}
 .days {
   padding-left: 0.5rem;
   text-align: left;
@@ -100,20 +111,110 @@ PROFIL SITTER
 
 .box__details {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  margin: 5rem 0;
+  column-gap: 5rem;
+  margin: 3rem 2rem;
 }
 
 .box__reviews {
-  width: 66%;
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+  & h2 {
+    color: var(--color-orange);
+    margin-top: 0;
+  }
 }
 
 iframe {
-  width: 33%;
+  width: 100%;
   max-height: 500px;
   border: 0;
 }
+
+/*
+RESPONSIVE
+ */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .profil {
+    margin: 0 5rem;
+  }
+
+  .profil__table {
+      & th, td {
+        padding: 1rem;
+      }
+  }
+
+  .box__infos {
+    padding: 0 5rem;
+  }
+
+  .box__availability {
+    padding: 2rem 5rem 5rem 5rem;
+  }
+
+  .box__details {
+    margin: 5rem;
+  }
+
+  .box__reviews {
+    margin-top: 5rem;
+    & h2 {
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 960px){
+  .profil {
+    flex-direction: row;
+  }
+  .profil__img {
+    width: 30%;
+  }
+
+  .box__infos {
+    width: 40%;
+  }
+
+  .box__availability {
+    width: 33%;
+    padding: 0 2rem 0 2rem;
+    margin: 4rem 2rem 2rem 0;
+  }
+
+  .profil__table {
+      & th, td {
+        padding: 1rem;
+      }
+  }
+
+  .box__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5rem 0;
+  }
+
+  .box__reviews {
+    width: 66%;
+    text-align: start;
+    margin: 0;
+    & h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+  }
+
+  iframe {
+    width: 33%;
+    max-height: 500px;
+    border: 0;
+  }
+}
+
 
 /* *****************************************************************
 PROFIL PET
@@ -141,35 +242,4 @@ PROFIL PET
   background-color: var(--color-cream);
   border: 0.1rem solid var(--color-orange);
   background-color: var(--color-white);
-}
-
-
-/* *****************************************************************
-CARD REVIEW
-***************************************************************** */
-.review__card {
-  display: flex;
-  flex-direction: row;
-  color: var(--color-dark-grey);
-  padding: 2rem 0;
-  margin-right: 4rem;
-  border-bottom: 2px solid var(--color-dark-green);
-    & h3,
-    & p {
-      margin: 1rem 0;
-    }
-}
-.review__date {
-  color: var(--color-grey);
-}
-.review__rating{
-  margin-top: 0;
-  color: var(--color-gold);
-  font-size: var(--size-title-2);
-}
-.review__photo {
-  width: 10rem;
-  height: 10rem;
-  margin-right: 2rem;
-  border-radius: 100%;
 }

@@ -11,11 +11,10 @@ const CardOwnerReviewer = ({ownerReviewer}) => {
   return (
     <article className="review__card">
       <img
-        className="review__photo"
         src={`${process.env.REACT_APP_API}/images/users/${photo}`}
         alt={`Photo reviewer ${firstName}`}
       />
-      <section>
+      <div>
         <p className="review__rating">
           <FontAwesomeIcon icon={faStar} />
           <FontAwesomeIcon icon={faStar} />
@@ -30,7 +29,7 @@ const CardOwnerReviewer = ({ownerReviewer}) => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
           auctor elit sed vulputate mi sit amet mauris.
         </p>
-      </section>
+      </div>
     </article>
   );
 };

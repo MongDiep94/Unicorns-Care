@@ -344,3 +344,58 @@ RESPONSIVE
     border-radius: 100%;
   }
 }
+
+/* *****************************************************************
+CARD REVIEW
+***************************************************************** */
+
+.review__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-dark-grey);
+  padding: 2rem 0;
+  border-bottom: 2px solid var(--color-dark-green);
+    & h3,
+    & p {
+      margin: 1rem 0;
+    }
+    & img {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 100%;
+    }
+}
+.review__date {
+  color: var(--color-grey);
+}
+.review__rating{
+  margin-top: 0;
+  color: var(--color-gold);
+  font-size: var(--size-title-2);
+}
+
+
+/*
+RESPONSIVE
+ */
+ @media screen and (min-width: 480px) and (max-width: 960px) {
+  .review__card {
+      & img {
+        margin-top: 2rem;
+        width: 15rem;
+        height: 15rem;
+      }
+  }
+}
+
+@media screen and (min-width: 960px){
+  .review__card {
+    flex-direction: row;
+    align-items:start;
+    text-align: start;
+      & img {
+        margin-right: 2rem;
+      }
+  }
+}
