@@ -17,7 +17,7 @@ const CardSitterReviewer = ({sitterReviewer}) => {
         src={`${process.env.REACT_APP_API}/images/users/${photo}`}
         alt={`Photo reviewer ${firstName}`}
       />
-      <section>
+      <div>
         <p className="review__rating">
           <FontAwesomeIcon icon={faStar} />
           <FontAwesomeIcon icon={faStar} />
@@ -32,7 +32,7 @@ const CardSitterReviewer = ({sitterReviewer}) => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
           auctor elit sed vulputate mi sit amet mauris.
         </p>
-      </section>
+      </div>
     </article>
   );
 };

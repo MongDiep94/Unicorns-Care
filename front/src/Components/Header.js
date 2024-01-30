@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Header = () => {
   // Burger fermé par défaut
-  const[showBurger, SetShowBurger] = useState(false)
+  const [showBurger, SetShowBurger] = useState(false);
   const [user, setUser] = useState([]);
   const [admin, setAdmin] = useState(false);
   const navigate = useNavigate();
@@ -36,8 +36,8 @@ const Header = () => {
   // Menu Burger
   const handleShowBurger = () => {
     // Menu Burger s'active seulement si valeur différent de false
-    SetShowBurger(!showBurger)
-  }
+    SetShowBurger(!showBurger);
+  };
 
   // Interlignage
   const handleLineLargeClick = (e) => {
@@ -61,7 +61,7 @@ const Header = () => {
     <>
       <header>
         <section className="accessibility">
-          <section className="nav__access">
+          <div className="nav__access">
             <a href="#home">Home page</a>
             <a href="#">Haut de page</a>
             <a href="#search-sitters">recherche pet sitters</a>
@@ -77,9 +77,9 @@ const Header = () => {
                 <a href="#register">Inscription</a>
               </>
             )}
-          </section>
+          </div>
 
-          <section className="container nav__top">
+          <div className="nav__top">
             <p>
               <strong>Interlignage :</strong>{" "}
               <button id="line-normal" onClick={handleLineNormalClick}>
@@ -90,7 +90,7 @@ const Header = () => {
                 augmenté
               </button>
             </p>
-          </section>
+          </div>
         </section>
 
         <nav className={`navbar ${showBurger ? "show-nav" : "hide-nav"}`}>
@@ -149,19 +149,22 @@ const Header = () => {
             ) : (
               <>
                 <li className="navbar__item">
-                <NavLink
-                to="/se-connecter"
-                id="login"
-                className="navbar__link">
-                  Connexion
-                </NavLink>
-                <NavLink
-                  to="/s-inscrire"
-                  id="register"
-                  className="navbar__link"
-                >
-                  Inscription
-                </NavLink>
+                  <NavLink
+                    to="/se-connecter"
+                    id="login"
+                    className="navbar__link"
+                  >
+                    Connexion
+                  </NavLink>
+                </li>
+                <li className="navbar__item">
+                  <NavLink
+                    to="/s-inscrire"
+                    id="register"
+                    className="navbar__link"
+                  >
+                    Inscription
+                  </NavLink>
                 </li>
               </>
             )}

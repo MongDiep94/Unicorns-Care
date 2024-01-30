@@ -15,7 +15,6 @@ const DashboardAdmin = () => {
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-
     axios.get(`${process.env.REACT_APP_API}/users`).then((res) => {
       setUsers(res.data);
     });
@@ -26,9 +25,11 @@ const DashboardAdmin = () => {
   };
 
   const handleDelete = async (userId) => {
-    console.log('userId', userId)
+    console.log("userId", userId);
 
-    const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce profil ?");
+    const confirmed = window.confirm(
+      "Êtes-vous sûr de vouloir supprimer ce profil ?"
+    );
 
     if (!confirmed) {
       return;
@@ -45,11 +46,9 @@ const DashboardAdmin = () => {
       setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
       // l'id du user supprimer force le reload du tableau utilisateurs
       setDeletedUserId(userId);
-
     } catch (error) {
       console.error("Error deleting user:", error);
     }
-
   };
 
   return (
@@ -82,17 +81,16 @@ const DashboardAdmin = () => {
                   <td>{user.lastName}</td>
                   <td>{user.pet && user.pet.name}</td>
                   <td>
-                    <button
-                    className="update"
-                    onClick={handleUpdate}>
+                    <button className="update" onClick={handleUpdate}>
                       <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
-                    {openModal && <ModalUpdate closeModal={setOpenModal}/>}
+                    {openModal && <ModalUpdate closeModal={setOpenModal} />}
                   </td>
                   <td>
                     <button
-                    className="delete"
-                    onClick={() => handleDelete(user._id)}>
+                      className="delete"
+                      onClick={() => handleDelete(user._id)}
+                    >
                       <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                   </td>

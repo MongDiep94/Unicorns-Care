@@ -2,7 +2,6 @@ import React from "react";
 import "../../css/styles.css";
 
 const CardTestimonial = ({ testimonials }) => {
-
   return (
     <article className="testimony__content">
       <img
@@ -17,7 +16,9 @@ const CardTestimonial = ({ testimonials }) => {
         tempor incididunt ut labore et dolore magna aliqua. Quis auctor elit sed
         vulputate mi sit amet mauris.
       </p>
-      <p className="testimony__owner">Mara, propriétaire de Nini, Octobre 2023</p>
+      <p className="testimony__owner">
+        Mara, propriétaire de Nini, Octobre 2023
+      </p>
     </article>
   );
 };

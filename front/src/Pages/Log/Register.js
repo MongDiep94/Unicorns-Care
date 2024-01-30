@@ -4,7 +4,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +27,6 @@ const Register = () => {
     if (e.target.name === "lastName") {
       setLastName(e.target.value);
     }
-
   };
 
   const handleSubmit = (e) => {
@@ -38,8 +36,8 @@ const Register = () => {
       firstName,
       lastName,
       email,
-      password
-    }
+      password,
+    };
 
     // Mettre les messages d'erreur à vide
     setEmailError("");
@@ -48,28 +46,31 @@ const Register = () => {
     // check pour les 2 inputs remplis
     if ("" === email) {
       setEmailError("Entrer votre addresse mail.");
-      console.log('email not empty');
+      console.log("email not empty");
       return;
     }
     // Regex vérif email
-    if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i.test(email)) {
+    if (
+      !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i.test(
+        email
+      )
+    ) {
       setEmailError("Entrer une adresse mail valide, svp.");
-      console.log('email OK');
+      console.log("email OK");
       return;
     }
 
     if ("" === password) {
       setPasswordError("Entrer un mot de passe.");
-      console.log('password not empty');
+      console.log("password not empty");
       return;
     }
 
     if (password.length < 7) {
       setPasswordError("Entrer un mot de passe de 8 caractères ou plus.");
-      console.log('password not OK');
+      console.log("password not OK");
       return;
     }
-
 
     axios
       .post(`${process.env.REACT_APP_API}/register`, userData)
@@ -91,7 +92,6 @@ const Register = () => {
           console.error("Error setting up the request:", error.message);
         }
       });
-
   };
   return (
     <main className="login__container">
@@ -103,7 +103,7 @@ const Register = () => {
           encType="multipart/form-data"
           onSubmit={handleSubmit}
         >
-          <label>Prénom</label>
+          <label for="firstName">Prénom</label>
           <input
             className="register__box--input"
             type="text"
@@ -111,7 +111,7 @@ const Register = () => {
             value={firstName}
             onChange={handleChange}
           />
-          <label>Nom</label>
+          <label for="lastName">Nom</label>
           <input
             className="register__box--input"
             type="text"
@@ -119,7 +119,7 @@ const Register = () => {
             value={lastName}
             onChange={handleChange}
           />
-          <label>Email</label>
+          <label for="email">Email</label>
           <input
             className="register__box--input"
             type="email"
@@ -130,7 +130,7 @@ const Register = () => {
           />
           <label className="errorLabel">{emailError}</label>
 
-          <label>Mot de passe *</label>
+          <label for="password">Mot de passe *</label>
           <input
             className="register__box--input"
             type="password"
@@ -140,12 +140,17 @@ const Register = () => {
             onChange={handleChange}
           />
           <span className="note margin-bottom-2">
-            * Au minimum 8 caratères, comprenant au moins 1 chiffre, 1 majuscule et 1
-            caractère spécial.
+            * Au minimum 8 caratères, comprenant au moins 1 chiffre, 1 majuscule
+            et 1 caractère spécial.
           </span>
-          <label className="errorLabel">{passwordError}</label>
 
-          <input type="submit" className="btn btn__orange" value={"Se connecter"} />
+          <label className="errorLabel" for="password">{passwordError}</label>
+
+          <input
+            type="submit"
+            className="btn btn__orange"
+            value={"Se connecter"}
+          />
 
           <NavLink to={"/se-connecter"} className="forgot-password">
             Déjà inscrit•e ?

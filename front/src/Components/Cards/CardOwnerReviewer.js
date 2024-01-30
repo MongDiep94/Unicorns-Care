@@ -1,12 +1,11 @@
-import React from 'react';
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const CardOwnerReviewer = ({ownerReviewer}) => {
+const CardOwnerReviewer = ({ ownerReviewer }) => {
   // Décomposition + condition d'objet vide si pas de données
   const { name, owner } = ownerReviewer || {};
   const { firstName, photo } = owner[0] || {};
-
 
   return (
     <article className="review__card">
@@ -22,7 +21,10 @@ const CardOwnerReviewer = ({ownerReviewer}) => {
           <FontAwesomeIcon icon={faStar} />
           <FontAwesomeIcon icon={faStar} />
         </p>
-        <h3 className="size-text">{firstName && firstName.length > 0 && firstName}, propiètaire de {name}</h3>
+        <h3 className="size-text">
+          {firstName && firstName.length > 0 && firstName}, propiètaire de{" "}
+          {name}
+        </h3>
         <p className="review__date">Juillet 2023</p>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

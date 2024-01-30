@@ -95,7 +95,7 @@ const Login = ({socket}) => {
               value={email}
               onChange={handleChange}
             />
-            <label className="errorLabel">{emailError}</label>
+            <label className="errorLabel" for="email">{emailError}</label>
           </section>
 
           <section className="textbox">
@@ -106,7 +106,7 @@ const Login = ({socket}) => {
               value={password}
               onChange={handleChange}
             />
-            <label className="errorLabel">{passwordError}</label>
+            <label className="errorLabel" for="password">{passwordError}</label>
           </section>
 
           <input type="submit" className="btn btn__orange" value={"Se connecter"} />

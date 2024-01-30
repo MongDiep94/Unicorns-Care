@@ -9,7 +9,6 @@ const ChatFooter = ({ socket }) => {
   const [message, setMessage] = useState("");
   const userFirstName = Cookies.get("userFirstName");
 
-
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (message.trim() && userFirstName) {

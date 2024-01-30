@@ -3,7 +3,6 @@ import "../../css/styles.css";
 import { NavLink } from "react-router-dom";
 
 const CardPet = ({ onePet }) => {
-
   const { name, specie, element, age, image, _id } = onePet;
 
   return (
@@ -19,14 +18,12 @@ const CardPet = ({ onePet }) => {
           src={`${process.env.REACT_APP_API}/images/pets/${image}`}
           alt={`${name}, ${specie} ${element}`}
         />
-        <div className="card__content">
-          <div className="card__content--container">
+        <section className="card__content">
+          <span className="card__content--container">
             <h2 className="card__title">{name}</h2>
-            <section className="card__pet__description">
-              <div>
-                <p>{specie}</p>
-                <p>{age} ans</p>
-              </div>
+            <div className="card__pet__description">
+              <p>{specie}</p>
+              <p>{age} ans</p>
               {element === "Glace" && (
                 <img
                   className="picto__element"
@@ -62,8 +59,8 @@ const CardPet = ({ onePet }) => {
                   alt={`Icône élément fire`}
                 />
               )}
-            </section>
-          </div>
+            </div>
+          </span>
           <NavLink
             to={`/profil-pet/${_id}`}
             className="card__button"
@@ -71,7 +68,7 @@ const CardPet = ({ onePet }) => {
           >
             Voir le profil
           </NavLink>
-        </div>
+        </section>
       </article>
     </>
   );

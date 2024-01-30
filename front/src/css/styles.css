@@ -780,6 +780,7 @@ CARD USER
   justify-content: center;
   align-items: center;
   margin: 1rem 1.5rem auto 1.5rem;
+  color: var(--color-orange);
 }
 
 .arabesque1--before {
@@ -1380,7 +1381,7 @@ RESPONSIVE
     position: fixed;
     width: 100vw;
     min-height: auto;
-    padding: 1rem;
+    padding: 1rem 2rem;
     color: var(--color-cream);
     background-image: url(../images/bg_green.svg);
     background-size: 50%;
@@ -1473,13 +1474,11 @@ button:focus {
   text-align: end;
   color: var(--color-cream);
 }
-
 .nav__top button {
   color: var(--color-cream);
   border: 0;
   background-color: transparent;
 }
-
 .nav__top button:hover {
   opacity: 0.8;
 }

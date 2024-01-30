@@ -133,7 +133,7 @@
     position: fixed;
     width: 100vw;
     min-height: auto;
-    padding: 1rem;
+    padding: 1rem 2rem;
     color: var(--color-cream);
     background-image: url(../images/bg_green.svg);
     background-size: 50%;
@@ -225,16 +225,16 @@ button:focus {
 .nav__top {
   text-align: end;
   color: var(--color-cream);
+  & button {
+    color: var(--color-cream);
+    border: 0;
+    background-color: transparent;
+  }
+  & button:hover {
+    opacity: 0.8;
+  }
 }
 
-.nav__top button {
-  color: var(--color-cream);
-  border: 0;
-  background-color: transparent;
-}
-.nav__top button:hover {
-  opacity: 0.8;
-}
 
 #line-large {
   cursor: pointer;

@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/styles.css";
 
-
 const LegalNotice = () => {
   return (
     <>

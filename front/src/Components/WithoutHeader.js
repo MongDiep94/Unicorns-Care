@@ -9,4 +9,4 @@ const WithoutHeader = () => {
   );
 };
 
-export default WithoutHeader
+export default WithoutHeader;

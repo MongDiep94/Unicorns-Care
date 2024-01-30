@@ -10,19 +10,19 @@ const ChatBody = ({ messages }) => {
       <section className="message__container">
         {messages.map((message) =>
           message.name === userFirstName ? (
-            <section className="sender__box" key={message.id}>
+            <div className="sender__box" key={message.id}>
               <p className="sender__name">Moi :</p>
-              <div className="message__sender">
+              <span className="message__sender">
                 <p>{message.text}</p>
-              </div>
-            </section>
+              </span>
+            </div>
           ) : (
-            <section className="recipient__box" key={message.id}>
+            <div className="recipient__box" key={message.id}>
               <p className="recipient__name">{message.name} :</p>
               <div className="message__recipient">
                 <p>{message.text}</p>
               </div>
-            </section>
+            </div>
           )
         )}
       </section>

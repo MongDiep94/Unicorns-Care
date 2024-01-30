@@ -41,60 +41,54 @@ const ProfilPet = () => {
         </article>
         <article className="box__infos">
           <h1 className="green">{name}</h1>
-          <section>
-            <p>
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                className="margin-right-1 orange"
-              />{" "}
-              {address && address.length > 0 && address[0].city}
-            </p>
-            <section className="box__specie">
-              <p className="box bg--color-grey">{age} ans</p>
-              <p className="box bg--color-grey">{gender}</p>
-              <p className="box bg--color-grey">{specie}</p>
-              <div>
-                {element === "Glace" && (
-                  <img
-                    className="picto__element"
-                    src={`${process.env.REACT_APP_API}/images/pictos/element_ice.svg`}
-                    alt={`Icône élément ice`}
-                  />
-                )}
-                {element === "Feu" && (
-                  <img
-                    className="picto__element"
-                    src={`${process.env.REACT_APP_API}/images/pictos/element_fire.svg`}
-                    alt={`Icône élément fire`}
-                  />
-                )}
-                {element === "Eau" && (
-                  <img
-                    className="picto__element"
-                    src={`${process.env.REACT_APP_API}/images/pictos/element_water.svg`}
-                    alt={`Icône élément fire`}
-                  />
-                )}
-                {element === "Terre" && (
-                  <img
-                    className="picto__element"
-                    src={`${process.env.REACT_APP_API}/images/pictos/element_earth.svg`}
-                    alt={`Icône élément fire`}
-                  />
-                )}
-                {element === "Air" && (
-                  <img
-                    className="picto__element"
-                    src={`${process.env.REACT_APP_API}/images/pictos/element_wind.svg`}
-                    alt={`Icône élément fire`}
-                  />
-                )}
-              </div>
-            </section>
-          </section>
-          <section>
-            <p>{bio}</p>
-          </section>
+          <p>
+            <FontAwesomeIcon
+              icon={faLocationDot}
+              className="margin-right-1 orange"
+            />{" "}
+            {address && address.length > 0 && address[0].city}
+          </p>
+          <div className="box__specie">
+            <p className="box bg--color-grey">{age} ans</p>
+            <p className="box bg--color-grey">{gender}</p>
+            <p className="box bg--color-grey">{specie}</p>
+            {element === "Glace" && (
+              <img
+                className="picto__element"
+                src={`${process.env.REACT_APP_API}/images/pictos/element_ice.svg`}
+                alt={`Icône élément ice`}
+              />
+            )}
+            {element === "Feu" && (
+              <img
+                className="picto__element"
+                src={`${process.env.REACT_APP_API}/images/pictos/element_fire.svg`}
+                alt={`Icône élément fire`}
+              />
+            )}
+            {element === "Eau" && (
+              <img
+                className="picto__element"
+                src={`${process.env.REACT_APP_API}/images/pictos/element_water.svg`}
+                alt={`Icône élément fire`}
+              />
+            )}
+            {element === "Terre" && (
+              <img
+                className="picto__element"
+                src={`${process.env.REACT_APP_API}/images/pictos/element_earth.svg`}
+                alt={`Icône élément fire`}
+              />
+            )}
+            {element === "Air" && (
+              <img
+                className="picto__element"
+                src={`${process.env.REACT_APP_API}/images/pictos/element_wind.svg`}
+                alt={`Icône élément fire`}
+              />
+            )}
+          </div>
+          <p>{bio}</p>
         </article>
         <article className="box__availability">
           <div className="guard">

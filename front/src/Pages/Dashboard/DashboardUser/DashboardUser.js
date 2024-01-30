@@ -35,7 +35,7 @@ const DashboardUser = () => {
     axios.get(`${process.env.REACT_APP_API}/user/${id}`).then((res) => {
       setUser(res.data);
       setAdmin(res.data.role);
-      console.log('user id', id)
+      console.log("user id", id);
     });
   }, [id]); // rechargement 1 fois
 
@@ -80,7 +80,6 @@ const DashboardUser = () => {
       Cookies.remove("sessionToken");
       setAdmin(false);
       navigate("/");
-
     } catch (error) {
       console.error("Error deleting user:", error);
     }
@@ -108,29 +107,29 @@ const DashboardUser = () => {
                 className="dashboard__separator"
                 value="profil"
                 onClick={() => handleClick("profil")}
-                >
+              >
                 Profil
               </button>
             </li>
-            {admin === "admin" &&
+            {admin === "admin" && (
               <li>
                 <button
-                    title="Bouton de l'onglet Profil"
-                    className="dashboard__separator"
-                    value="profil"
-                    onClick={() => handleClick("admin")}
-                  >
-                    Tableau de bord
-                  </button>
+                  title="Bouton de l'onglet Profil"
+                  className="dashboard__separator"
+                  value="profil"
+                  onClick={() => handleClick("admin")}
+                >
+                  Tableau de bord
+                </button>
               </li>
-            }
+            )}
             <li>
               <button
                 title="Bouton de l'onglet Messages"
                 className="dashboard__separator"
                 value="messages"
                 onClick={() => handleClick("chatroom")}
-                >
+              >
                 Messages
               </button>
             </li>
@@ -150,7 +149,7 @@ const DashboardUser = () => {
           {showAdmin && <DashboardAdmin />}
           {showProfil && <ProfilUser id={id} />}
           {showChatroom && <Chatroom socket={socket} />}
-         </div>
+        </div>
       </main>
     </>
   );

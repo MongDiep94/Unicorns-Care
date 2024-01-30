@@ -53,7 +53,6 @@ const Home = () => {
   const [lastSitters, setLastSitters] = useState([]);
 
   useEffect(() => {
-
     axios.get(`${process.env.REACT_APP_API}/last-pets`).then((res) => {
       setLastPets(res.data);
     });
@@ -68,7 +67,7 @@ const Home = () => {
       <Banner />
       <main>
         <section className="petsitters">
-          <h1 className="orange">
+          <h1>
             <img
               className="arabesque1--before"
               src={`../images/pictos/arabesque1_g_orange.svg`}
@@ -95,19 +94,19 @@ const Home = () => {
           </NavLink>
         </section>
         <section className="creatures">
-          <h1 className="cream">
+          <h1>
             <img
-                className="arabesque2--before"
-                src={`../images/pictos/arabesque5_g_cream.svg`}
-                alt={`arabesque décorative`}
-              />
-              Découvrez nos créatures à garder
-              <img
-                className="arabesque2--after"
-                src={`../images/pictos/arabesque5_d_cream.svg`}
-                alt={`arabesque décorative`}
-              />
-            </h1>
+              className="arabesque2--before"
+              src={`../images/pictos/arabesque5_g_cream.svg`}
+              alt={`arabesque décorative`}
+            />
+            Découvrez nos créatures à garder
+            <img
+              className="arabesque2--after"
+              src={`../images/pictos/arabesque5_d_cream.svg`}
+              alt={`arabesque décorative`}
+            />
+          </h1>
           <div className="container cards">
             {lastPets.map((lastPet, i) => (
               <CardPet key={i} onePet={lastPet} />
