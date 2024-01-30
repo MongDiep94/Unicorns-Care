@@ -36,26 +36,32 @@ const ProfilUser = ({ id }) => {
 
   return (
     <>
-      <section className="container">
-        <section className="dashboard__profil">
-          <section className="box__infos">
+      <section className="dashboard__profil">
+          <article className="box__infos">
             <h1 className="green">
               {firstName} {lastName && lastName.toUpperCase()}
             </h1>
-            <section className="sitter__rating">
+            <iframe
+              src={address && address.length > 0 && address[0].location}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              aria-hidden="false"
+              aria-label={`Adresse de ${firstName}`}
+             />
+            <div className="sitter__rating">
               <p>6 avis</p>
               <p>
                 <FontAwesomeIcon icon={faStar} className="gold" /> 5/5
               </p>
-            </section>
-            <section className="address">
+            </div>
+            <div className="address">
               <p>
                 <FontAwesomeIcon
                   icon={faLocationDot}
                   className="margin-right-1 orange"
                 />
               </p>
-              <section>
+              <span>
                 {address && address.length > 0 && (
                   <>
                     <p>
@@ -66,12 +72,12 @@ const ProfilUser = ({ id }) => {
                     </p>
                   </>
                 )}
-              </section>
-            </section>
+              </span>
+            </div>
             {sitter && <p>{sitter.bio}</p>}
-          </section>
+          </article>
 
-          <section className="box__availability">
+          <article className="box__availability">
             {sitter ? (
               <section className="profil__table">
                 <table>
@@ -100,12 +106,12 @@ const ProfilUser = ({ id }) => {
                 <p className="total-days">Soit 12 jours</p>
               </section>
             )}
-          </section>
-        </section>
+          </article>
+      </section>
         {sitter && (
           <section className="dashboard__species">
             <h2 className="style-h3 orange">Préférences d'espèces</h2>
-            <section className="box__specie">
+            <div className="box__specie">
               {sitter.species &&
                 sitter.species.length > 0 &&
                 sitter.species.map((s, i) => (
@@ -113,76 +119,69 @@ const ProfilUser = ({ id }) => {
                     {s}
                   </p>
                 ))}
-            </section>
+            </div>
           </section>
         )}
         {pets && pets.length > 0 && (
           <>
-            <h2 className="green">Créatures</h2>
+          <section className="dashboard__pets" >
+            <h2>Créatures</h2>
             {pets.map((pet) => (
-              <section className="dashboard__pets" key={pet._id}>
-                <article className="profil__img">
-                  <img
-                    className="card__background"
-                    src={`${process.env.REACT_APP_API}/images/pets/${pet.image}`}
-                    alt={`Photo de ${pet.name}`}
-                  />
-                </article>
-                <article className="box__infos">
-                  <h1 className="green">{pet.name}</h1>
-                  <section>
-                    <section className="box__specie">
+              <article className="profil__pet" key={pet._id}>
+                <img
+                  className="card__background"
+                  src={`${process.env.REACT_APP_API}/images/pets/${pet.image}`}
+                  alt={`Photo de ${pet.name}`}
+                />
+                <div className="box__infos">
+                  <h3 className="green">{pet.name}</h3>
+                    <div className="box__specie">
                       <p className="box bg--color-grey">{pet.age} ans</p>
                       <p className="box bg--color-grey">{pet.gender}</p>
                       <p className="box bg--color-grey">{pet.specie}</p>
-                      <section>
-                        {pet.element === "Glace" && (
-                          <img
-                            className="picto__element"
-                            src={`${process.env.REACT_APP_API}/images/pictos/element_ice.svg`}
-                            alt={`Icône élément ice`}
-                          />
-                        )}
-                        {pet.element === "Feu" && (
-                          <img
-                            className="picto__element"
-                            src={`${process.env.REACT_APP_API}/images/pictos/element_fire.svg`}
-                            alt={`Icône élément fire`}
-                          />
-                        )}
-                        {pet.element === "Eau" && (
-                          <img
-                            className="picto__element"
-                            src={`${process.env.REACT_APP_API}/images/pictos/element_water.svg`}
-                            alt={`Icône élément fire`}
-                          />
-                        )}
-                        {pet.element === "Terre" && (
-                          <img
-                            className="picto__element"
-                            src={`${process.env.REACT_APP_API}/images/pictos/element_earth.svg`}
-                            alt={`Icône élément fire`}
-                          />
-                        )}
-                        {pet.element === "Air" && (
-                          <img
-                            className="picto__element"
-                            src={`${process.env.REACT_APP_API}/images/pictos/element_wind.svg`}
-                            alt={`Icône élément fire`}
-                          />
-                        )}
-                      </section>
-                    </section>
-                  </section>
-                  <section>
-                    <p>{pet.bio}</p>
-                  </section>
-                </article>
-              </section>
+                      {pet.element === "Glace" && (
+                        <img
+                          className="picto__element"
+                          src={`${process.env.REACT_APP_API}/images/pictos/element_ice.svg`}
+                          alt={`Icône élément ice`}
+                        />
+                      )}
+                      {pet.element === "Feu" && (
+                        <img
+                          className="picto__element"
+                          src={`${process.env.REACT_APP_API}/images/pictos/element_fire.svg`}
+                          alt={`Icône élément fire`}
+                        />
+                      )}
+                      {pet.element === "Eau" && (
+                        <img
+                          className="picto__element"
+                          src={`${process.env.REACT_APP_API}/images/pictos/element_water.svg`}
+                          alt={`Icône élément fire`}
+                        />
+                      )}
+                      {pet.element === "Terre" && (
+                        <img
+                          className="picto__element"
+                          src={`${process.env.REACT_APP_API}/images/pictos/element_earth.svg`}
+                          alt={`Icône élément fire`}
+                        />
+                      )}
+                      {pet.element === "Air" && (
+                        <img
+                          className="picto__element"
+                          src={`${process.env.REACT_APP_API}/images/pictos/element_wind.svg`}
+                          alt={`Icône élément fire`}
+                        />
+                      )}
+                    </div>
+                  <p>{pet.bio}</p>
+                </div>
+              </article>
             ))}
+            </section>
           </>
         )}
-      </section>
       <section className="dashboard__reviews">
         {sitter ? (
           <>

@@ -637,7 +637,7 @@ RESPONSIVE
   /* MINI-BANNER */
   .banner__mini {
     text-align: center;
-    padding-top: 15rem;
+    padding-top: 8rem;
     padding-bottom: 2rem;
     background-image: url(../images/bg_green.svg);
     background-size: 80%;
@@ -664,8 +664,8 @@ RESPONSIVE
   /* MINI-BANNER */
   .banner__mini {
     text-align: center;
-    padding-top: 12rem;
-    padding-bottom: 2rem;
+    padding-top: 11.5rem;
+    padding-bottom: 4rem;
     background-image: url(../images/bg_green.svg);
     background-size: 50%;
     background-color: var(--color-dark-green);
@@ -1706,47 +1706,30 @@ RESPONSIVE
   }
 }
 /* *****************************************************************
-GENERALITIES
-***************************************************************** */
-.bg--green {
-  height: 15rem;
-  background-image: url(../images/bg_green.svg);
-  background-size: 50%;
-}
-
-.dashboard__separator {
-  color: var(--color-dark-grey);
-  padding: 2rem 0;
-  border-top: 0.1rem solid var(--color-dark-grey);
-}
-
-/* *****************************************************************
 DASHBOARD USER
 ***************************************************************** */
-.dashboard__container {
-  display: flex;
-  flex-direction: row;
-  gap: 3rem;
-  min-height: 100vh;
-  max-height: fit-content;
-}
-
 /* MENU ASIDE */
 .dashboard__nav {
-  width: 30%;
-  min-height: 100vh;
-  max-height: fit-content;
-  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  padding: 2rem;
+  margin: 0;
   color: var(--color-dark-grey);
-  text-align: center;
   background-color: var(--color-light-grey);
 }
 .dashboard__nav img {
-  width: 10rem;
-  height: 10rem;
+  width: 5rem;
+  height: 5rem;
   background-position: center;
   border-radius: 50%;
   box-shadow: var(--box-shadow);
+}
+.dashboard__nav button {
+  padding: 0;
 }
 
 .dashboard__title {
@@ -1755,14 +1738,8 @@ DASHBOARD USER
   border-bottom: 0.1rem solid var(--color-orange);
 }
 
-.dashboard__menu {
-  display: flex;
-  flex-direction: column;
-  margin: 2rem 0;
-}
-
 .dashboard__content {
-  width: 100%;
+  padding: 9rem 2rem 5rem 2rem;
 }
 
 .btn__delete {
@@ -1775,7 +1752,7 @@ DASHBOARD USER
 /* profil */
 .dashboard__profil {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   color: var(--color-dark-grey);
   background-color: var(--color-white);
 }
@@ -1793,7 +1770,7 @@ DASHBOARD USER
   margin-bottom: 2rem;
 }
 .dashboard__profil .box__availability {
-  width: 60%;
+  width: 100%;
 }
 
 .address {
@@ -1815,6 +1792,12 @@ DASHBOARD USER
   padding: 2rem;
   background-color: var(--color-cream);
 }
+.dashboard__guard h2 {
+  margin-top: 0;
+}
+.dashboard__guard p {
+  font-weight: 700;
+}
 
 /* Species */
 .dashboard__species {
@@ -1828,20 +1811,74 @@ DASHBOARD USER
 
 /* Pets */
 .dashboard__pets {
+  margin: 5rem 0;
+}
+.dashboard__pets h2 {
+  color: var(--color-dark-green);
+  text-align: center;
+}
+
+.profil__pet {
   display: flex;
-  flex-direction: row;
-  margin-bottom: 2rem;
+  flex-direction: column;
   background-color: var(--color-white);
 }
-.dashboard__pets .profil__img {
-  width: 50%;
-  height: auto;
-}
-.dashboard__pets .box__infos {
+.profil__pet .box__infos {
   width: 100%;
   color: var(--color-dark-grey);
 }
 
+/* Reviews */
+.dashboard__reviews {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+}
+.dashboard__reviews h2 {
+  color: var(--color-orange);
+  margin-top: 0;
+}
+
+/*
+RESPONSIVE
+ */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .dashboard__content {
+    padding: 9rem 5rem 5rem 5rem;
+  }
+}
+@media screen and (min-width: 960px) {
+  .dashboard__content {
+    padding: 9rem 15rem 5rem 15rem;
+  }
+  /* DASHBOARD CONTENT */
+  /* profil */
+  .dashboard__profil {
+    flex-direction: row;
+  }
+  .dashboard__profil .box__availability {
+    width: 60%;
+  }
+  .dashboard__profil iframe {
+    width: 50%;
+    float: left;
+    margin-right: 4rem;
+  }
+  /* Pets */
+  .dashboard__pets {
+    margin: 5rem 0;
+  }
+  .dashboard__pets .card__background {
+    width: 33%;
+    height: auto;
+  }
+  .dashboard__pets h2 {
+    text-align: start;
+  }
+  .profil__pet {
+    flex-direction: row;
+  }
+}
 /* *****************************************************************
 DASHBOARD ADMIN
 ***************************************************************** */

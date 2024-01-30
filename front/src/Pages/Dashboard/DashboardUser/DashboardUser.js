@@ -88,64 +88,69 @@ const DashboardUser = () => {
 
   return (
     <>
-      <div className="bg--green"></div>
+      <div className="banner__mini"></div>
 
-      <main className="container dashboard__container">
-        <section className="dashboard__nav">
-          <img
-            className="card__background"
-            src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-            alt={`Photo de ${firstName}`}
-            // // Si pas de src, on appelle default image
-            // onError={(e) => {
-            //   e.target.src = `${process.env.REACT_APP_API}/images/avatar_licorne.svg`;
-            // }}
-          />
-          <nav className="dashboard__menu">
-            <button
-              title="Bouton de l'onglet Profil"
-              className="dashboard__separator"
-              value="profil"
-              onClick={() => handleClick("profil")}
-              >
-              Profil
-            </button>
-            {admin === "admin" &&
+      <main>
+        <nav>
+          <ul className="dashboard__nav">
+            <img
+              className="card__background"
+              src={`${process.env.REACT_APP_API}/images/users/${photo}`}
+              alt={`Photo de ${firstName}`}
+              // Si pas de src, on appelle default image
+              onError={(e) => {
+                e.target.src = `${process.env.REACT_APP_API}/images/avatar_licorne.svg`;
+              }}
+            />
+            <li>
               <button
-                  title="Bouton de l'onglet Profil"
-                  className="dashboard__separator"
-                  value="profil"
-                  onClick={() => handleClick("admin")}
+                title="Bouton de l'onglet Profil"
+                className="dashboard__separator"
+                value="profil"
+                onClick={() => handleClick("profil")}
                 >
-                  Tableau de bord
-                </button>
+                Profil
+              </button>
+            </li>
+            {admin === "admin" &&
+              <li>
+                <button
+                    title="Bouton de l'onglet Profil"
+                    className="dashboard__separator"
+                    value="profil"
+                    onClick={() => handleClick("admin")}
+                  >
+                    Tableau de bord
+                  </button>
+              </li>
             }
-            <button
-              title="Bouton de l'onglet Messages"
-              className="dashboard__separator"
-              value="messages"
-              onClick={() => handleClick("chatroom")}
+            <li>
+              <button
+                title="Bouton de l'onglet Messages"
+                className="dashboard__separator"
+                value="messages"
+                onClick={() => handleClick("chatroom")}
+                >
+                Messages
+              </button>
+            </li>
+            <li>
+              <button
+                title="Supprimer le profil"
+                className="btn__delete dashboard__separator"
+                value="messages"
+                onClick={handleDelete}
               >
-              Messages
-            </button>
-            <button
-              title="Supprimer le profil"
-              className="btn__delete dashboard__separator"
-              value="messages"
-              onClick={handleDelete}
-            >
-              <FontAwesomeIcon icon={faCircleXmark} /> Supprimer profil
-            </button>
-          </nav>
-        </section>
-
-        <section className="dashboard__content">
-          <>
-            {showAdmin && <DashboardAdmin />}
-            {showProfil && <ProfilUser id={id} />}
-            {showChatroom && <Chatroom socket={socket} />}
-          </>
-        </section>
+                <FontAwesomeIcon icon={faCircleXmark} /> Supprimer profil
+              </button>
+            </li>
+          </ul>
+        </nav>
+        <div className="dashboard__content">
+          {showAdmin && <DashboardAdmin />}
+          {showProfil && <ProfilUser id={id} />}
+          {showChatroom && <Chatroom socket={socket} />}
+         </div>
       </main>
     </>
   );
