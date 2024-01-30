@@ -30,102 +30,99 @@ const ProfilPet = () => {
 
   return (
     <>
-      <div className="bg--green"></div>
-      <section className="container">
-        <section className="profil">
-          <article className="profil__img">
-            <img
-              className="card__background"
-              src={`${process.env.REACT_APP_API}/images/pets/${image}`}
-              alt={`Photo de ${name}`}
-            />
-          </article>
-          <article className="box__infos">
-            <h1 className="green">{name}</h1>
-            <section>
-              <p>
-                <FontAwesomeIcon
-                  icon={faLocationDot}
-                  className="margin-right-1 orange"
-                />{" "}
-                {address && address.length > 0 && address[0].city}
-              </p>
-              <section className="box__specie">
-                <p className="box bg--color-grey">{age} ans</p>
-                <p className="box bg--color-grey">{gender}</p>
-                <p className="box bg--color-grey">{specie}</p>
-                <section>
-                  {element === "Glace" && (
-                    <img
-                      className="picto__element"
-                      src={`${process.env.REACT_APP_API}/images/pictos/element_ice.svg`}
-                      alt={`Icône élément ice`}
-                    />
-                  )}
-                  {element === "Feu" && (
-                    <img
-                      className="picto__element"
-                      src={`${process.env.REACT_APP_API}/images/pictos/element_fire.svg`}
-                      alt={`Icône élément fire`}
-                    />
-                  )}
-                  {element === "Eau" && (
-                    <img
-                      className="picto__element"
-                      src={`${process.env.REACT_APP_API}/images/pictos/element_water.svg`}
-                      alt={`Icône élément fire`}
-                    />
-                  )}
-                  {element === "Terre" && (
-                    <img
-                      className="picto__element"
-                      src={`${process.env.REACT_APP_API}/images/pictos/element_earth.svg`}
-                      alt={`Icône élément fire`}
-                    />
-                  )}
-                  {element === "Air" && (
-                    <img
-                      className="picto__element"
-                      src={`${process.env.REACT_APP_API}/images/pictos/element_wind.svg`}
-                      alt={`Icône élément fire`}
-                    />
-                  )}
-                </section>
-              </section>
-            </section>
-            <section>
-              <p>{bio}</p>
-            </section>
-          </article>
-          <section className="box__availability">
-            <section className="guard">
-              <h2>Gardes</h2>
-              <p className="guard__p">Du 11 décembre 2023</p>
-              <p className="guard__p">Au 22 décembre 2023</p>
-              <p className="total-days">Soit 12 jours</p>
-            </section>
-            <section>
-            <NavLink to="#" className="btn__orange">
-              Contacter {firstName}
-            </NavLink>
-            </section>
-          </section>
-        </section>
-
-        <section className="box__details">
-          <section className="box__reviews">
-            {sitterReviewer.map((sr, i) => (
-              <CardSitterReviewer key={i} sitterReviewer={sr} />
-            ))}
-          </section>
-          <iframe
-            src={address && address.length > 0 && address[0].location}
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            aria-hidden="false"
-            title="Adresse Tohya"
+      <div className="banner__mini"></div>
+      <section className="profil">
+        <article className="profil__img">
+          <img
+            className="card__background"
+            src={`${process.env.REACT_APP_API}/images/pets/${image}`}
+            alt={`Photo de ${name}`}
           />
-        </section>
+        </article>
+        <article className="box__infos">
+          <h1 className="green">{name}</h1>
+          <section>
+            <p>
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className="margin-right-1 orange"
+              />{" "}
+              {address && address.length > 0 && address[0].city}
+            </p>
+            <section className="box__specie">
+              <p className="box bg--color-grey">{age} ans</p>
+              <p className="box bg--color-grey">{gender}</p>
+              <p className="box bg--color-grey">{specie}</p>
+              <div>
+                {element === "Glace" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_ice.svg`}
+                    alt={`Icône élément ice`}
+                  />
+                )}
+                {element === "Feu" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_fire.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+                {element === "Eau" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_water.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+                {element === "Terre" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_earth.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+                {element === "Air" && (
+                  <img
+                    className="picto__element"
+                    src={`${process.env.REACT_APP_API}/images/pictos/element_wind.svg`}
+                    alt={`Icône élément fire`}
+                  />
+                )}
+              </div>
+            </section>
+          </section>
+          <section>
+            <p>{bio}</p>
+          </section>
+        </article>
+        <article className="box__availability">
+          <div className="guard">
+            <h2>Gardes</h2>
+            <p className="guard__p">Du 11 décembre 2023</p>
+            <p className="guard__p">Au 22 décembre 2023</p>
+            <p className="total-days">Soit 12 jours</p>
+          </div>
+          <NavLink to="#" className="btn btn__orange">
+            Contacter {firstName}
+          </NavLink>
+        </article>
+      </section>
+
+      <section className="box__details">
+        <iframe
+          src={address && address.length > 0 && address[0].location}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-hidden="false"
+          title="Adresse Tohya"
+        />
+        <div className="box__reviews">
+          <h2>Les avis</h2>
+          {sitterReviewer.map((sr, i) => (
+            <CardSitterReviewer key={i} sitterReviewer={sr} />
+          ))}
+        </div>
       </section>
     </>
   );

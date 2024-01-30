@@ -601,7 +601,7 @@ a {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
-  justify-content: space-evenly;
+  column-gap: 2rem;
 }
 
 /* MINI-BANNER */
@@ -693,6 +693,7 @@ BUTTON
   font-family: "Young Serif";
   color: var(--color-cream);
   padding: 0.8rem 1rem;
+  width: 100%;
   transition: all 0.2s ease-in-out;
 }
 .btn:hover {
@@ -2184,6 +2185,9 @@ PROFIL SITTER
 }
 
 .box__availability {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
   width: 100%;
   padding: 0 2rem 3rem 2rem;
   margin: 1rem 0;
@@ -2196,7 +2200,7 @@ PROFIL SITTER
 
 .profil__table {
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin: 3rem 0 1rem 0;
   padding: 1rem;
   background-color: var(--color-cream);
 }
