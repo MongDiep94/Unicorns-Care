@@ -23,6 +23,7 @@ DASHBOARD USER
     }
     & button {
       padding: 0;
+      font-size: small;
     }
 }
 
@@ -135,13 +136,22 @@ DASHBOARD USER
 RESPONSIVE
  */
  @media screen and (min-width: 480px) and (max-width: 960px) {
+  .dashboard__nav {
+      & button {
+        font-size: var(--text-size);
+      }
+  }
  .dashboard__content {
   padding: 9rem 5rem 5rem 5rem;
   }
 }
 
 @media screen and (min-width: 960px){
-
+  .dashboard__nav {
+    & button {
+      font-size: var(--text-size);
+    }
+}
   .dashboard__content {
     padding: 9rem 15rem 5rem 15rem;
   }
@@ -182,54 +192,70 @@ RESPONSIVE
 /* *****************************************************************
 DASHBOARD ADMIN
 ***************************************************************** */
-.admin__container {
-  width: 60%;
-  margin: 0 auto 2rem auto;
-}
 
-.admin {
+.admin__container {
   width: 100%;
   table-layout: auto;
   color: var(--color-dark-grey);
   text-align: center;
-}
-
-.admin thead tr th {
-  padding-bottom: 1rem;
-  font-family: 'Young Serif';
-  color: var(--color-dark-green);
-}
-
-.table__admin__photo {
-  margin-left: 1rem;
-  border-radius: 50%;
-  width: 5rem;
-}
-
-button {
-  cursor: pointer;
-  font-size: 2rem;
-  border: 0;
-  padding: 0 2rem;
-  background-color: transparent;
-}
-
-.update {
-  color: var(--color-dark-grey);
-  transition: all 0.5s ease-in-out;
-    &:hover {
-      transform: scale(1.2);
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--color-dark-grey);
+    & thead {
+      font-family: 'Young Serif';
       color: var(--color-dark-green);
-      transition: all 0.5s ease-in-out;
+      border-bottom: 0.2rem solid var(--color-dark-green);
+      & th {
+        padding-bottom: 1rem;
+      }
     }
+    & tr {
+      border-bottom: 0.1rem solid var(--color-grey);
+    }
+    & td {
+      padding: 1rem 0.5rem 0.5rem 0.5rem;
+    }
+  }
+  & .table__admin__photo {
+    border-radius: 50%;
+    width: 5rem;
+  }
+  & button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 0;
+    background-color: transparent;
+  }
+  & .update,
+  & .delete {
+    color: var(--color-dark-grey);
+    transition: all 0.5s ease-in-out;
+  }
+  & .update {
+      &:hover {
+        transform: scale(1.2);
+        color: var(--color-dark-green);
+        transition: all 0.5s ease-in-out;
+      }
+  }
+  & .delete {
+      &:hover {
+        transform: scale(1.2);
+        color: var(--color-orange);
+        transition: all 0.5s ease-in-out;
+      }
+  }
 }
 
-.delete {
-  color: var(--color-dark-grey);
-  transition: all 0.5s ease-in-out;
-    &:hover {
-      transform: scale(1.2);
-      color: var(--color-orange);
-      transition: all 0.5s ease-in-out;
-    }
-}
+
+/* *******************************
+RESPONSIVE
+******************************* */
+
+ @media screen and (min-width: 960px){
+  .admin__container {
+    width: 80%;
+  }
+
+ }

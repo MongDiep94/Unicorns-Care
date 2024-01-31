@@ -55,7 +55,7 @@ const DashboardAdmin = () => {
     <>
       <main className="admin__container">
         <h1 className="dashboard__title">Bonjour Admin</h1>
-        <table className="admin">
+        <table>
           <thead>
             <tr>
               <th></th>
