@@ -42,8 +42,8 @@
 }
 
 .navbar__avatar {
-  width: 5rem;
-  height: 5rem;
+  width: 8rem;
+  height: 8rem;
   background-position: center;
   border-radius: 50%;
 }
@@ -118,6 +118,12 @@
 }
 
 /* RESPONSIVE */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .navbar__avatar {
+    width: 12rem;
+    height: 12rem;
+  }
+}
 
 @media screen and (min-width: 960px){
   .navbar__logo {

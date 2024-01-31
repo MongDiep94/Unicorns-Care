@@ -138,11 +138,21 @@ const Header = () => {
                     id="dashboard"
                     className="navbar__link"
                   >
-                    <img
-                      className="navbar__avatar"
-                      src={`${process.env.REACT_APP_API}/images/users/${photo}`}
-                      alt={`Photo de ${firstName}`}
-                    />
+                    <>
+                      {photo ? (
+                        <img
+                          className="navbar__avatar"
+                          src={`${process.env.REACT_APP_API}/images/users/${photo}`}
+                          alt={`Photo de ${firstName}`}
+                        />
+                      ) : (
+                        <img
+                          className="navbar__avatar"
+                          src={`${process.env.REACT_APP_API}/images/avatar_licorne.svg`}
+                          alt={`Photo de ${firstName}`}
+                        />
+                      )}
+                    </>
                   </NavLink>
                 </li>
               </>

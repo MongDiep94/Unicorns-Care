@@ -71,11 +71,22 @@ const DashboardAdmin = () => {
               users.map((user) => (
                 <tr key={user._id}>
                   <td>
-                    <img
+                    <>
+                    {user.photo ? (
+                      <img
                       className="table__admin__photo"
                       src={`${process.env.REACT_APP_API}/images/users/${user.photo}`}
                       alt={`Photo de ${user.firstName}`}
-                    />
+                      />
+                    ) : (
+                      <img
+                      className="table__admin__photo"
+                      src={`${process.env.REACT_APP_API}/images/avatar_licorne.svg`}
+                      alt={`Photo de ${user.firstName}`}
+                      />
+                    )
+                    }
+                    </>
                   </td>
                   <td>{user.firstName}</td>
                   <td>{user.lastName}</td>

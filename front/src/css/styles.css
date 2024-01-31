@@ -1364,8 +1364,8 @@ RESPONSIVE
 }
 
 .navbar__avatar {
-  width: 5rem;
-  height: 5rem;
+  width: 8rem;
+  height: 8rem;
   background-position: center;
   border-radius: 50%;
 }
@@ -1444,6 +1444,12 @@ RESPONSIVE
 }
 
 /* RESPONSIVE */
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  .navbar__avatar {
+    width: 12rem;
+    height: 12rem;
+  }
+}
 @media screen and (min-width: 960px) {
   .navbar__logo {
     width: 20%;
@@ -1929,6 +1935,9 @@ RESPONSIVE
   }
 }
 @media screen and (min-width: 960px) {
+  .dashboard__nav {
+    margin: 3rem 0 0 0;
+  }
   .dashboard__nav button {
     font-size: var(--text-size);
   }
@@ -2022,6 +2031,7 @@ RESPONSIVE
 @media screen and (min-width: 960px) {
   .admin__container {
     width: 80%;
+    margin: 0 auto;
   }
 }
 .legale-notice {
@@ -2470,7 +2480,7 @@ form {
 
 .separator {
   display: none;
-  height: 3.3rem;
+  height: 3.1rem;
   padding: 0.5rem 1.5rem;
   color: var(--color-dark-green);
   font-weight: bold;
@@ -2481,7 +2491,7 @@ form {
 select {
   color: var(--color-grey);
   width: 100%;
-  height: 3.3rem;
+  height: 3.1rem;
   padding: 0 1rem;
   border: none;
   background-color: rgba(255, 255, 255, 0.8);

@@ -148,6 +148,7 @@ RESPONSIVE
 
 @media screen and (min-width: 960px){
   .dashboard__nav {
+    margin: 3rem 0 0 0;
     & button {
       font-size: var(--text-size);
     }
@@ -256,6 +257,8 @@ RESPONSIVE
  @media screen and (min-width: 960px){
   .admin__container {
     width: 80%;
+    margin: 0 auto;
+
   }
 
  }
