@@ -1799,7 +1799,7 @@ DASHBOARD USER
   align-items: center;
   position: fixed;
   width: 100vw;
-  padding: 2rem;
+  padding: 1rem 2rem;
   margin: 0;
   color: var(--color-dark-grey);
   background-color: var(--color-light-grey);
@@ -1901,6 +1901,9 @@ DASHBOARD USER
   color: var(--color-dark-green);
   text-align: center;
 }
+.dashboard__pets article {
+  margin-bottom: 2rem;
+}
 
 .profil__pet {
   display: flex;
@@ -1927,6 +1930,9 @@ DASHBOARD USER
 RESPONSIVE
  */
 @media screen and (min-width: 480px) and (max-width: 960px) {
+  .dashboard__nav {
+    padding: 1rem 5.5rem;
+  }
   .dashboard__nav button {
     font-size: var(--text-size);
   }
@@ -1936,6 +1942,7 @@ RESPONSIVE
 }
 @media screen and (min-width: 960px) {
   .dashboard__nav {
+    padding: 1rem 15rem;
     margin: 3rem 0 0 0;
   }
   .dashboard__nav button {

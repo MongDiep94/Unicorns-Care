@@ -92,7 +92,7 @@ const DashboardUser = () => {
       <main>
         <nav>
           <ul className="dashboard__nav">
-            <img
+            {/* <img
               className="card__background"
               src={`${process.env.REACT_APP_API}/images/users/${photo}`}
               alt={`Photo de ${firstName}`}
@@ -100,7 +100,7 @@ const DashboardUser = () => {
               onError={(e) => {
                 e.target.src = `${process.env.REACT_APP_API}/images/avatar_licorne.svg`;
               }}
-            />
+            /> */}
             <li>
               <button
                 title="Bouton de l'onglet Profil"
